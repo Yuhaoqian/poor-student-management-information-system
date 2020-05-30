@@ -10,10 +10,6 @@ create database PSMIS;
 
 u_power 权限 (0为系统管理员，1是管理员)
 
-u_question 密保问题
-
-u_answer 密保答案
-
 ```sql
 use PSMIS;
 create table user(
