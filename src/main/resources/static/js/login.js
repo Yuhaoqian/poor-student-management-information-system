@@ -3,7 +3,6 @@ $(function() {
 	const registerForm = document.getElementById('register');
 
 	$("#login-btn").click(function(e) {
-		console.log(123);
 		var un = $("#login-id").val();
 		var pd = $("#login-pwd").val();
 		if ($('#login-id').val().trim().length == 0) {
@@ -20,15 +19,13 @@ $(function() {
 				url : "/handle_login",
 				dataType : "json",
 				data : {
-					id: id,
-					password: password
+					id: un,
+					password: pd
 				},
 				// 'id=' + un + '&password=' + pd,
 				success : function(json) {
-					alert('test');
-					console.log(123);
 					if(json.message == "登录成功！") {
-						// window.location.href = "./index.html?login-name=" + json.name + "&login-id=" + un + "&position=" + json.position;
+						window.location.href = "./index.html?login-name=" + json.name + "&login-id=" + un + "&power=" + json.power;
 					} else {
 						$("#error_login").html(json.message);
 					}
@@ -60,9 +57,14 @@ $(function() {
 		} else if (checkID('register-id') && checkPassword('psw1')) {
 			$.ajax({
 				type : "post",
-				url : "Register",
+				url : "handle_register",
 				dataType : "json",
-				data : 'id=' + un + '&password=' + pd + '&name=' + name,
+				data : {
+					u_id: un,
+					u_password: pd,
+					u_name: name
+				},
+//				data : 'id=' + un + '&password=' + pd + '&name=' + name,
 				success : function(json) {
 					$("#error_register").html(json.message);
 				}
