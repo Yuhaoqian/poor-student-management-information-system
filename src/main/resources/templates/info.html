@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>information</h1>
+	<form action="modify_info" method="post">
+		<table>
+			<tr>
+				<td>学号</td>
+				<td><input name="s_id" type="text" ></td>
+			</tr>
+			<tr>
+				<td>姓名</td>
+				<td><input name="s_name" type="text"></td>
+			</tr>
+			<tr>
+				<td>民族</td>
+				<td><input name="s_nation" type="text"></td>
+			</tr>
+			<tr>
+				<td>性别</td>
+				<td><select name="s_sex" id="gender">
+						<option value="male">男</option>
+						<option value="female">女</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>出生日期</td>
+				<td><input name="s_birth" type="date"></td>
+			</tr>
+			<tr>
+				<td>专业</td>
+				<td><input name="s_major" type="text"></td>
+			</tr>
+			<tr>
+				<td>电话</td>
+				<td><input name="s_phone" type="text"></td>
+			</tr>
+			<tr>
+				<td>家庭住址</td>
+				<td><input name="s_address" type="text"></td>
+			</tr>
+			<tr>
+				<td>家庭人均年收入</td>
+				<td><input name="s_income" type="text"></td>
+			</tr>
+			<tr>
+				<td>家庭贫困原因</td>
+				<td><input name="s_res" type="text"></td>
+			</tr>
+			<tr>
+				<td>奖励情况</td>
+				<td><input name="s_info" type="text"></td>
+			</tr>
+			<tr>
+				<td>其他说明</td>
+				<td><input name="s_other" type="text"></td>
+			</tr>
+		</table>
+		<button id="submit">提交</button>
+		
+	</form>
+
+</body>
+</html>
