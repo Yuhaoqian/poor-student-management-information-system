@@ -8,13 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import edu.sqa.finalproject.poorstudentmis.entity.Student;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
+import edu.sqa.finalproject.poorstudentmis.mapper.StudentMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.UserMapper;
 
 @Controller
 public class UserController {
 	@Autowired
 	private UserMapper userMapper;
+	@Autowired
+	private StudentMapper stuMapper;
 
 	@RequestMapping("login")
 	public String showLogin() {
@@ -49,9 +53,10 @@ public class UserController {
 			map.put("message", "该账号已被注册！");
 		else {
 			userMapper.insert(u);
+			stuMapper.insert(new Student(u.getU_id(), u.getU_name()));
 			map.put("message", "注册成功！");
 		}
 		return map;
 	}
-
+	
 }

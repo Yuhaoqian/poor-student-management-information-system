@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper
+	namespace="edu.sqa.finalproject.poorstudentmis.mapper.StudentMapper">
+	<insert id="insert">
+		insert into stu
+		values(
+		#{s_id},#{s_name},#{s_nation},#{s_sex},
+		#{s_birth},#{s_major},#{s_phone},
+		#{s_address},#{s_income},
+		#{s_res},#{s_info},#{s_other})
+	</insert>
+	<select id="findById"
+		resultType="edu.sqa.finalproject.poorstudentmis.entity.Student">
+		select * from stu where s_id=#{id}
+	</select>
+	<update id="modify">
+		update stu
+		set s_nation=#{s_nation}, s_sex=#{s_sex}, s_birth=#{s_birth},
+			s_major=#{s_major}, s_phone=#{s_phone}, s_address=#{s_address},
+			s_res=#{s_res}, s_info=#{s_info}, s_other=#{s_other}
+		where s_id=#{s_id}
+	</update>
+<!-- 	<select id="findByIdAndPwd"
+		resultType="edu.sqa.finalproject.poorstudentmis.entity.User">
+		select * from user where u_id=#{id} and u_password=#{password}
+	</select> -->
+</mapper>
