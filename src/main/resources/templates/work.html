@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>This is fund page</h1>
+	<div th:each="w:${works}">
+		项目编号<p th:text=${w.w_id}></p>
+		项目名称<p th:text=${w.w_name}></p>
+		项目简介<p th:text=${w.w_abs}></p>
+		发布时间<p th:text=${w.timeStr}></p>
+		地点<p th:text=${w.w_position}></p>
+		劳动报酬<p th:text=${w.w_money}></p>
+		<img th:src="@{'img/uploads/work/' + ${w.w_img}}" src="img/uploads/屏幕快照 2020-05-18 下午6.12.42.png" width="300px" height="300px"/>
+	</div>
+</body>
+</html>

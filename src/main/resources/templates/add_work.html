@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>this is page 'add fund'</h1>
+	<form action="handle_add_work" enctype="multipart/form-data" method="post">
+		<table>
+			<tr>
+				<td>项目名称</td>
+				<td><input type="text" name="w_name"></td>
+			</tr>
+			<tr>
+				<td>项目简介</td>
+				<td><input type="text" name="w_abs"></td>
+			</tr>
+			<tr>
+				<td>地点</td>
+				<td><input type="text" name="w_position"></td>
+			</tr>
+			<tr>
+				<td>劳动报酬</td>
+				<td><input type="text" name="w_money"></td>
+			</tr>
+			<tr>
+				<td>项目图片</td>
+				<td><input type="file" name="w_img" accept="image/*"></td>
+			</tr>
+
+		</table>
+		<input type="submit" value="Upload" />
+	</form>
+</body>
+</html>

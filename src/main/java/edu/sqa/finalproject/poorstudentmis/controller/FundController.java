@@ -34,7 +34,7 @@ public class FundController {
 		return "add_fund";
 	}
 
-	@RequestMapping("handle_add")
+	@RequestMapping("handle_add_fund")
 	public String handleAdd(String f_name, String f_abs, String f_amount, MultipartFile f_img) {
 		// Fund f 接受表单中传来的参数，new一个Fund对象
 		// f_id，不需要设置，这是自增字段
@@ -42,9 +42,9 @@ public class FundController {
 		fund.setF_time(System.currentTimeMillis());
 		// 暂时不需要别的检验机制，直接添加进数据库
 		fundMapper.save(fund);
-		// 把图片保存到img/uploads中
+		// 把图片保存到img/uploads/fund中
 		try {
-			String folder = ClassUtils.getDefaultClassLoader().getResource("static/img/uploads").getPath();
+			String folder = ClassUtils.getDefaultClassLoader().getResource("static/img/uploads/fund").getPath();
 			byte[] bytes = f_img.getBytes();
 			Path path = Paths.get(folder + "/" + f_img.getOriginalFilename());
 			Files.write(path, bytes);
