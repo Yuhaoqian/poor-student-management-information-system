@@ -1,0 +1,60 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+ul {
+  margin-top: 0;
+}
+
+.am_font_bl{
+	font-size: large;
+	color: deepskyblue;
+}
+
+.am-user-content{
+	margin-top: 80px;
+	margin-left: 400px;
+}
+
+.am-user-form{
+	width: 600px;
+	height: 640px;
+}
+
+.am-user-key{
+	width: 200px;
+	height: 40px;
+	font-size: medium;
+}
+
+.am-user-value{
+	width: 400px;
+	height: 40px;
+}
+
+.am-user-value input{
+	width: 380px;
+	height: 34px;
+}
+.am-user-value select{
+	width: 380px;
+	height: 34px;
+	align-content: center;
+}
+
+.subBtn{
+	text-align: center;
+	height: 60px;
+}
+#submit{
+	width: 100px;
+	height: 40px;
+	background-color: deepskyblue;
+	color: white;
+	border: dashed deepskyblue 1px;
+	align-content: center;
+	border-radius: 5px;
+	font-size: large;
+}
