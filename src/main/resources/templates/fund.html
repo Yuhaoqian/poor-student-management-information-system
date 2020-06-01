@@ -7,9 +7,9 @@
 <body>
 	<h1>This is fund page</h1>
 	<div th:each="f:${funds}">
-		项目编号<p th:text=${f.f_id}></p>
-		项目名称<p th:text=${f.f_name}></p>
-		项目简介<p th:text=${f.f_abs}></p>
+		编号<p th:text=${f.f_id}></p>
+		名称<p th:text=${f.f_name}></p>
+		简介<p th:text=${f.f_abs}></p>
 		资助金额<p th:text=${f.f_amount}></p>
 		发布时间<p th:text=${f.timeStr}></p>
 		<img th:src="@{'img/uploads/fund/' + ${f.f_img}}" src="img/uploads/屏幕快照 2020-05-18 下午6.12.42.png" width="300px" height="300px"/>

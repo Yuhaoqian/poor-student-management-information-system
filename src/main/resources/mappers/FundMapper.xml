@@ -13,6 +13,15 @@
 		select * from fund where f_id=#{id}
 	</select>
 	<select id="getFundList" resultType="edu.sqa.finalproject.poorstudentmis.entity.Fund">
-		select * from fund;
+		select * from fund
 	</select>
+	<delete id="delAll">
+		delete from fund
+	</delete>
+	<delete id="delById">
+		delete from fund where f_id=#{id}
+	</delete>
+	<update id="reset">
+			alter table fund auto_increment=1
+	</update>
 </mapper>

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,6 +52,17 @@ public class FundController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "add_fund";
+		return "redirect:/fund_manage";
+	}
+	@RequestMapping("del_all")
+	public String delAll() {
+		fundMapper.delAll();
+		fundMapper.reset();
+		return "redirect:/fund_manage";
+	}
+	@RequestMapping("del")
+	public String del(Integer f_id) {
+		fundMapper.delById(f_id);
+		return "redirect:/fund_manage";
 	}
 }
