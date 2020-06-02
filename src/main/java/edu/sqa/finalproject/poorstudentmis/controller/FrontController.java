@@ -12,7 +12,7 @@ import edu.sqa.finalproject.poorstudentmis.entity.User;
 @Controller
 public class FrontController {
 	@RequestMapping(value = { "/", "home" })
-	public String showHome(HttpServletRequest request, String isLogin, String isAdmin, ModelMap modelMap) {
+	public String showHome(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		System.out.println("u==" + u);
@@ -34,13 +34,69 @@ public class FrontController {
 			modelMap.addAttribute("notLogin", "display:none;");
 			modelMap.addAttribute("pos", "display:none;");
 		}
-		System.out.println(isLogin);
-		System.out.println(isAdmin);
+
 		return "index";
 	}
 
-	@RequestMapping("show_fund")
-	public String showFund() {
+	@RequestMapping("fund")
+	public String showFund(HttpServletRequest request, ModelMap modelMap) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println("u==" + u);
+		if (u != null) { // 如果u不为空
+			modelMap.addAttribute("Login", "display:none");
+			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
+				modelMap.addAttribute("pos", "display:none;");
+		} else { // 如果u为空， 不显示后台，及个人信息按钮
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:none;");
+		}
 		return "fund";
+	}
+
+	@RequestMapping("work")
+	public String showWork(HttpServletRequest request, ModelMap modelMap) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println("u==" + u);
+		if (u != null) { // 如果u不为空
+			modelMap.addAttribute("Login", "display:none");
+			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
+				modelMap.addAttribute("pos", "display:none;");
+		} else { // 如果u为空， 不显示后台，及个人信息按钮
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:none;");
+		}
+		return "work";
+	}
+	@RequestMapping("policy")
+	public String showPolicy(HttpServletRequest request, ModelMap modelMap) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println("u==" + u);
+		if (u != null) { // 如果u不为空
+			modelMap.addAttribute("Login", "display:none");
+			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
+				modelMap.addAttribute("pos", "display:none;");
+		} else { // 如果u为空， 不显示后台，及个人信息按钮
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:none;");
+		}
+		return "policy";
+	}
+	@RequestMapping("application")
+	public String showApplication(HttpServletRequest request, ModelMap modelMap) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println("u==" + u);
+		if (u != null) { // 如果u不为空
+			modelMap.addAttribute("Login", "display:none");
+			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
+				modelMap.addAttribute("pos", "display:none;");
+		} else { // 如果u为空， 不显示后台，及个人信息按钮
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:none;");
+		}
+		return "application";
 	}
 }

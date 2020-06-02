@@ -19,16 +19,16 @@ import edu.sqa.finalproject.poorstudentmis.mapper.WorkMapper;
 public class WorkController {
 	@Autowired
 	private WorkMapper workMapper;
-	@RequestMapping("work")
-	public ModelAndView showWork() {
-//		Work w = workMapper.findById(1);
-//		System.out.println(w);
-		List<Work> works = workMapper.getWorkList();
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("work");
-		mav.addObject("works", works);
-		return mav;
-	}
+//	@RequestMapping("work_back")
+//	public ModelAndView showWork() {
+////		Work w = workMapper.findById(1);
+////		System.out.println(w);
+//		List<Work> works = workMapper.getWorkList();
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("work");
+//		mav.addObject("works", works);
+//		return mav;
+//	}
 	@RequestMapping("add_work")
 	public String addWork() {
 		return "add_work";

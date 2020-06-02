@@ -20,15 +20,15 @@ import edu.sqa.finalproject.poorstudentmis.mapper.FundMapper;
 public class FundController {
 	@Autowired
 	private FundMapper fundMapper;
-	@RequestMapping("fund")
-	public ModelAndView showFund() {
-//		Fund fund = fundMapper.findById(1);
-		List<Fund> funds = fundMapper.getFundList();
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("fund");
-		mav.addObject("funds", funds);
-		return mav;
-	}
+//	@RequestMapping("fund")
+//	public ModelAndView showFund() {
+////		Fund fund = fundMapper.findById(1);
+//		List<Fund> funds = fundMapper.getFundList();
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("fund");
+//		mav.addObject("funds", funds);
+//		return mav;
+//	}
 
 	@RequestMapping("add_fund")
 	public String addFund() {
