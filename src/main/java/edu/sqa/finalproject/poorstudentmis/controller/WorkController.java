@@ -50,6 +50,18 @@ public class WorkController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "add_work";
+		return "redirect:/work_manage";
+
+	}
+	@RequestMapping("del_all_work")
+	public String delAll() {
+		workMapper.delAll();
+		workMapper.reset();
+		return "redirect:/work_manage";
+	}
+	@RequestMapping("del_work")
+	public String del(Integer w_id) {
+		workMapper.delById(w_id);
+		return "redirect:/work_manage";
 	}
 }

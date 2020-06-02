@@ -54,13 +54,13 @@ public class FundController {
 		}
 		return "redirect:/fund_manage";
 	}
-	@RequestMapping("del_all")
+	@RequestMapping("del_all_fund")
 	public String delAll() {
 		fundMapper.delAll();
 		fundMapper.reset();
 		return "redirect:/fund_manage";
 	}
-	@RequestMapping("del")
+	@RequestMapping("del_fund")
 	public String del(Integer f_id) {
 		fundMapper.delById(f_id);
 		return "redirect:/fund_manage";

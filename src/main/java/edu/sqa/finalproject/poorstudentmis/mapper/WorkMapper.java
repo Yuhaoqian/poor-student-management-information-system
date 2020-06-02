@@ -8,5 +8,7 @@ public interface WorkMapper {
 	public void save(Work work);
 	public Work findById(Integer id);
 	public List<Work> getWorkList();
-
+	public void delAll();
+	public void reset();
+	public void delById(Integer id);
 }

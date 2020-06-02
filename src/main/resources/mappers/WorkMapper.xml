@@ -19,4 +19,13 @@
 		resultType="edu.sqa.finalproject.poorstudentmis.entity.Work">
 		select * from work where w_id=#{id}
 	</select>
+		<delete id="delAll">
+		delete from work
+	</delete>
+	<delete id="delById">
+		delete from work where w_id=#{id}
+	</delete>
+	<update id="reset">
+			alter table work auto_increment=1
+	</update>
 </mapper>

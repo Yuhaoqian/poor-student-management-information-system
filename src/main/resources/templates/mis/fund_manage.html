@@ -82,7 +82,7 @@
                     <div class="am-form-group">
                         <div class="am-u-sm-9 am-u-sm-push-3">
                             <input id="me_upload" class="am-btn am-btn-success close" value="发布资助项目" type="submit">
-                           	<input type="button" id="me_cancel" class="am-btn am-btn-success close" style="background-color: red" value="取消">
+                           	<input type="button" id="me_cancel" class="am-btn am-btn-success close" style="background-color: red;  border:red" value="取消">
                             
                         </div>
                     </div>
@@ -93,7 +93,7 @@
 		<header>
 			<!-- logo -->
 			<div class="am-fl tpl-header-logo">
-				<a href="javascript:;"><img src="assets/img/logo.png" alt=""></a>
+				<a href="javascript:;"><img src="assets/img/logo.png" style="width:225px" alt=""></a>
 			</div>
 			<!-- 右侧内容 -->
 			<div class="tpl-header-fluid">
@@ -123,7 +123,7 @@
 			<!-- 菜单 -->
 			<ul class="sidebar-nav">
 				<li class="sidebar-nav-link"><a href="manage"> <i
-						class="am-icon-home sidebar-nav-link-logo"></i> 首页
+						class="am-icon-home sidebar-nav-link-logo"></i>首页
 				</a></li>
 				<li class="sidebar-nav-link"><a href="stu_manage"> <i
 						class="am-icon-table sidebar-nav-link-logo"></i>学生信息管理
@@ -245,7 +245,7 @@
 			var sure = $("#m1_sure")
 			var cancel = $("#m1_cancel")
 			sure.one("click", function() {
-				window.location.href = "del?f_id=" + f_id;
+				window.location.href = "del_fund?f_id=" + f_id;
 			});
 			cancel.on("click", function() {
 				black_overlay.hide();
@@ -260,12 +260,6 @@
 			black_overlay.show();
 			var upload = $("#me_upload")
 			var cancel = $("#me_cancel")
-			/* 			upload.one("click", function() {
-			 alert("添加成功!")
-			 // 把资助项目插入数据库
-			 black_overlay.hide();
-			 $("#m3").hide();
-			 }); */
 			cancel.on("click", function(e) {
 				black_overlay.hide();
 				$("#m3").hide();
@@ -279,15 +273,12 @@
 			var sure = $("#m2_sure")
 			var cancel = $("#m2_cancel")
 			sure.one("click", function() {
-				window.location.href = "del_all";
+				window.location.href = "del_all_fund";
 			});
 			cancel.on("click", function() {
 				black_overlay.hide();
 				$("#m2").hide();
 			});
-		})
-		$(function() {
-
 		})
 	</script>
 </body>
