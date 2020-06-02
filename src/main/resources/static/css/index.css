@@ -1,0 +1,170 @@
+/* search */
+.h_search{
+	width: 20%;
+	display: inline-block;
+	/*position: relative;*/
+	height: 6%;
+	margin-top: 1.5%;
+	margin-left: 3%;
+}
+.h_search form{
+	width: 100%;
+	height: 6%;
+}
+.h_search form input[type="text"]{
+	font-family: 'open_sansregular';
+	padding: 10px 16px;
+	outline: none;
+	color: #c6c6c6;
+	font-size: 13px;
+	border: 1px solid rgb(236, 236, 236);
+	background: #FFFFFF;
+	width: 92%;
+	height: 6%;
+	line-height: 20px;
+	position: relative;
+	-webkit-appearance: none;
+}
+.h_search form input[type="submit"]{
+	font-family: 'open_sansregular';
+	background: deepskyblue;
+	color: white;
+	text-transform: uppercase;
+	font-size: 15px;
+	padding: 8px 16px;
+	border: none;
+	cursor: pointer;
+	width: 8%;
+	position: absolute;
+	line-height: 1.5em;
+	outline: none;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	-webkit-appearance: none;
+}
+.h_search form input[type="submit"]:hover {
+	background: #FF5454;
+}
+#btn-login {
+ 	float: right;
+ 	width: 60px;
+ 	height: 30px;
+ 	border-radius: 5px;
+ 	margin-top: 20px;
+ 	margin-left: 30px;
+ 	background-color: #e21737;
+ 	text-align: center;
+ 	line-height: 30px;
+ 	color: white;
+ }
+ .nav a{
+ 	text-decoration: none;
+ }
+ #btn-login:hover{
+ 	background-color: deepskyblue;
+ }
+ .detail-h3{
+ 	font-size: 15px;
+ 	font-weight: bold;
+ }
+ .get {
+    /* background: #1E5B94; */
+    background-image: url(../img/mybg.png);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+  }
+
+  .get-title {
+    font-size: 300%;
+    /* border: 2px solid #fff; */
+    padding: 20px;
+    display: inline-block;
+  }
+
+  .get-btn {
+    /* background: #fff; */
+    background-color: #7ebdb4;
+  }
+
+  .detail {
+    background: #fff;
+  }
+
+  .detail-h2 {
+    text-align: center;
+    font-size: 150%;
+    margin: 40px 0;
+  }
+  .hope-title,.detail-h2,.about-title,.about-color{
+  	font-weight: bold;
+  }
+
+  .detail-h3 {
+    color: #1f8dd6;
+  }
+
+  .detail-p {
+    color: #7f8c8d;
+  }
+
+  .detail-mb {
+    margin-bottom: 30px;
+  }
+
+  .hope {
+    /* background: #0bb59b; */
+    background-color: #8ec6c5;
+    padding: 50px 0;
+  }
+
+  .hope-img {
+    text-align: center;
+  }
+
+  .hope-hr {
+    border-color: #149C88;
+  }
+
+  .hope-title {
+    font-size: 140%;
+  }
+
+  .about {
+    background: #fff;
+    padding: 40px 0;
+    color: #7f8c8d;
+  }
+
+  .about-color {
+    color: #34495e;
+  }
+
+  .about-title {
+    font-size: 180%;
+    padding: 30px 0 50px 0;
+    text-align: center;
+  }
+
+.am-container {
+    width: 980px !important;
+    max-width: none;
+  }
+
+  .get,
+  .hope,
+  .footer {
+    min-width: 980px;
+  }
+
+  .am-topbar-collapse {
+    clear: none;
+    padding: 0 10px;
+  }
+  .am-btn-primary{
+    border-radius: 5px;
+  }

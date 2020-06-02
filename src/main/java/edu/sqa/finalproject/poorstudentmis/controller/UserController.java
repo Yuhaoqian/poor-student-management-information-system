@@ -24,7 +24,6 @@ public class UserController {
 	public String showLogin() {
 		return "login";
 	}
-
 	@ResponseBody
 	@RequestMapping("handle_login")
 	public Map<String, Object> handleLogin(String id, String password) {

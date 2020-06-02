@@ -12,24 +12,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.sqa.finalproject.poorstudentmis.entity.Student;
+import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.mapper.StudentMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.UserMapper;
 
 @Controller
 public class StuInfoController {
 	@Autowired
 	private StudentMapper stuMapper;
+	@Autowired
+	private UserMapper userMapper;
 	// 个人信息页面的服务 start
 	@RequestMapping("stu_info")
 	public ModelAndView showInfo(String s_id) {
 		Student stu = stuMapper.findById(s_id);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("info");
+		mav.setViewName("userInfo");
 		mav.addObject("stu", stu);
 		return mav;
 	}
 
-	@RequestMapping("modify_stu_info")
-	public String modifyInfo(Student newStu) {
+	@RequestMapping("modify_stu_info_front")
+	public ModelAndView modifyInfo(Student newStu) {
 		System.out.println(newStu.toString());
 		// 1. 查看stu表中是否有该学生
 		Student stu = stuMapper.findById(newStu.getS_id());
@@ -40,7 +44,10 @@ public class StuInfoController {
 			// 3. 如果有，把学生的所有信息改为当前Student对象中的数据
 			stuMapper.modify(newStu);
 		}
-		return "info";
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("userInfo");
+		mav.addObject("stu", newStu);
+		return mav;
 	}
 	// 个人信息页面的服务 end
 
@@ -81,6 +88,7 @@ public class StuInfoController {
 			
 		} else {
 			stuMapper.insert(new Student(s_id, s_name, s_nation, s_sex, s_birth, s_major, s_phone, s_address, s_income, s_res, s_info, s_other));
+			userMapper.insert(new User(s_id, s_name, "123456", 1));
 			map.put("message", "添加成功！");
 		}
 		return map;

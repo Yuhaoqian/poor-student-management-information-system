@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>申请进度</title>
+		<link rel="stylesheet" href="css/application.css" type="text/css">
+		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<link href="css/fund.css" rel='stylesheet' type='text/css' />
+		<link rel="alternate icon" type="image/png" href="img/favicon.png">
+		<link rel="stylesheet" href="css/userInfo.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type='text/javascript' src="js/jquery.js"></script>
+		<script>
+			$(document).ready(function() {
+				$(".selectedli").click(function() {
+					$(this).css('background-color', 'lightgray').siblings().css('background-color', 'white');
+				});
+				
+				$(".sidebarul>li").click(function(){
+					$(this).addClass("active").siblings().removeClass("active");
+					var index=$(this).index();
+					$("#section>div").eq(index).show().siblings().hide();
+				});
+			});
+			
+			$(window).load(function(){
+				$("#section>div").eq(0).show().siblings().hide();
+			});						
+		</script>
+	</head>
+
+	<body>
+		<!-- header -->
+		<div class="header">
+			<div class="logo">
+				<h1><a href="index.html">大学生助学</a></h1>
+			</div>
+			<!-- start header menu -->
+			<div class="header-top">
+				<div class="head-nav">
+					<nav class="navbar navbar-default">
+						<div class="container-fluid">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+								</button>
+							</div>
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<ul class="nav navbar-nav">
+									<li><a href="index.html">首页 </a></li>
+									<li><a href="fund.html">资助项目</a></li>
+									<li><a href="work.html">勤工俭学</a></li>
+									<li><a href="policy.html">政策解读</a></li>
+									<li class="active"><a href="application.html">查看申请项目</a></li>
+									<li><a href="userInfo.html">个人信息</a></li>
+									<a href="login.html" class="am-btn am-btn-secondary" id="btn-login" style="color: cornsilk;">登录</a>
+								</ul>
+								<div class="h_search">
+									<form>
+										<input type="text" class="text" value="请输入关键词..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter text here';}">
+										<input type="submit" value="搜索">
+									</form>
+								</div>
+							</div>
+						</div>
+					</nav>
+				</div>
+
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<!-- header -->
+		<div id="body">
+			<div id="content">
+				<div id="sidebar">
+					<h3>申请项目进度>>></h3>
+					<ul class="sidebarul">
+						<li class="selectedli" class="active">全部申请的项目</li>
+						<li class="selectedli">正在申请的项目</li>
+						<li class="selectedli">已经完成的项目</li>
+					</ul>
+				</div>
+				<div id="section">
+					<div id="section-one">
+						<ul>
+							<li>
+								<div class="title">
+									<h3><a href="heart-monitoring.html">全部申请的项目一项目一项目一项目一项目一</a></h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in vestibulum mi. Donec felis nunc, placerat quis varius quis, posuere sed velit.
+									</p>
+									<a href="heart-monitoring.html" class="more">了解更多</a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h3><a href="heart-monitoring.html">全部申请的项目二项目二项目二项目二项目二项目二</a></h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in vestibulum mi. Donec felis nunc, placerat quis varius quis, posuere sed velit.
+									</p>
+									<a href="heart-monitoring.html" class="more">了解更多</a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h3><a href="heart-monitoring.html">全部申请的项目三项目三项目三项目三项目三项目三</a></h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in vestibulum mi. Donec felis nunc, placerat quis varius quis, posuere sed velit.
+									</p>
+									<a href="heart-monitoring.html" class="more">了解更多</a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h3><a href="heart-monitoring.html">全部申请的项目三项目三项目三项目三项目三项目三</a></h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in vestibulum mi. Donec felis nunc, placerat quis varius quis, posuere sed velit.
+									</p>
+									<a href="heart-monitoring.html" class="more">了解更多</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div id="section-two">
+						<ul>
+							<li>
+								<div class="title">
+									<h3><a href="heart-monitoring.html">正在申请的项目一项目一项目一项目一项目一</a></h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in vestibulum mi. Donec felis nunc, placerat quis varius quis, posuere sed velit.
+									</p>
+									<a href="heart-monitoring.html" class="more">了解更多</a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h3><a href="heart-monitoring.html">正在申请的项目二项目二项目二项目二项目二项目二</a></h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in vestibulum mi. Donec felis nunc, placerat quis varius quis, posuere sed velit.
+									</p>
+									<a href="heart-monitoring.html" class="more">了解更多</a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h3><a href="heart-monitoring.html">正在申请的项目三项目三项目三项目三项目三项目三</a></h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in vestibulum mi. Donec felis nunc, placerat quis varius quis, posuere sed velit.
+									</p>
+									<a href="heart-monitoring.html" class="more">了解更多</a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h3><a href="heart-monitoring.html">正在申请的项目三项目三项目三项目三项目三项目三</a></h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in vestibulum mi. Donec felis nunc, placerat quis varius quis, posuere sed velit.
+									</p>
+									<a href="heart-monitoring.html" class="more">了解更多</a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h3><a href="heart-monitoring.html">正在申请的项目三项目三项目三项目三项目三项目三</a></h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in vestibulum mi. Donec felis nunc, placerat quis varius quis, posuere sed velit.
+									</p>
+									<a href="heart-monitoring.html" class="more">了解更多</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div id="section-three">
+						<ul>
+							<li>
+								<div class="title">
+									<h3><a href="heart-monitoring.html">已经完成的项目一项目一项目一项目一项目一</a></h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in vestibulum mi. Donec felis nunc, placerat quis varius quis, posuere sed velit.
+									</p>
+									<a href="heart-monitoring.html" class="more">了解更多</a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h3><a href="heart-monitoring.html">已经完成的项目二项目二项目二项目二项目二项目二</a></h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in vestibulum mi. Donec felis nunc, placerat quis varius quis, posuere sed velit.
+									</p>
+									<a href="heart-monitoring.html" class="more">了解更多</a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h3><a href="heart-monitoring.html">已经完成的项目三项目三项目三项目三项目三项目三</a></h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in vestibulum mi. Donec felis nunc, placerat quis varius quis, posuere sed velit.
+									</p>
+									<a href="heart-monitoring.html" class="more">了解更多</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- footer -->
+		<footer class="footer">
+			<div class="footer-container">
+				<ul>
+					<li>
+						联系电话:<a href="">4008208820</a>
+					</li>
+					<li>
+						电子邮箱:<a href="">12345678@qq.com</a>
+					</li>
+					<li>
+						联系地址:<a href="">江苏省张家港市杨舍镇长兴中路八号</a>
+					</li>
+
+				</ul>
+			</div>
+			<div class="clearfix"></div>
+			<div class="footer-bottom">
+				<p>Copyright &copy; 2020. SQA 小宇宙 版权所有</p>
+			</div>
+		</footer>
+		<!-- footer -->
+
+	</body>
+
+</html>

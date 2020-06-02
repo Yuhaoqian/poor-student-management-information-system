@@ -16,28 +16,28 @@ $(function() {
 		} else if (checkID('login-id') && checkPassword('login-pwd')) {
 			$.ajax({
 				type : "post",
-				url : "/handle_login",
+				url : "handle_login",
 				dataType : "json",
 				data : {
-					id: un,
-					password: pd
+					id : un,
+					password : pd
 				},
-				// 'id=' + un + '&password=' + pd,
 				success : function(json) {
-					if(json.message == "登录成功！") {
-						window.location.href = "./index.html?login-name=" + json.name + "&login-id=" + un + "&power=" + json.power;
+					if (json.message == "登录成功！") {
+						post('home', {isLogin:json.id, isAdmin:json.power, name:json.name});
+//						window.location.href = "home?isLogin=" + json.id + "&isAdmin=" + json.power + "&name=" + json.name;
 					} else {
 						$("#error_login").html(json.message);
 					}
 				}
-			});
+			})
 		}
 		e.preventDefault();
 
 	});
 	$("#register-btn").click(function(e) {
 		var un = $("#register-id").val();
-//		console.log(un.trim().length);
+		// console.log(un.trim().length);
 		var name = $("#register-name").val();
 		var pd = $("#psw1").val();
 		if ($('#register-id').val().trim().length == 0) {
@@ -60,11 +60,11 @@ $(function() {
 				url : "handle_register",
 				dataType : "json",
 				data : {
-					u_id: un,
-					u_password: pd,
-					u_name: name
+					u_id : un,
+					u_password : pd,
+					u_name : name
 				},
-//				data : 'id=' + un + '&password=' + pd + '&name=' + name,
+				// data : 'id=' + un + '&password=' + pd + '&name=' + name,
 				success : function(json) {
 					$("#error_register").html(json.message);
 				}
@@ -120,7 +120,8 @@ $(function() {
 	}
 
 	function checkPassword(password) {
-		let reg = /^[\w_-]{6,16}$/;;
+		let reg = /^[\w_-]{6,16}$/;
+		;
 		let idContent = document.getElementById(password).value;
 		if (reg.test(idContent)) {
 			return true;
@@ -128,4 +129,21 @@ $(function() {
 			return false;
 		}
 	}
+
+	function post(URL, PARAMS) {      
+	    var temp = document.createElement("form");      
+	    temp.action = URL;      
+	    temp.method = "post";      
+	    temp.style.display = "none";      
+	    for (var x in PARAMS) {      
+	        var opt = document.createElement("textarea");      
+	        opt.name = x;      
+	        opt.value = PARAMS[x];      
+	        // alert(opt.name)      
+	        temp.appendChild(opt);      
+	    }      
+	    document.body.appendChild(temp);      
+	    temp.submit();      
+	    return temp;      
+	} 
 });

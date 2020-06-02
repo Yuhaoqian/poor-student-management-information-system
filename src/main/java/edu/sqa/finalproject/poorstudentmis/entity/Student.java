@@ -93,6 +93,10 @@ public class Student {
 				+ ", s_birth=" + s_birth + ", s_major=" + s_major + ", s_phone=" + s_phone + ", s_address=" + s_address
 				+ ", s_income=" + s_income + ", s_res=" + s_res + ", s_info=" + s_info + ", s_other=" + s_other + "]";
 	}
+	
+	public Student() {
+		super();
+	}
 	public Student(String s_id, String s_name, String s_nation, String s_sex, String s_birth, String s_major,
 			String s_phone, String s_address, double s_income, String s_res, String s_info, String s_other) {
 		super();

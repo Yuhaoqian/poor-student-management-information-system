@@ -1,0 +1,83 @@
+.single-bottom2 h6 {
+	background: #F3F3F3;
+	padding: 10px;
+	color: deepskyblue;
+	font-size: 1.5em;
+}
+.single-bottom2 {
+	width: 880px;
+	margin-left: 300px;
+	margin-bottom: 2em;
+	padding: 20px 10px;
+	display: inline-block;
+}
+.product {
+	padding: 3% 0 0 0;
+}
+.product-desc {
+	width: 82.3333%;
+	float: left;
+	border-width: 0 1px 0 0;
+	border-right: 1px solid #DDD;
+}
+.product-img {
+	width: 21.5%;
+	float: left;
+	margin-right: 2.5%;
+}
+.product_price {
+	width:15.3333%;
+	float: left;
+	padding: 0 0px 0px 16px;
+	margin-top: 1.5em;
+}
+.price-access {
+	color: #668333;
+	font-size: 1em;
+}
+.product-desc h5 a {
+	color: #3A8AA0;
+	font-size: 18px;
+}
+@media (max-width:1280px){
+.product-desc h5 {
+	padding-bottom: 0%;
+}
+}
+}
+.product-desc h5 a {
+	font-size: 15px;
+}
+.product_price {
+	width: 17%;
+	margin-top: 1.5em;
+}
+.product-img {
+	width: 23.5%;
+	margin-right: 3%;
+	margin-top:1%;
+}
+.button1 {
+	border: none;
+	background:#F1715E;
+	padding: 7px 10px;
+	color: #FFF;
+	font-size: 13px;
+	cursor: pointer;
+	outline: none;
+	margin-top: 9%;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+.button1:hover{
+	background:#3A8AA0;
+	color: #fff;
+}
+.choose-pane{
+	display: inline-block;
+}
+.pagenatin{
+	margin-left: 550px;
+}
