@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,11 @@ public class StuInfoController {
 	private UserMapper userMapper;
 	// 个人信息页面的服务 start
 	@RequestMapping("stu_info")
-	public ModelAndView showInfo(String s_id) {
-		Student stu = stuMapper.findById(s_id);
+	public ModelAndView showInfo(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println("u==" + u);
+		Student stu = stuMapper.findById(u.getU_id());
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("userInfo");
 		mav.addObject("stu", stu);

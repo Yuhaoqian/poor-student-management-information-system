@@ -3,6 +3,9 @@ package edu.sqa.finalproject.poorstudentmis.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,18 +24,33 @@ public class UserController {
 	private StudentMapper stuMapper;
 
 	@RequestMapping("login")
-	public String showLogin() {
+	public String showLogin(HttpServletRequest request) {
+		//判断session中是否有user对象 有则说明登录成功过 直接显示首页
+		HttpSession session = request.getSession();
+		User u = (User)session.getAttribute("user");
+		System.out.println("u=="+u);
+		if(u != null) {
+			//直接显示首页 HomeServlet
+			return "redirect:/home";
+		}
 		return "login";
 	}
 	@ResponseBody
 	@RequestMapping("handle_login")
-	public Map<String, Object> handleLogin(String id, String password) {
+	public Map<String, Object> handleLogin(HttpServletRequest request, String id, String password) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		User u = userMapper.findByIdAndPwd(id, password);
 		if (u == null) {
 			map.put("message", "用户或密码错误！");
 		} else {
 			map.put("message", "登录成功！");
+			//创建session对象  
+			//如果第一次请求会自动创建session对象，并且会把sessionid返回给浏览器通过cookie形式保存
+			//之后得请求就不会再创建了，直接根据sessionid找到对应得对象
+			HttpSession session = request.getSession();
+			System.out.println("sessionid="+session.getId());
+			session.setAttribute("user", u);
+			
 			map.put("name", u.getU_name());
 			map.put("id", id);
 			map.put("power", u.getU_power());
