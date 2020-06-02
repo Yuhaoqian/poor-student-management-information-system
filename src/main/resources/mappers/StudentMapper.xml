@@ -23,8 +23,17 @@
 			s_res=#{s_res}, s_info=#{s_info}, s_other=#{s_other}
 		where s_id=#{s_id}
 	</update>
-<!-- 	<select id="findByIdAndPwd"
-		resultType="edu.sqa.finalproject.poorstudentmis.entity.User">
-		select * from user where u_id=#{id} and u_password=#{password}
-	</select> -->
+	<select id="getStuList"
+		resultType="edu.sqa.finalproject.poorstudentmis.entity.Student">
+		select * from stu
+	</select>
+		<delete id="delAll">
+		delete from stu
+	</delete>
+	<delete id="delById">
+		delete from stu where s_id=#{s_id}
+	</delete>
+	<update id="reset">
+			alter table stu auto_increment=1
+	</update>
 </mapper>

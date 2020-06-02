@@ -2,288 +2,554 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Amaze UI Admin index Examples</title>
-    <meta name="description" content="这是一个 index 页面">
-    <meta name="keywords" content="index">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="icon" type="image/png" href="assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
-    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-    <link rel="stylesheet" href="assets/css/amazeui.min.css" />
-    <link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
-    <link rel="stylesheet" href="assets/css/app.css">
-    <script src="assets/js/jquery.min.js"></script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>JUST - 学生信息管理</title>
+	<meta name="description" content="这是一个 index 页面">
+	<meta name="keywords" content="index">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link rel="icon" type="image/png" href="assets/i/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+	<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+	<link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
+	<link rel="stylesheet" href="assets/css/app.css">
+	<link rel="stylesheet" href="assets/css/mymodal.css">
+
+	<script src="assets/js/jquery.min.js"></script>
 
 </head>
 
-<body data-type="widgets"  class="theme-white">
-    <div class="am-g tpl-g">
-        <!-- 头部 -->
-        <header>
-            <!-- logo -->
-            <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="assets/img/logo.png" alt="" style="width:225px"></a>
-            </div>
-            <!-- 右侧内容 -->
-            <div class="tpl-header-fluid">
-                <!-- 侧边切换 -->
-                <div class="am-fl tpl-header-switch-button am-icon-list">
-                    <span>
+<body data-type="widgets" class="theme-white">
+	<!-- 遮盖层 -->
+	<div class="black_overlay" id="bo"></div>
+	<div class="m1" id="m1">
+		<div class="d1">
+			<span>你正在删除该学生的信息，是否继续？</span>
+		</div>
+		<div class="d2">
+			<button id="m1_sure">确定</button>
+			<button id="m1_cancel">取消</button>
+		</div>
+	</div>
+	<div class="m1" id="m2">
+		<div class="d1">
+			<span>确认删除全部学生信息？</span>
+		</div>
+		<div class="d2">
+			<button id="m2_sure">确定</button>
+			<button id="m2_cancel">取消</button>
+		</div>
+	</div>
+	<div class="modal_edit" id="m3" style="height: 500px; overflow-y: auto;">
+		<form class="am-form am-form-horizontal" id="add_form" enctype="multipart/form-data" method="post"
+			style="padding-top: 30px;">
+			<div class="am-form-group">
+				<label for="noticeTheme" class="am-u-sm-3 am-form-label">
+					学号： </label>
+				<div class="am-u-sm-9">
+					<input id="add_id" placeholder="请输入学号" value="" type="text" name="s_id">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 姓名： </label>
+				<div class="am-u-sm-9">
+					<input id="add_name" placeholder="请输入姓名" value="" type="text" name="s_name">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 民族： </label>
+				<div class="am-u-sm-9">
+					<input id="add_nation" placeholder="请输入民族" value="" type="text" name="s_nation">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 性别： </label>
+				<div class="am-u-sm-9">
+					<select name="s_sex" id="add_sex">
+						<option value="男">男</option>
+						<option value="女">女</option>
+					</select>
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 出生日期： </label>
+				<div class="am-u-sm-9">
+					<input name="s_birth" id="add_birth" type="date">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 专业： </label>
+				<div class="am-u-sm-9">
+					<input id="add_major" placeholder="请输入学生专业" value="" type="text" name="s_major">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 电话： </label>
+				<div class="am-u-sm-9">
+					<input id="add_phone" placeholder="请输入电话号码" value="" type="text" name="s_phone">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 家庭住址： </label>
+				<div class="am-u-sm-9">
+					<input id="add_address" placeholder="请输入家庭住址" value="" type="text" name="s_address">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 家庭年收入：
+				</label>
+				<div class="am-u-sm-9">
+					<input id="add_income" placeholder="请输入家庭人均年收入" value="" type="text" name="s_income">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 家庭贫困原因：
+				</label>
+				<div class="am-u-sm-9">
+					<textarea id="add_res" rows="7" cols="50" placeholder="请输入家庭贫困原因" name="s_res"></textarea>
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 奖励情况： </label>
+				<div class="am-u-sm-9">
+					<textarea id="add_info" rows="7" cols="50" placeholder="请输入奖励情况" name="s_info"></textarea>
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 其他信息： </label>
+				<div class="am-u-sm-9">
+					<textarea id="add_other" rows="7" cols="50" placeholder="请输入其他信息其他信息" name="s_other"></textarea>
+				</div>
+			</div>
 
-                </span>
-                </div>
-            
-                <!-- 其它功能-->
-                <div class="am-fr tpl-header-navbar">
-                    <ul>
-                        <!-- 欢迎语 -->
-                        <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
-                        </li>
-                        <!-- 退出 -->
-                        <li class="am-text-sm">
-                            <a href="/">
-                                <span class="am-icon-sign-out"></span> 退出
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+			<div class="am-form-group">
+				<div class="am-u-sm-9 am-u-sm-push-3">
+					<input id="me_upload" class="am-btn am-btn-success close" value="确认" type="button"> <input
+						type="button" id="me_cancel" class="am-btn am-btn-success close"
+						style="background-color: red; border: red" value="取消"> <span id="message"
+						style="color: red"></span>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal_edit" id="m4" style="height: 500px; overflow-y: auto;">
+		<form class="am-form am-form-horizontal" method="post" style="padding-top: 30px;">
+			<div class="am-form-group">
+				<label for="noticeTheme" class="am-u-sm-3 am-form-label">
+					学号： </label>
+				<div class="am-u-sm-9">
+					<input id="modify_id" readonly value="" type="text" name="s_id">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 姓名： </label>
+				<div class="am-u-sm-9">
+					<input id="modify_name" readonly placeholder="请输入姓名" value="" type="text" name="s_name">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 民族： </label>
+				<div class="am-u-sm-9">
+					<input id="modify_nation" placeholder="请输入民族" value="" type="text" name="s_nation">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 性别： </label>
+				<div class="am-u-sm-9">
+					<select name="modify_sex" id="modify_sex">
+						<option value="男">男</option>
+						<option value="女">女</option>
+					</select>
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 出生日期： </label>
+				<div class="am-u-sm-9">
+					<input name="s_birth" id="modify_birth" type="date">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 专业： </label>
+				<div class="am-u-sm-9">
+					<input id="modify_major" placeholder="请输入学生专业" value="" type="text" name="s_major">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 电话： </label>
+				<div class="am-u-sm-9">
+					<input id="modify_phone" placeholder="请输入电话号码" value="" type="text" name="s_phone">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 家庭住址： </label>
+				<div class="am-u-sm-9">
+					<input id="modify_address" placeholder="请输入家庭住址" value="" type="text" name="s_address">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 家庭年收入：
+				</label>
+				<div class="am-u-sm-9">
+					<input id="modify_income" placeholder="请输入家庭人均年收入" value="" type="text" name="s_income">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 家庭贫困原因：
+				</label>
+				<div class="am-u-sm-9">
+					<textarea id="modify_res" rows="7" cols="50" placeholder="请输入家庭贫困原因" name="s_res"></textarea>
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 奖励情况： </label>
+				<div class="am-u-sm-9">
+					<textarea id="modify_info" rows="7" cols="50" placeholder="请输入奖励情况" name="s_info"></textarea>
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 其他信息： </label>
+				<div class="am-u-sm-9">
+					<textarea id="modify_other" rows="7" cols="50" placeholder="请输入其他信息其他信息" name="s_other"></textarea>
+				</div>
+			</div>
 
-        </header>
-  
-        <!-- 侧边导航栏 -->
-        <div class="left-sidebar">
-            <!-- 菜单 -->
-            <ul class="sidebar-nav">
-                 <li class="sidebar-nav-link">
-                    <a href="manage">
-                        <i class="am-icon-home sidebar-nav-link-logo"></i>首页
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="stu_manage" class="active">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i>学生信息管理
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="fund_manage">
-                        <i class="am-icon-wpforms sidebar-nav-link-logo"></i>资助项目管理
+			<div class="am-form-group">
+				<div class="am-u-sm-9 am-u-sm-push-3">
+					<input id="mm_upload" class="am-btn am-btn-success close" value="确认" type="button"> <input
+						type="button" id="mm_cancel" class="am-btn am-btn-success close"
+						style="background-color: red; border: red" value="取消"> <span id="message"
+						style="color: red"></span>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="am-g tpl-g">
+		<!-- 头部 -->
+		<header>
+			<!-- logo -->
+			<div class="am-fl tpl-header-logo">
+				<a href="javascript:;"><img src="assets/img/logo.png" alt="" style="width: 225px"></a>
+			</div>
+			<!-- 右侧内容 -->
+			<div class="tpl-header-fluid">
+				<!-- 侧边切换 -->
+				<div class="am-fl tpl-header-switch-button am-icon-list">
+					<span> </span>
+				</div>
 
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="work_manage">
-                        <i class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学管理
+				<!-- 其它功能-->
+				<div class="am-fr tpl-header-navbar">
+					<ul>
+						<!-- 欢迎语 -->
+						<li class="am-text-sm tpl-header-navbar-welcome"><a href="javascript:;">欢迎你, <span>Amaze
+									UI</span>
+							</a></li>
+						<!-- 退出 -->
+						<li class="am-text-sm"><a href="/"> <span class="am-icon-sign-out"></span> 退出
+							</a></li>
+					</ul>
+				</div>
+			</div>
 
-                    </a>
-                </li>
+		</header>
 
-            </ul>
-        </div>
+		<!-- 侧边导航栏 -->
+		<div class="left-sidebar">
+			<!-- 菜单 -->
+			<ul class="sidebar-nav">
+				<li class="sidebar-nav-link"><a href="/"> <i class="am-icon-home sidebar-nav-link-logo"></i>首页
+					</a></li>
+				<li class="sidebar-nav-link"><a href="stu_manage" class="active"> <i
+							class="am-icon-table sidebar-nav-link-logo"></i>学生信息管理
+					</a></li>
+				<li class="sidebar-nav-link"><a href="fund_manage"> <i
+							class="am-icon-wpforms sidebar-nav-link-logo"></i>资助项目管理
+
+					</a></li>
+				<li class="sidebar-nav-link"><a href="work_manage"> <i
+							class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学管理
+
+					</a></li>
+
+			</ul>
+		</div>
 
 
 
-        <!-- 内容区域 -->
-        <div class="tpl-content-wrapper">
-            <div class="row-content am-cf">
-                <div class="row">
-                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
-                        <div class="widget am-cf">
-                            <div class="widget-head am-cf">
-                                <div class="widget-title  am-cf">文章列表</div>
+		<!-- 内容区域 -->
+		<div class="tpl-content-wrapper">
+			<div class="row-content am-cf">
+				<div class="row">
+					<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+						<div class="widget am-cf">
+							<div class="widget-head am-cf">
+								<div class="widget-title  am-cf">学生信息管理</div>
 
 
-                            </div>
-                            <div class="widget-body  am-fr">
+							</div>
+							<div class="widget-body  am-fr">
 
-                                <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
-                                    <div class="am-form-group">
-                                        <div class="am-btn-toolbar">
-                                            <div class="am-btn-group am-btn-group-xs">
-                                                <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</button>
-                                                <button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-save"></span> 保存</button>
-                                                <button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span> 审核</button>
-                                                <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
-                                    <div class="am-form-group tpl-table-list-select">
-                                        <select data-am-selected="{btnSize: 'sm'}">
-              <option value="option1">所有类别</option>
-              <option value="option2">IT业界</option>
-              <option value="option3">数码产品</option>
-              <option value="option3">笔记本电脑</option>
-              <option value="option3">平板电脑</option>
-              <option value="option3">只能手机</option>
-              <option value="option3">超极本</option>
-            </select>
-                                    </div>
-                                </div>
-                                <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
-                                    <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                        <input type="text" class="am-form-field ">
-                                        <span class="am-input-group-btn">
-            <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="button"></button>
-          </span>
-                                    </div>
-                                </div>
+								<div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+									<div class="am-form-group">
+										<div class="am-btn-toolbar">
+											<div class="am-btn-group am-btn-group-xs">
+												<button type="button" id="add_stu"
+													class="am-btn am-btn-default am-btn-success">
+													<span class="am-icon-plus"></span> 新增
+												</button>
+												<button id="del_all" type="button"
+													class="am-btn am-btn-default am-btn-danger">
+													<span class="am-icon-trash-o"></span> 删除全部
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
 
-                                <div class="am-u-sm-12">
-                                    <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black ">
-                                        <thead>
-                                            <tr>
-                                                <th>文章缩略图</th>
-                                                <th>文章标题</th>
-                                                <th>作者</th>
-                                                <th>时间</th>
-                                                <th>操作</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="gradeX">
-                                                <td>
-                                                    <img src="assets/img/k.jpg" class="tpl-table-line-img" alt="">
-                                                </td>
-                                                <td class="am-text-middle">Amaze UI 模式窗口</td>
-                                                <td class="am-text-middle">张鹏飞</td>
-                                                <td class="am-text-middle">2016-09-26</td>
-                                                <td class="am-text-middle">
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="even gradeC">
-                                                <td>
-                                                    <img src="assets/img/k.jpg" class="tpl-table-line-img" alt="">
-                                                </td>
-                                                <td class="am-text-middle">有适配微信小程序的计划吗</td>
-                                                <td class="am-text-middle">天纵之人</td>
-                                                <td class="am-text-middle">2016-09-26</td>
-                                                <td class="am-text-middle">
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="gradeX">
-                                                <td>
-                                                    <img src="assets/img/k.jpg" class="tpl-table-line-img" alt="">
-                                                </td>
-                                                <td class="am-text-middle">请问有没有amazeui 分享插件</td>
-                                                <td class="am-text-middle">王宽师</td>
-                                                <td class="am-text-middle">2016-09-26</td>
-                                                <td class="am-text-middle">
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="even gradeC">
-                                                <td>
-                                                    <img src="assets/img/k.jpg" class="tpl-table-line-img" alt="">
-                                                </td>
-                                                <td class="am-text-middle">关于input输入框的问题</td>
-                                                <td class="am-text-middle">着迷</td>
-                                                <td class="am-text-middle">2016-09-26</td>
-                                                <td class="am-text-middle">
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="even gradeC">
-                                                <td>
-                                                    <img src="assets/img/k.jpg" class="tpl-table-line-img" alt="">
-                                                </td>
-                                                <td class="am-text-middle">有没有发现官网上的下载包不好用</td>
-                                                <td class="am-text-middle">醉里挑灯看键</td>
-                                                <td class="am-text-middle">2016-09-26</td>
-                                                <td class="am-text-middle">
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
 
-                                            <tr class="even gradeC">
-                                                <td>
-                                                    <img src="assets/img/k.jpg" class="tpl-table-line-img" alt="">
-                                                </td>
-                                                <td class="am-text-middle">我建议WEB版本文件引入问题</td>
-                                                <td class="am-text-middle">罢了</td>
-                                                <td class="am-text-middle">2016-09-26</td>
-                                                <td class="am-text-middle">
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <!-- more data -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="am-u-lg-12 am-cf">
+								<div class="am-u-sm-12">
+									<table width="100%"
+										class="am-table am-table-compact am-table-striped tpl-table-black ">
+										<thead>
+											<tr>
+												<th>学号</th>
+												<th>姓名</th>
+												<th>性别</th>
+												<th>出生日期</th>
+												<th>专业</th>
+												<th>电话</th>
+												<th>家庭住址</th>
 
-                                    <div class="am-fr">
-                                        <ul class="am-pagination tpl-pagination">
-                                            <li class="am-disabled"><a href="#">«</a></li>
-                                            <li class="am-active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li><a href="#">»</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="assets/js/amazeui.min.js"></script>
-    <script src="assets/js/app.js"></script>
+												<th>操作</th>
 
+											</tr>
+										</thead>
+										<tbody>
+
+											<tr th:each="s:${stus}" class="gradeX">
+												<td th:text=${s.s_id} class="am-text-middle">172219605220</td>
+												<td th:text=${s.s_name} class="am-text-middle">钱聿豪</td>
+												<td th:text=${s.s_sex} class="am-text-middle">男</td>
+												<td th:text=${s.s_birth} class="am-text-middle">1999-04-04</td>
+												<td th:text=${s.s_major} class="am-text-middle">软件工程</td>
+												<td th:text=${s.s_phone} class="am-text-middle">13776165288</td>
+												<td class="am-text-middle">
+													<p th:text=${s.s_address}
+														style="padding-top: 15px; max-width: 25em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+														江苏省苏州市吴江区朗诗滨湖绿郡花园29幢601室</p>
+												</td>
+												<td class="am-text-middle">
+													<div class="tpl-table-black-operation">
+														<a href="javascript:;" th:attr="s_id=${s.s_id}"
+															onclick="modify_stu(this)"> <i class="am-icon-pencil"></i>
+															编辑
+														</a> <a href="javascript:;"
+															class="tpl-table-black-operation-del"
+															th:attr="s_id=${s.s_id}" onclick="show_m1(this)"> <i
+																class="am-icon-trash"></i> 删除
+														</a>
+													</div>
+												</td>
+											</tr>
+
+											<!-- more data -->
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/amazeui.min.js"></script>
+	<script src="assets/js/app.js"></script>
+	<script>
+		function modify_stu(e) {
+			// 1. 获取该学号的学生信息
+			var s_id = $(e).attr("s_id")
+			console.log(s_id)
+			var black_overlay = $("#bo")
+			var m4 = $("#m4")
+			$("#m4").show();
+			black_overlay.show();
+			$.ajax({
+				type: "post",
+				url: "show_stu",
+				dataType: "json",
+				data: {
+					s_id: s_id,
+				},
+				success: function (json) {
+					console.log(json.stu)
+					console.log(json.stu.s_id)
+					$("#modify_id").val(json.stu.s_id)
+					$("#modify_name").val(json.stu.s_name)
+					$("#modify_nation").val(json.stu.s_nation)
+					$("#modify_sex").val(json.stu.s_sex)
+					$("#modify_birth").val(json.stu.s_birth)
+					$("#modify_major").val(json.stu.s_major)
+					$("#modify_phone").val(json.stu.s_phone)
+					$("#modify_address").val(json.stu.s_address)
+					$("#modify_income").val(json.stu.s_income)
+
+					$("#modify_res").val(json.stu.s_res)
+					$("#modify_info").val(json.stu.s_info)
+					$("#modify_other").val(json.stu.s_other)
+				}
+			});
+			var upload = $("#mm_upload")
+			var cancel = $("#mm_cancel")
+			upload.on("click", function (e) {
+				// 2. 用户可能修改了信息表，进行修改操作
+				var sid = $("#modify_id").val()
+				var sname = $("#modify_name").val()
+				var snation = $("#modify_nation").val()
+				var ssex = $("#modify_sex").val()
+				var sbirth = $("#modify_birth").val()
+				var smajor = $("#modify_major").val()
+				var sphone = $("#modify_phone").val()
+				var saddress = $("#modify_address").val()
+				var sincome = $("#modify_income").val()
+
+				var sres = $("#modify_res").val()
+				var sinfo = $("#modify_info").val()
+				var sother = $("#modify_other").val()
+				$.ajax({
+					type: "post",
+					url: "modify_stu_info_back",
+					dataType: "json",
+					data: {
+						s_id: sid,
+						s_name: sname,
+						s_nation: snation,
+						s_sex: ssex,
+						s_birth: sbirth,
+						s_major: smajor,
+						s_phone: sphone,
+						s_address: saddress,
+						s_income: sincome,
+						s_res: sres,
+						s_info: sinfo,
+						s_other: sother
+					},
+					success: function (json) {
+						alert("修改成功！")
+						location.reload()
+					}
+				});
+				e.preventDefault();
+			})
+			cancel.on("click", function (e) {
+				black_overlay.hide();
+				$("#m4").hide();
+				e.preventDefault();
+			});
+		}
+		function show_m1(e) {
+			var s_id = $(e).attr("s_id")
+			console.log(s_id)
+			var black_overlay = $("#bo")
+			var m1 = $("#m1")
+			var sure = $("#m1_sure")
+			var cancel = $("#m1_cancel")
+			sure.one("click", function () {
+				window.location.href = "del_stu?s_id=" + s_id;
+			});
+			cancel.on("click", function () {
+				black_overlay.hide();
+				m1.hide();
+			});
+			black_overlay.show();
+			m1.show();
+		}
+		$("#add_stu").on("click", function () {
+			var black_overlay = $("#bo")
+			$("#m3").show();
+			black_overlay.show();
+			var upload = $("#me_upload")
+			var cancel = $("#me_cancel")
+			upload.on("click", function (e) {
+				var sid = $("#add_id").val()
+				var sname = $("#add_name").val()
+				var snation = $("#add_nation").val()
+				var ssex = $("#add_sex").val()
+				var sbirth = $("#add_birth").val()
+				var smajor = $("#add_major").val()
+				var sphone = $("#add_phone").val()
+				var saddress = $("#add_address").val()
+				var sincome = $("#add_income").val()
+
+				var sres = $("#add_res").val()
+				var sinfo = $("#add_info").val()
+				var sother = $("#add_other").val()
+
+				if (sid.trim() == "")
+					alert("学号不能为空！")
+				else if (sname.trim() == "")
+					alert("姓名不能为空！")
+				else {
+					$.ajax({
+						type: "post",
+						url: "add_stu",
+						dataType: "json",
+						data: {
+							s_id: sid,
+							s_name: sname,
+							s_nation: snation,
+							s_sex: ssex,
+							s_birth: sbirth,
+							s_major: smajor,
+							s_phone: sphone,
+							s_address: saddress,
+							s_income: sincome,
+							s_res: sres,
+							s_info: sinfo,
+							s_other: sother
+						},
+						// 'id=' + un + '&password=' + pd,
+						success: function (json) {
+							if (json.message == "添加成功！") {
+								alert("添加成功！")
+								location.reload()
+								/* 								window.location.href = "./index.html?login-name=" + json.name + "&login-id=" + un + "&power=" + json.power;
+								 */
+							} else {
+								$("#message").html(json.message)
+								alert(json.message)
+								$("#add_id").val("")
+							}
+						}
+					});
+					e.preventDefault();
+				}
+			})
+			cancel.on("click", function (e) {
+				black_overlay.hide();
+				$("#m3").hide();
+				e.preventDefault();
+			});
+		})
+		$("#del_all").on("click", function () {
+			var black_overlay = $("#bo")
+			$("#m2").show();
+			black_overlay.show();
+			var sure = $("#m2_sure")
+			var cancel = $("#m2_cancel")
+			sure.one("click", function () {
+				window.location.href = "del_all_stu";
+			});
+			cancel.on("click", function () {
+				black_overlay.hide();
+				$("#m2").hide();
+			});
+		})
+	</script>
 </body>
 
 </html>
