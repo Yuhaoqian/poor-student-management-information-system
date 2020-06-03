@@ -105,7 +105,7 @@
 			<div id="section">
 				<div id="section-one">
 					<ul>
-						<li th:each="wvo:${workVOs}">
+						<li th:if="${workVOs}" th:each="wvo:${workVOs}">
 							<div  class="title">
 								<h3>
 									<a  th:href="@{'work_info?w_id=' + ${wvo.w_id}}"  th:text=${wvo.w_name} href="heart-monitoring.html">全部申请的项目一项目一项目一项目一项目一</a>
@@ -158,7 +158,7 @@
 				</div>
 				<div id="section-two">
 					<ul>
-					<li th:each="fvo:${fundVOs}">
+					<li th:if="${fundVOs}" th:each="fvo:${fundVOs}">
 							<div  class="title">
 								<h3>
 									<a  th:href="@{'fund_info?f_id=' + ${fvo.f_id}}"  th:text=${fvo.f_name} href="heart-monitoring.html">全部申请的项目一项目一项目一项目一项目一</a>
@@ -220,43 +220,7 @@
 						</li>
 					</ul>
 				</div>
-				<div id="section-three">
-					<ul>
-						<li th:remove="all">
-							<div class="title">
-								<h3>
-									<a href="heart-monitoring.html">已经完成的项目一项目一项目一项目一项目一</a>
-								</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Phasellus in vestibulum mi. Donec felis nunc, placerat quis
-									varius quis, posuere sed velit.</p>
-								<a href="heart-monitoring.html" class="more">了解更多</a>
-							</div>
-						</li>
-						<li th:remove="all">
-							<div>
-								<h3>
-									<a href="heart-monitoring.html">已经完成的项目二项目二项目二项目二项目二项目二</a>
-								</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Phasellus in vestibulum mi. Donec felis nunc, placerat quis
-									varius quis, posuere sed velit.</p>
-								<a href="heart-monitoring.html" class="more">了解更多</a>
-							</div>
-						</li>
-						<li th:remove="all">
-							<div>
-								<h3>
-									<a href="heart-monitoring.html">已经完成的项目三项目三项目三项目三项目三项目三</a>
-								</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Phasellus in vestibulum mi. Donec felis nunc, placerat quis
-									varius quis, posuere sed velit.</p>
-								<a href="heart-monitoring.html" class="more">了解更多</a>
-							</div>
-						</li>
-					</ul>
-				</div>
+				
 			</div>
 
 		</div>

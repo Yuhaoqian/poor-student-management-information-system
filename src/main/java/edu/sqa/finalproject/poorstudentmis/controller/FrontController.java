@@ -30,12 +30,13 @@ public class FrontController {
 	private WorkApplyMapper workApplyMapper;
 	@Autowired
 	private FundApplyMapper fundApplyMapper;
+
 	@RequestMapping(value = { "/", "home" })
 	public String showHome(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		System.out.println("u==" + u);
-		
+
 //		if (isAdmin == null || !isAdmin.equals("0"))
 //			modelMap.addAttribute("pos", "display:none;");
 //		if (isLogin == null)
@@ -62,7 +63,7 @@ public class FrontController {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		System.out.println("u==" + u);
-		
+
 		List<Fund> funds = fundMapper.getFundList();
 		int len = funds.size();
 		List<Fund> latest = null;
@@ -91,7 +92,7 @@ public class FrontController {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		System.out.println("u==" + u);
-		
+
 		List<Work> works = workMapper.getWorkList();
 		int len = works.size();
 		List<Work> latest = null;
@@ -108,7 +109,7 @@ public class FrontController {
 		}
 		modelMap.addAttribute("latest", latest);
 		modelMap.addAttribute("more", more);
-		
+
 		if (u != null) { // 如果u不为空
 			modelMap.addAttribute("Login", "display:none");
 			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
@@ -119,6 +120,7 @@ public class FrontController {
 		}
 		return "work";
 	}
+
 	@RequestMapping("policy")
 	public String showPolicy(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
@@ -134,26 +136,30 @@ public class FrontController {
 		}
 		return "policy";
 	}
+
 	@RequestMapping("application")
 	public String showApplication(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		System.out.println("u==" + u);
+		List<WorkVO> workVOs = null;
+		List<FundVO> fundVOs = null;
 		if (u != null) { // 如果u不为空
 			modelMap.addAttribute("Login", "display:none");
 			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
 				modelMap.addAttribute("pos", "display:none;");
-			List<WorkVO> workVOs = workApplyMapper.getAllApplyWorkById(u.getU_id());
-			if (workVOs.size() >= 1)
-				modelMap.addAttribute("workVOs", workVOs);
-			List<FundVO> fundVOs = fundApplyMapper.getAllApplyFundById(u.getU_id());
-			if (fundVOs.size() >= 1)
-				modelMap.addAttribute("fundVOs", fundVOs);
-		} else { 
+			workVOs = workApplyMapper.getAllApplyWorkById(u.getU_id());
+			fundVOs = fundApplyMapper.getAllApplyFundById(u.getU_id());
+			
+			modelMap.addAttribute("workVOs", workVOs);
+			modelMap.addAttribute("fundVOs", fundVOs);
+		} else {
 			// 如果u为空， 不显示后台，及个人信息按钮
 			modelMap.addAttribute("notLogin", "display:none;");
 			modelMap.addAttribute("pos", "display:none;");
 		}
+//		if (workVOs.size() == 0 && fundVOs.size() == 0)
+//			return "redirect:/home";
 		return "application";
 	}
 }

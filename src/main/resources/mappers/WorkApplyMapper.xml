@@ -11,11 +11,11 @@
 		values(#{sid}, #{fid}, #{wa_time}, #{wa_flag},
 		#{wa_reviewer})
 	</insert>
-	<select id="getAllApplyWorkById"
-		resultType="edu.sqa.finalproject.poorstudentmis.entity.WorkVO">
+	<select id="getAllApplyWorkById" resultType="edu.sqa.finalproject.poorstudentmis.entity.WorkVO">
 		select wa.wa_flag, wa.wa_reviewer, w.w_id, w.w_name, w.w_abs, w.w_time
 		from user u join w_apply wa join work w
-		where u.u_id=wa.sid and wa.sid=#{u_id} and w.w_id=wa.fid
+		on u.u_id=wa.sid and w.w_id=wa.fid
+		where wa.sid=#{u_id}
 		order by wa.wa_flag desc
 	</select>
 	<!-- <select id="findById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Fund"> -->
