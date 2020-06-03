@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import edu.sqa.finalproject.poorstudentmis.entity.User;
 
-@WebFilter(filterName = "sessionFilter",urlPatterns = {"/application", "/stu_info", "/fund_manage", "/stu_manage", "/work_manage"})
+@WebFilter(filterName = "sessionFilter",urlPatterns = {"/application", "/stu_info", "/fund_manage", "/stu_manage", "/work_manage", "/fund_verify"})
 public class SessionFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

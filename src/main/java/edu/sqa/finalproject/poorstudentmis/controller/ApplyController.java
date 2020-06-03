@@ -1,13 +1,17 @@
 package edu.sqa.finalproject.poorstudentmis.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.sqa.finalproject.poorstudentmis.entity.FundAF;
+import edu.sqa.finalproject.poorstudentmis.entity.FundVerify;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.entity.WorkAF;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundApplyMapper;
@@ -48,5 +52,28 @@ public class ApplyController {
 		System.out.println(waf);
 		waMapper.save(waf);
 		return "redirect:/application";
+	}
+	@RequestMapping("fund_verify")
+	public String showFundVerify(ModelMap modelMap) {
+		List<FundVerify> fvs = faMapper.getAllVerifyFund();
+		modelMap.addAttribute("fvs", fvs);
+		return "mis/fund_verify";
+	}
+	@RequestMapping("handle_fund_verify")
+	public String handleFundVerify(HttpServletRequest request, int fa_id) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println(fa_id);
+		faMapper.verify(u.getU_name(), fa_id);
+		System.out.println("success");
+		return "redirect:/fund_verify";
+	}
+	@RequestMapping("verify_all_fund")
+	public String handleFundVerify(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		faMapper.verifyAll(u.getU_name());
+		System.out.println("success");
+		return "redirect:/fund_verify";
 	}
 }

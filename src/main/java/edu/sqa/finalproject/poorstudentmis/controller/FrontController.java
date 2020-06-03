@@ -150,7 +150,6 @@ public class FrontController {
 				modelMap.addAttribute("pos", "display:none;");
 			workVOs = workApplyMapper.getAllApplyWorkById(u.getU_id());
 			fundVOs = fundApplyMapper.getAllApplyFundById(u.getU_id());
-			
 			modelMap.addAttribute("workVOs", workVOs);
 			modelMap.addAttribute("fundVOs", fundVOs);
 		} else {

@@ -13,12 +13,33 @@
 	</insert>
 	<select id="getAllApplyFundById"
 		resultType="edu.sqa.finalproject.poorstudentmis.entity.FundVO">
-		select fa.fa_flag, fa.fa_reviewer, f.f_id, f.f_name, f.f_abs, f.f_time
+		select fa.fa_flag, fa.fa_reviewer, f.f_id, f.f_name,
+		f.f_abs, f.f_time
 		from user u inner join f_apply fa inner join fund f
 		on u.u_id=fa.sid and f.f_id=fa.fid
 		where fa.sid=#{u_id}
-		order by fa.fa_flag desc
+		order by
+		fa.fa_flag desc
 	</select>
+	<select id="getAllVerifyFund"
+		resultType="edu.sqa.finalproject.poorstudentmis.entity.FundVerify">
+		select fa.fa_id, f.f_name, u.u_name, fa.fa_flag,
+		fa.fa_reviewer
+		from user u join f_apply fa join fund f
+		on u.u_id=fa.sid
+		and f.f_id=fa.fid
+		order by fa.fa_flag
+	</select>
+	<update id="verify">
+		update f_apply
+		set fa_flag=1, fa_reviewer=#{name}
+		where fa_id=#{id}
+	</update>
+	<update id="verifyAll">
+		update f_apply
+		set fa_flag=1, fa_reviewer=#{name}
+		where fa_flag=0
+	</update>
 	<!-- <select id="findById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Fund"> -->
 	<!-- select * from fund where f_id=#{id} -->
 	<!-- </select> -->
