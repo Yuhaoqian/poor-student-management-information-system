@@ -1,16 +1,23 @@
 package edu.sqa.finalproject.poorstudentmis.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import edu.sqa.finalproject.poorstudentmis.entity.Fund;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
+import edu.sqa.finalproject.poorstudentmis.mapper.FundMapper;
 
 @Controller
 public class FrontController {
+	@Autowired
+	private FundMapper fundMapper;
 	@RequestMapping(value = { "/", "home" })
 	public String showHome(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
@@ -43,6 +50,19 @@ public class FrontController {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		System.out.println("u==" + u);
+		
+		List<Fund> funds = fundMapper.getFundList();
+		int len = funds.size();
+		List<Fund> latest = null;
+		List<Fund> past = null;
+
+		if (len >= 2) {
+			latest = funds.subList(0, 2);
+			past = funds.subList(2, len);
+		} else
+			latest = funds;
+		modelMap.addAttribute("latest", latest);
+		modelMap.addAttribute("past", past);
 		if (u != null) { // 如果u不为空
 			modelMap.addAttribute("Login", "display:none");
 			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
@@ -58,6 +78,9 @@ public class FrontController {
 	public String showWork(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
+		
+
+
 		System.out.println("u==" + u);
 		if (u != null) { // 如果u不为空
 			modelMap.addAttribute("Login", "display:none");

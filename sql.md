@@ -74,25 +74,27 @@ create table work(
 ### 资助项目申请表（f_apply）
 
 ```sql
+drop table f_apply;
 create table f_apply(
     fa_id int not null primary key auto_increment,
-    sid int not null,
+    sid varchar(20) not null,
     fid int not null,
     fa_time bigint(20) not null,
     fa_flag int not null,
-    fa_reviwer varchar(30) not null
+    fa_reviewer varchar(30) not null
 )charset=utf8;
 ```
 
 ### 助学项目申请表（w_apply）
 
 ```sql
+drop table w_apply;
 create table w_apply(
     wa_id int not null primary key auto_increment,
-    sid int not null,
+    sid varchar(20) not null,
     fid int not null,
     wa_time bigint(20) not null,
     wa_flag int not null,
-    wa_reviwer varchar(30) not null
+    wa_reviewer varchar(30) not null
 )charset=utf8;
 ```

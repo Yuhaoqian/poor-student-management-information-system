@@ -13,7 +13,7 @@
 		select * from fund where f_id=#{id}
 	</select>
 	<select id="getFundList" resultType="edu.sqa.finalproject.poorstudentmis.entity.Fund">
-		select * from fund
+		select * from fund order by f_time desc
 	</select>
 	<delete id="delAll">
 		delete from fund

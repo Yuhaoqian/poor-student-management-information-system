@@ -72,23 +72,23 @@
 	<div class="Latest">
 		<div class="container">
 			<h3>
-				<a class="latest">最新资助项目</a>
+				<a class="latest" href="more_fund">最新资助项目</a>
 			</h3>
 			<div class="lat-top">
-				<div class="col-md-6 Latest-top">
+				<div th:each="lf:${latest}" class="col-md-6 Latest-top">
 					<div class="Lat-lft">
-						<img src="img/2.jpg" class="img-responsive" alt="" />
+						<img th:src="@{'img/uploads/fund' + ${lf.f_img}}" src="img/2.jpg" class="img-responsive" alt="" />
 					</div>
 					<div class="Lat-rgt">
-						<h6>July 27, 2015</h6>
-						<h4>Dis parturient montes</h4>
-						<p>Assum dolor sit amet, consectetur adipisicing elit, sed do
+						<h6 th:text=${lf.timeStr}>July 27, 2015</h6>
+						<h4 th:text=${lf.f_name}>Dis parturient montes</h4>
+						<p th:text=${lf.f_abs}>Assum dolor sit amet, consectetur adipisicing elit, sed do
 							eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
 							enim ad minim</p>
 					</div>
 					<div class="clearfix"></div>
 				</div>
-				<div class="col-md-6 Latest-top">
+				<div th:remove="all" class="col-md-6 Latest-top">
 					<div class="Lat-lft">
 						<img src="img/10.jpg" class="img-responsive" alt="" />
 					</div>
@@ -101,52 +101,58 @@
 					</div>
 					<div class="clearfix"></div>
 				</div>
+				
 				<div class="clearfix"></div>
 			</div>
-			<div class="lat-top">
-				<div class="col-md-6 Latest-top">
-					<div class="Lat-lft">
-						<img src="img/4.jpg" class="img-responsive" alt="" />
-					</div>
-					<div class="Lat-rgt">
-						<h6>July 27, 2015</h6>
-						<h4>Dis parturient montes</h4>
-						<p>Assum dolor sit amet, consectetur adipisicing elit, sed do
-							eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-							enim ad minim veniam</p>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="col-md-6 Latest-top">
-					<div class="Lat-lft">
-						<img src="img/5.jpg" class="img-responsive" alt="" />
-					</div>
-					<div class="Lat-rgt">
-						<h6>July 27, 2015</h6>
-						<h4>Dis parturient montes</h4>
-						<p>Assum dolor sit amet, consectetur adipisicing elit, sed do
-							eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-							enim ad minim veniam</p>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
+<!-- 			<div class="lat-top"> -->
+<!-- 				<div class="col-md-6 Latest-top"> -->
+<!-- 					<div class="Lat-lft"> -->
+<!-- 						<img src="img/4.jpg" class="img-responsive" alt="" /> -->
+<!-- 					</div> -->
+<!-- 					<div class="Lat-rgt"> -->
+<!-- 						<h6>July 27, 2015</h6> -->
+<!-- 						<h4>Dis parturient montes</h4> -->
+<!-- 						<p>Assum dolor sit amet, consectetur adipisicing elit, sed do -->
+<!-- 							eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut -->
+<!-- 							enim ad minim veniam</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="clearfix"></div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-md-6 Latest-top"> -->
+<!-- 					<div class="Lat-lft"> -->
+<!-- 						<img src="img/5.jpg" class="img-responsive" alt="" /> -->
+<!-- 					</div> -->
+<!-- 					<div class="Lat-rgt"> -->
+<!-- 						<h6>July 27, 2015</h6> -->
+<!-- 						<h4>Dis parturient montes</h4> -->
+<!-- 						<p>Assum dolor sit amet, consectetur adipisicing elit, sed do -->
+<!-- 							eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut -->
+<!-- 							enim ad minim veniam</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="clearfix"></div> -->
+<!-- 				</div> -->
+<!-- 				<div class="clearfix"></div> -->
+<!-- 			</div> -->
 			<div class="late-bootm">
 				<h3>
-					<a class="late">以往资助项目</a>
+					<a  href="more_fund" class="late">以往资助项目</a>
 				</h3>
-				<div class="col-md-4 nw-top">
-					<img src="img/6.jpg" class="img-responsive" alt="" />
-					<h6>July 27, 2015</h6>
-					<h4>Dis parturient montes</h4>
+				<div th:each="pf:${past}" class="col-md-4 nw-top">
+					<img th:src="@{'img/uploads/fund/' + ${pf.f_img}}" src="img/6.jpg" class="img-responsive" alt="" />
+					<h6 th:text=${pf.timeStr}>July 27, 2015</h6>
+					<h4 th:text=${pf.f_name}>Dis parturient montes</h4>
 				</div>
-				<div class="col-md-4 nw-top">
+				<div th:remove="all" class="col-md-4 nw-top">
 					<img src="img/9.jpg" class="img-responsive" alt="" />
 					<h6>July 27, 2015</h6>
 					<h4>Dis parturient montes</h4>
 				</div>
-				<div class="col-md-4 nw-top">
+				<div th:remove="all"  class="col-md-4 nw-top">
+					<img src="img/8.jpg" class="img-responsive" alt="" />
+					<h6>July 27, 2015</h6>
+					<h4>Dis parturient montes</h4>
+				</div>
+								<div th:remove="all"  class="col-md-4 nw-top">
 					<img src="img/8.jpg" class="img-responsive" alt="" />
 					<h6>July 27, 2015</h6>
 					<h4>Dis parturient montes</h4>
@@ -155,7 +161,7 @@
 			</div>
 			<div class="sponsor">
 				<h3>
-					<a>如何申请资助项目?</a>
+					<a  href="more_fund">如何申请资助项目?</a>
 				</h3>
 				<P>Praesent vestibulum molestie lacus. Aenean nonummy hendrerit
 					mauris. Phasellus porta. Fusce suscipit varius mi. Lorem ipsum
@@ -164,7 +170,7 @@
 					lorem. Maecenas tristique orci ac sem. Duis ultricies pharetra
 					magna. Donec accumsan malesuada orci. Donec sit amet eros. Lorem
 					ipsum dolor sit amt, consectetuer adipiscing elit.</P>
-				<a class="hvr-shutter-in-horizontal" href="#">了解更多</a>
+				<a href="more_fund" class="hvr-shutter-in-horizontal" >了解更多</a>
 			</div>
 		</div>
 	</div>

@@ -5,6 +5,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,21 +17,52 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.sqa.finalproject.poorstudentmis.entity.Fund;
+import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundMapper;
 
 @Controller
 public class FundController {
 	@Autowired
 	private FundMapper fundMapper;
-//	@RequestMapping("fund")
-//	public ModelAndView showFund() {
-////		Fund fund = fundMapper.findById(1);
-//		List<Fund> funds = fundMapper.getFundList();
+	@RequestMapping("more_fund")
+	public String showMoreFund(HttpServletRequest request, ModelMap modelMap) {
+//		Fund fund = fundMapper.findById(1);
+		List<Fund> funds = fundMapper.getFundList();
 //		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("fund");
+//		mav.setViewName("more_fund");
 //		mav.addObject("funds", funds);
 //		return mav;
-//	}
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println("u==" + u);
+		modelMap.addAttribute("funds", funds);
+		if (u != null) { // 如果u不为空
+			modelMap.addAttribute("Login", "display:none");
+			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
+				modelMap.addAttribute("pos", "display:none;");
+		} else { // 如果u为空， 不显示后台，及个人信息按钮
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:none;");
+		}
+		return "more_fund";
+	}
+	@RequestMapping("fund_info")
+	public String showFundInfo(int f_id, HttpServletRequest request, ModelMap modelMap) {
+		Fund fund = fundMapper.findById(f_id);
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println("u==" + u);
+		modelMap.addAttribute("fund", fund);
+		if (u != null) { // 如果u不为空
+			modelMap.addAttribute("Login", "display:none");
+			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
+				modelMap.addAttribute("pos", "display:none;");
+		} else { // 如果u为空， 不显示后台，及个人信息按钮
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:none;");
+		}
+		return "fund_info";
+	}
 
 	@RequestMapping("add_fund")
 	public String addFund() {
