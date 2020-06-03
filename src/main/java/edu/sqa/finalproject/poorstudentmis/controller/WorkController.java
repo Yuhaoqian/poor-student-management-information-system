@@ -5,13 +5,19 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.sqa.finalproject.poorstudentmis.entity.Fund;
+import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.entity.Work;
 import edu.sqa.finalproject.poorstudentmis.mapper.WorkMapper;
 
@@ -19,6 +25,41 @@ import edu.sqa.finalproject.poorstudentmis.mapper.WorkMapper;
 public class WorkController {
 	@Autowired
 	private WorkMapper workMapper;
+	
+	@RequestMapping("more_work")
+	public String showMoreWork(HttpServletRequest request, ModelMap modelMap) {
+		List<Work> works = workMapper.getWorkList();
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println("u==" + u);
+		modelMap.addAttribute("works", works);
+		if (u != null) { // 如果u不为空
+			modelMap.addAttribute("Login", "display:none");
+			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
+				modelMap.addAttribute("pos", "display:none;");
+		} else { // 如果u为空， 不显示后台，及个人信息按钮
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:none;");
+		}
+		return "more_work";
+	}
+	@RequestMapping("work_info")
+	public String showWorkInfo(int w_id, HttpServletRequest request, ModelMap modelMap) {
+		Work work = workMapper.findById(w_id);
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println("u==" + u);
+		modelMap.addAttribute("work", work);
+		if (u != null) { // 如果u不为空
+			modelMap.addAttribute("Login", "display:none");
+			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
+				modelMap.addAttribute("pos", "display:none;");
+		} else { // 如果u为空， 不显示后台，及个人信息按钮
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:none;");
+		}
+		return "work_info";
+	}
 //	@RequestMapping("work_back")
 //	public ModelAndView showWork() {
 ////		Work w = workMapper.findById(1);

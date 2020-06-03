@@ -32,7 +32,8 @@
 							</div>
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 								<ul class="nav navbar-nav">
-							<li ><a href="home">首页 </a></li>
+							<li >
+							<a href="home">首页 </a></li>
 								<li ><a href="fund">资助项目</a></li>
 								<li class="active"><a href="work">勤工俭学</a></li>
 								<li><a href="policy">政策解读</a></li>
@@ -68,7 +69,7 @@
 <div class="container">
 		<div class="row grids">
 			<div class="col-md-4 grid1">
-			  <a href="#">
+			  <a href="more_work">
 				<img src="img/img1.jpg" class="img-responsive" alt=""/>
 				<h3>stories</h3>
 				<div class="look">	
@@ -79,7 +80,7 @@
 				</div></a>
 			</div>
 			<div class="col-md-4 grid2">
-			  <a href="#">
+			  <a href="more_work">
 				<img src="img/img2.jpg" class="img-responsive" alt=""/>
 				<h3>give on line</h3>
 				<div class="look1">	
@@ -90,7 +91,7 @@
 				</div></a>
 			</div>
 			<div class="col-md-4 grid3">
-			  <a href="#">
+			  <a href="more_work">
 				<img src="img/img3.jpg" class="img-responsive" alt=""/>
 				<h3>Hope</h3>
 				<div class="look2">
@@ -110,21 +111,21 @@
 		<div class="container">
 			<div class="col-md-6 upcoming">
 				<h3>这些兼职正在火热招聘中...</h3>
-				<div class="family">
-					<div class="twenty">
-						<h4>20</h4>
-						<p>六月</p>
-					</div>
+				<div th:each="lw:${latest}" class="family">
+<!-- 					<div class="twenty"> -->
+<!-- 						<h4>20</h4> -->
+<!-- 						<p>六月</p> -->
+<!-- 					</div> -->
 					<div class="sunday">
-						<h5>一食堂打饭阿姨</h5>
-						<p>周一到周五 | 6:00am</p>
+						<h5 th:text=${lw.w_name}>一食堂打饭阿姨</h5>
+						<p><span th:text="'发布时间: ' + ${lw.timeStr}">周一到周五</span><br><span th:text="'时薪: ' + ${lw.w_money} + '元'">6:00am</span></p>
 					</div>
 					<div class="mor">
-						<a class="more" href="#">更多</a>
+						<a class="more" href="more_work">更多</a>
 					</div>
 						<div class="clearfix"> </div>
 				</div>
-				<div class="family">
+				<div th:remove="all" class="family">
 					<div class="twenty">
 						<h4>15</h4>
 						<p>JULY</p>
@@ -138,7 +139,7 @@
 					</div>
 						<div class="clearfix"> </div>
 				</div>
-				<div class="family">
+				<div  th:remove="all" class="family">
 					<div class="twenty">
 						<h4>14</h4>
 						<p>四月</p>
@@ -156,12 +157,17 @@
 			<div class="col-md-6 oaks work-info">
 				<h3>更多招聘信息等你来哦！</h3>
 				<ul>
-					<li><a>我是一条招聘信息</a><p>我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息</p></li>
-					<li><a>我是一条招聘信息</a><p>我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息</p></li>
-					<li><a>我是一条招聘信息</a><p>我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息</p></li>
-					<li><a>我是一条招聘信息</a><p>我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息</p></li>
+					<li th:each="mw:${more}">
+						<p th:text=${mw.w_name}>我是一条招聘信息</p>
+						<p th:text="'项目简介: ' + ${mw.w_abs}">我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息</p>
+						<p><span th:text="'时薪: ' + ${mw.w_money} + '元'"></span>&nbsp;&nbsp;&nbsp;<span th:text="'地点: ' + ${mw.w_position}"></span></p>
+						<p th:text="'发布时间: ' + ${mw.timeStr}"></p>
+					</li>
+					<li th:remove="all" >我是一条招聘信息<p>我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息</p></li>
+					<li th:remove="all" >我是一条招聘信息<p>我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息</p></li>
+					<li th:remove="all" >我是一条招聘信息<p>我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息我是一条招聘信息</p></li>
 				</ul>
-				<a class="read" href="#">了解更多 >></a>
+				<a class="read" href="more_work">了解更多 >></a>
 			</div>
 			<div class="clearfix"> </div>
 		</div>

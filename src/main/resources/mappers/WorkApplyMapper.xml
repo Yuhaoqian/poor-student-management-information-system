@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper
+	namespace="edu.sqa.finalproject.poorstudentmis.mapper.WorkApplyMapper">
+	<insert id="save">
+		insert into w_apply
+		(sid, fid, wa_time, wa_flag, wa_reviewer)
+		values(#{sid}, #{fid}, #{wa_time}, #{wa_flag}, #{wa_reviewer})
+	</insert>
+<!-- 	<select id="findById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Fund"> -->
+<!-- 		select * from fund where f_id=#{id} -->
+<!-- 	</select> -->
+<!-- 	<select id="getFundList" resultType="edu.sqa.finalproject.poorstudentmis.entity.Fund"> -->
+<!-- 		select * from fund order by f_time desc -->
+<!-- 	</select> -->
+<!-- 	<delete id="delAll"> -->
+<!-- 		delete from fund -->
+<!-- 	</delete> -->
+<!-- 	<delete id="delById"> -->
+<!-- 		delete from fund where f_id=#{id} -->
+<!-- 	</delete> -->
+<!-- 	<update id="reset"> -->
+<!-- 			alter table fund auto_increment=1 -->
+<!-- 	</update> -->
+</mapper>

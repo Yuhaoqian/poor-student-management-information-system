@@ -8,6 +8,7 @@
 <link rel="alternate icon" type="image/png" href="img/favicon.png">
 <link rel="stylesheet" href="css/policy.css" />
 <link rel="stylesheet" href="css/index.css" />
+<link rel="stylesheet" href="css/con-more.css" />
 <link rel="stylesheet" href="assets/css/mymodal.css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,8 +67,8 @@
 							id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
 								<li><a href="home">首页 </a></li>
-								<li class="active"><a href="fund">资助项目</a></li>
-								<li><a href="work">勤工俭学</a></li>
+								<li><a href="fund">资助项目</a></li>
+								<li class="active"><a href="work">勤工俭学</a></li>
 								<li><a href="policy">政策解读</a></li>
 								<li th:attr="style=${notLogin}"><a href="application">查看申请项目</a></li>
 								<li th:attr="style=${notLogin}"><a href="stu_info">个人信息</a></li>
@@ -98,28 +99,28 @@
 	<div class="Latest">
 		<!-- our -->
 		<div class="single-bottom2">
-			<h6>资助项目列表</h6>
-			<div th:each="f:${funds}" class="product">
+			<h6>勤工俭学——兼职列表</h6>
+			<div th:each="w:${works}" class="product">
 				<div class="product-desc">
 					<div class="product-img">
-						<img th:src="@{'img/uploads/fund/' + ${f.f_img}}" src="img/16.jpg"
+						<img th:src="@{'img/uploads/work/' + ${w.w_img}}" src="img/16.jpg"
 							class="img-responsive " alt="" />
 					</div>
 					<div class="prod1-desc">
 						<h5>
-							<a th:text=${f.f_name} class="product_link" href="fund_info.html"
-								th:href="@{'fund_info?f_id=' + ${f.f_id}}">国家开放“绿色通道”</a>
+							<a th:href="@{'work_info?w_id=' + ${w.w_id}}" class="product_link" th:text=${w.w_name} href="work_info.html">大学城超市招收银员</a>
 						</h5>
-						<p th:text="'资助金额: ' + ${f.f_amount} + '元'" class="product_descr"></p>
-						
-						<p th:text=${f.f_abs} class="product_descr">
-							日前，国务院发出《关于建立健全普通本科高校、高等职业学校和中等职业学校家庭经济困难学生资助政策体系的意见》。2007年秋季开学起，新的资助政策将在全国实施。新资助政策让人振奋，含金量高，覆盖面广，资助强度大，帮困奖优并举，在积极促进教育公平的同时，注重优化教育结构。</p>
+						<p th:text="'发布时间: ' + ${w.timeStr}" class="product_descr">时间:每周六、日
+							上午9:00</p>
+						<p th:text="'工作地点: ' + ${w.w_position}" class="product_descr">地点：大学传商业街</p>
+						<p th:text="'时薪: ' + ${w.w_money} + '元'" class="product_descr">地点：大学传商业街</p>
 					</div>
 					<div class="clearfix"></div>
 				</div>
 				<div class="product_price">
-					<button class="button1" onclick="show_m1(this)" th:attr="f_id=${f.f_id}">
-						<span >申请</span>
+					<button onclick="show_m1(this)" th:attr="w_id=${w.w_id}"
+						class="button1">
+						<span>申请</span>
 					</button>
 				</div>
 				<div class="clearfix"></div>
@@ -131,11 +132,10 @@
 					</div>
 					<div class="prod1-desc">
 						<h5>
-							<a class="product_link" href="fund_info.html">国家助学金</a>
+							<a class="product_link" href="work_info.html">大学城超市招收银员</a>
 						</h5>
-						<p class="product_descr">
-							按照国家将实施的家庭经济困难学生资助政策。其中高等教育阶段，新政策形成了以国家奖学金、励志奖学金、助学金、助学贷款和勤工助学等多种方式相结合的资助体系。
-						</p>
+						<p class="product_descr">时间:每周六、日 上午9:00</p>
+						<p class="product_descr">地点：大学传商业街</p>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -153,11 +153,10 @@
 					</div>
 					<div class="prod1-desc">
 						<h5>
-							<a class="product_link" href="fund_info.html">国家助学金</a>
+							<a class="product_link" href="work_info.html">大学城超市招收银员</a>
 						</h5>
-						<p class="product_descr">
-							2007年教育部组织的国家资助政策宣讲团先后到山东、四川，深入学校、深入农户，与一些家庭经济困难的学生及其家长进行了面对面的政策解读。
-						</p>
+						<p class="product_descr">时间:每周六、日 上午9:00</p>
+						<p class="product_descr">地点：大学传商业街</p>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -175,11 +174,10 @@
 					</div>
 					<div class="prod1-desc">
 						<h5>
-							<a class="product_link" href="fund_info.html">国家励志奖学金</a>
+							<a class="product_link" href="work_info.html">大学城超市招收银员</a>
 						</h5>
-						<p class="product_descr">
-							为进一步加强高校收费管理，增强教育收费透明度，规范高校收费行为，切实维护广大学生和家长的合法权益，近日，国家发展改革委向各地通报了中央部属高校学费标准，并通过门户网站向社会公布。
-						</p>
+						<p class="product_descr">时间:每周六、日 上午9:00</p>
+						<p class="product_descr">地点：大学传商业街</p>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -197,11 +195,10 @@
 					</div>
 					<div class="prod1-desc">
 						<h5>
-							<a class="product_link" href="fund_info.html">国家助学</a>
+							<a class="product_link" href="work_info.html">大学城超市招收银员</a>
 						</h5>
-						<p class="product_descr">
-							每一名接到高校录取通知书的学生，无一例外都收到了一本绿皮的《高等学校学生资助政策简介》小册子。我们终于相信，经过十年风雨兼程逐步建立并完善的国家资助政策体系，在教育部门和媒体的共同努力下，渐渐做到了家喻户晓。
-						</p>
+						<p class="product_descr">时间:每周六、日 上午9:00</p>
+						<p class="product_descr">地点：大学传商业街</p>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -263,14 +260,15 @@
 				return;
 			}
 		    $('html,body').animate({ scrollTop: 0 }, 500);
-			var f_id = $(e).attr("f_id")
-			console.log(f_id)
+
+			var w_id = $(e).attr("w_id")
+			console.log(w_id)
 			var black_overlay = $("#bo")
 			var m1 = $("#m1")
 			var sure = $("#m1_sure")
 			var cancel = $("#m1_cancel")
 			sure.one("click", function() {
-				window.location.href = "handle_apply_fund?f_id=" + f_id;
+				window.location.href = "handle_apply_work?w_id=" + w_id;
 			});
 			cancel.on("click", function() {
 				black_overlay.hide();

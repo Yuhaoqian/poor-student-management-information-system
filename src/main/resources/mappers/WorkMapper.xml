@@ -13,7 +13,7 @@
 	</insert>
 	<select id="getWorkList"
 		resultType="edu.sqa.finalproject.poorstudentmis.entity.Work">
-		select * from work;
+		select * from work order by w_time desc;
 	</select>
 	<select id="findById"
 		resultType="edu.sqa.finalproject.poorstudentmis.entity.Work">

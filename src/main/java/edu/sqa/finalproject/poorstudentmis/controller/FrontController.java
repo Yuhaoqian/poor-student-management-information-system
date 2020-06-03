@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.sqa.finalproject.poorstudentmis.entity.Fund;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
+import edu.sqa.finalproject.poorstudentmis.entity.Work;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.WorkMapper;
 
 @Controller
 public class FrontController {
 	@Autowired
 	private FundMapper fundMapper;
+	@Autowired
+	private WorkMapper workMapper;
 	@RequestMapping(value = { "/", "home" })
 	public String showHome(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
@@ -78,10 +82,25 @@ public class FrontController {
 	public String showWork(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
-		
-
-
 		System.out.println("u==" + u);
+		
+		List<Work> works = workMapper.getWorkList();
+		int len = works.size();
+		List<Work> latest = null;
+		List<Work> more = null;
+
+		if (len >= 3) {
+			latest = works.subList(0, 3);
+			if (len >= 6)
+				more = works.subList(3, 6);
+			else
+				more = works.subList(3, len);
+		} else {
+			latest = works;
+		}
+		modelMap.addAttribute("latest", latest);
+		modelMap.addAttribute("more", more);
+		
 		if (u != null) { // 如果u不为空
 			modelMap.addAttribute("Login", "display:none");
 			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台

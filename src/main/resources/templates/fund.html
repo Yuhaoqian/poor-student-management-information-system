@@ -82,6 +82,8 @@
 					<div class="Lat-rgt">
 						<h6 th:text=${lf.timeStr}>July 27, 2015</h6>
 						<h4 th:text=${lf.f_name}>Dis parturient montes</h4>
+						<h4 th:text="'资助金额: ' + ${lf.f_amount} + '元'">Dis parturient montes</h4>
+						
 						<p th:text=${lf.f_abs}>Assum dolor sit amet, consectetur adipisicing elit, sed do
 							eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
 							enim ad minim</p>
@@ -141,6 +143,8 @@
 					<img th:src="@{'img/uploads/fund/' + ${pf.f_img}}" src="img/6.jpg" class="img-responsive" alt="" />
 					<h6 th:text=${pf.timeStr}>July 27, 2015</h6>
 					<h4 th:text=${pf.f_name}>Dis parturient montes</h4>
+					<h4 th:text="'资助金额: ' + ${pf.f_amount} + '元'">Dis parturient montes</h4>
+					
 				</div>
 				<div th:remove="all" class="col-md-4 nw-top">
 					<img src="img/9.jpg" class="img-responsive" alt="" />
