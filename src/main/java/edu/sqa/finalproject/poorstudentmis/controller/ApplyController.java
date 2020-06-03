@@ -32,7 +32,7 @@ public class ApplyController {
 		FundAF faf = new FundAF(null, sid, fid, fa_time, fa_flag, fa_reviwer);
 		System.out.println(faf);
 		faMapper.save(faf);
-		return "redirect:/home";
+		return "redirect:/application";
 	}
 	@RequestMapping("handle_apply_work")
 	public String handleApplyWork(HttpServletRequest request, int w_id) {
@@ -47,6 +47,6 @@ public class ApplyController {
 		WorkAF waf = new WorkAF(null, sid, wid, wa_time, wa_flag, wa_reviwer);
 		System.out.println(waf);
 		waMapper.save(waf);
-		return "redirect:/home";
+		return "redirect:/application";
 	}
 }
