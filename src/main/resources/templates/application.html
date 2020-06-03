@@ -97,26 +97,31 @@
 			<div id="sidebar">
 				<h3>申请项目进度>>></h3>
 				<ul class="sidebarul">
-					<li class="selectedli active">全部申请的项目</li>
-					<li class="selectedli">正在申请的项目</li>
-					<li class="selectedli">已经完成的项目</li>
+					<li class="selectedli active" style="background-color: lightgray">勤工俭学项目</li>
+					<li class="selectedli">资助项目</li>
+<!-- 					<li class="selectedli">通过审核的项目</li> -->
 				</ul>
 			</div>
 			<div id="section">
 				<div id="section-one">
 					<ul>
-						<li>
-							<div class="title">
+						<li th:each="wvo:${workVOs}">
+							<div  class="title">
 								<h3>
-									<a href="heart-monitoring.html">全部申请的项目一项目一项目一项目一项目一</a>
+									<a  th:href="@{'work_info?w_id=' + ${wvo.w_id}}"  th:text=${wvo.w_name} href="heart-monitoring.html">全部申请的项目一项目一项目一项目一项目一</a>
 								</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+								<p th:text="'项目简介: ' + ${wvo.w_abs}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 									Phasellus in vestibulum mi. Donec felis nunc, placerat quis
 									varius quis, posuere sed velit.</p>
-								<a href="heart-monitoring.html" class="more">了解更多</a>
+								<p th:text="'审核状态: ' + ${wvo.verify}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+									Phasellus in vestibulum mi. Donec felis nunc, placerat quis
+									varius quis, posuere sed velit.</p>
+								<p th:text="'审核人: ' + ${wvo.wa_reviewer}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+									Phasellus in vestibulum mi. Donec felis nunc, placerat quis
+									varius quis, posuere sed velit.</p>
 							</div>
 						</li>
-						<li>
+						<li th:remove="all">
 							<div>
 								<h3>
 									<a href="heart-monitoring.html">全部申请的项目二项目二项目二项目二项目二项目二</a>
@@ -127,7 +132,7 @@
 								<a href="heart-monitoring.html" class="more">了解更多</a>
 							</div>
 						</li>
-						<li>
+						<li th:remove="all">
 							<div>
 								<h3>
 									<a href="heart-monitoring.html">全部申请的项目三项目三项目三项目三项目三项目三</a>
@@ -138,7 +143,7 @@
 								<a href="heart-monitoring.html" class="more">了解更多</a>
 							</div>
 						</li>
-						<li>
+						<li th:remove="all">
 							<div>
 								<h3>
 									<a href="heart-monitoring.html">全部申请的项目三项目三项目三项目三项目三项目三</a>
@@ -153,18 +158,23 @@
 				</div>
 				<div id="section-two">
 					<ul>
-						<li>
-							<div class="title">
+					<li th:each="fvo:${fundVOs}">
+							<div  class="title">
 								<h3>
-									<a href="heart-monitoring.html">正在申请的项目一项目一项目一项目一项目一</a>
+									<a  th:href="@{'fund_info?f_id=' + ${fvo.f_id}}"  th:text=${fvo.f_name} href="heart-monitoring.html">全部申请的项目一项目一项目一项目一项目一</a>
 								</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+								<p th:text="'项目简介: ' + ${fvo.f_abs}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 									Phasellus in vestibulum mi. Donec felis nunc, placerat quis
 									varius quis, posuere sed velit.</p>
-								<a href="heart-monitoring.html" class="more">了解更多</a>
+								<p th:text="'审核状态: ' + ${fvo.verify}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+									Phasellus in vestibulum mi. Donec felis nunc, placerat quis
+									varius quis, posuere sed velit.</p>
+								<p th:text="'审核人: ' + ${fvo.fa_reviewer}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+									Phasellus in vestibulum mi. Donec felis nunc, placerat quis
+									varius quis, posuere sed velit.</p>
 							</div>
 						</li>
-						<li>
+						<li th:remove="all">
 							<div>
 								<h3>
 									<a href="heart-monitoring.html">正在申请的项目二项目二项目二项目二项目二项目二</a>
@@ -175,7 +185,7 @@
 								<a href="heart-monitoring.html" class="more">了解更多</a>
 							</div>
 						</li>
-						<li>
+						<li th:remove="all">
 							<div>
 								<h3>
 									<a href="heart-monitoring.html">正在申请的项目三项目三项目三项目三项目三项目三</a>
@@ -186,7 +196,7 @@
 								<a href="heart-monitoring.html" class="more">了解更多</a>
 							</div>
 						</li>
-						<li>
+						<li th:remove="all">
 							<div>
 								<h3>
 									<a href="heart-monitoring.html">正在申请的项目三项目三项目三项目三项目三项目三</a>
@@ -197,7 +207,7 @@
 								<a href="heart-monitoring.html" class="more">了解更多</a>
 							</div>
 						</li>
-						<li>
+						<li th:remove="all">
 							<div>
 								<h3>
 									<a href="heart-monitoring.html">正在申请的项目三项目三项目三项目三项目三项目三</a>
@@ -212,7 +222,7 @@
 				</div>
 				<div id="section-three">
 					<ul>
-						<li>
+						<li th:remove="all">
 							<div class="title">
 								<h3>
 									<a href="heart-monitoring.html">已经完成的项目一项目一项目一项目一项目一</a>
@@ -223,7 +233,7 @@
 								<a href="heart-monitoring.html" class="more">了解更多</a>
 							</div>
 						</li>
-						<li>
+						<li th:remove="all">
 							<div>
 								<h3>
 									<a href="heart-monitoring.html">已经完成的项目二项目二项目二项目二项目二项目二</a>
@@ -234,7 +244,7 @@
 								<a href="heart-monitoring.html" class="more">了解更多</a>
 							</div>
 						</li>
-						<li>
+						<li th:remove="all">
 							<div>
 								<h3>
 									<a href="heart-monitoring.html">已经完成的项目三项目三项目三项目三项目三项目三</a>

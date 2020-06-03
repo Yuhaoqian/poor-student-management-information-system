@@ -11,9 +11,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.sqa.finalproject.poorstudentmis.entity.Fund;
+import edu.sqa.finalproject.poorstudentmis.entity.FundVO;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.entity.Work;
+import edu.sqa.finalproject.poorstudentmis.entity.WorkVO;
+import edu.sqa.finalproject.poorstudentmis.mapper.FundApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.WorkApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.WorkMapper;
 
 @Controller
@@ -22,6 +26,10 @@ public class FrontController {
 	private FundMapper fundMapper;
 	@Autowired
 	private WorkMapper workMapper;
+	@Autowired
+	private WorkApplyMapper workApplyMapper;
+	@Autowired
+	private FundApplyMapper fundApplyMapper;
 	@RequestMapping(value = { "/", "home" })
 	public String showHome(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
@@ -131,6 +139,10 @@ public class FrontController {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		System.out.println("u==" + u);
+		List<WorkVO> workVOs = workApplyMapper.getAllApplyWorkById(u.getU_id());
+		modelMap.addAttribute("workVOs", workVOs);
+		List<FundVO> fundVOs = fundApplyMapper.getAllApplyFundById(u.getU_id());
+		modelMap.addAttribute("fundVOs", fundVOs);
 		if (u != null) { // 如果u不为空
 			modelMap.addAttribute("Login", "display:none");
 			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台

@@ -6,22 +6,31 @@
 	namespace="edu.sqa.finalproject.poorstudentmis.mapper.WorkApplyMapper">
 	<insert id="save">
 		insert into w_apply
-		(sid, fid, wa_time, wa_flag, wa_reviewer)
-		values(#{sid}, #{fid}, #{wa_time}, #{wa_flag}, #{wa_reviewer})
+		(sid, fid, wa_time, wa_flag,
+		wa_reviewer)
+		values(#{sid}, #{fid}, #{wa_time}, #{wa_flag},
+		#{wa_reviewer})
 	</insert>
-<!-- 	<select id="findById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Fund"> -->
-<!-- 		select * from fund where f_id=#{id} -->
-<!-- 	</select> -->
-<!-- 	<select id="getFundList" resultType="edu.sqa.finalproject.poorstudentmis.entity.Fund"> -->
-<!-- 		select * from fund order by f_time desc -->
-<!-- 	</select> -->
-<!-- 	<delete id="delAll"> -->
-<!-- 		delete from fund -->
-<!-- 	</delete> -->
-<!-- 	<delete id="delById"> -->
-<!-- 		delete from fund where f_id=#{id} -->
-<!-- 	</delete> -->
-<!-- 	<update id="reset"> -->
-<!-- 			alter table fund auto_increment=1 -->
-<!-- 	</update> -->
+	<select id="getAllApplyWorkById"
+		resultType="edu.sqa.finalproject.poorstudentmis.entity.WorkVO">
+		select wa.wa_flag, wa.wa_reviewer, w.w_id, w.w_name, w.w_abs, w.w_time
+		from user u join w_apply wa join work w
+		where u.u_id=wa.sid and wa.sid=#{u_id} and w.w_id=wa.fid
+		order by wa.wa_flag desc
+	</select>
+	<!-- <select id="findById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Fund"> -->
+	<!-- select * from fund where f_id=#{id} -->
+	<!-- </select> -->
+	<!-- <select id="getFundList" resultType="edu.sqa.finalproject.poorstudentmis.entity.Fund"> -->
+	<!-- select * from fund order by f_time desc -->
+	<!-- </select> -->
+	<!-- <delete id="delAll"> -->
+	<!-- delete from fund -->
+	<!-- </delete> -->
+	<!-- <delete id="delById"> -->
+	<!-- delete from fund where f_id=#{id} -->
+	<!-- </delete> -->
+	<!-- <update id="reset"> -->
+	<!-- alter table fund auto_increment=1 -->
+	<!-- </update> -->
 </mapper>

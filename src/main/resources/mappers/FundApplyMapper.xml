@@ -9,6 +9,13 @@
 		(sid, fid, fa_time, fa_flag, fa_reviewer)
 		values(#{sid}, #{fid}, #{fa_time}, #{fa_flag}, #{fa_reviewer})
 	</insert>
+		<select id="getAllApplyFundById"
+		resultType="edu.sqa.finalproject.poorstudentmis.entity.FundVO">
+		select fa.fa_flag, fa.fa_reviewer, f.f_id, f.f_name, f.f_abs, f.f_time
+		from user u join f_apply fa join Fund f
+		where u.u_id=fa.sid and fa.sid=#{u_id} and f.f_id=fa.fid
+		order by fa.fa_flag desc
+	</select>
 <!-- 	<select id="findById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Fund"> -->
 <!-- 		select * from fund where f_id=#{id} -->
 <!-- 	</select> -->
