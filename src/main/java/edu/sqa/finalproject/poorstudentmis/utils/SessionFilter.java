@@ -24,6 +24,9 @@ public class SessionFilter implements Filter {
 		User u = (User)session.getAttribute("user");
         if (u == null) {
         	response.sendRedirect("login");
+        } else {
+        	// 放行
+        	filterChain.doFilter(request, response);
         }
     }
 }
