@@ -14,6 +14,7 @@ import edu.sqa.finalproject.poorstudentmis.entity.FundAF;
 import edu.sqa.finalproject.poorstudentmis.entity.FundVerify;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.entity.WorkAF;
+import edu.sqa.finalproject.poorstudentmis.entity.WorkVerify;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.WorkApplyMapper;
 
@@ -53,27 +54,5 @@ public class ApplyController {
 		waMapper.save(waf);
 		return "redirect:/application";
 	}
-	@RequestMapping("fund_verify")
-	public String showFundVerify(ModelMap modelMap) {
-		List<FundVerify> fvs = faMapper.getAllVerifyFund();
-		modelMap.addAttribute("fvs", fvs);
-		return "mis/fund_verify";
-	}
-	@RequestMapping("handle_fund_verify")
-	public String handleFundVerify(HttpServletRequest request, int fa_id) {
-		HttpSession session = request.getSession();
-		User u = (User) session.getAttribute("user");
-		System.out.println(fa_id);
-		faMapper.verify(u.getU_name(), fa_id);
-		System.out.println("success");
-		return "redirect:/fund_verify";
-	}
-	@RequestMapping("verify_all_fund")
-	public String handleFundVerify(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		User u = (User) session.getAttribute("user");
-		faMapper.verifyAll(u.getU_name());
-		System.out.println("success");
-		return "redirect:/fund_verify";
-	}
+	
 }

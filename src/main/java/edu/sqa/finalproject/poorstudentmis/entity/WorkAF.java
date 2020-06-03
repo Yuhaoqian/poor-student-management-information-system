@@ -11,7 +11,12 @@ public class WorkAF {
 	private Long wa_time; // 申请时间
 	private int wa_flag; // 审核通过标志
 	private String wa_reviewer; // 审核人
-	
+	public String getVerify() {
+		if (wa_flag == 0)
+			return "等待审核";
+		else
+			return "已通过审核";
+	}
 	public WorkAF(Integer wa_id, String sid, int fid, Long wa_time, int wa_flag, String wa_reviewer) {
 		super();
 		this.wa_id = wa_id;

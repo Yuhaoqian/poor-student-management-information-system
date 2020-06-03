@@ -6,6 +6,12 @@ public class WorkVerify {
 	private String u_name;
 	private int wa_flag;
 	private String wa_reviewer;
+	public String getVerify() {
+		if (wa_flag == 0)
+			return "等待审核";
+		else
+			return "已通过审核";
+	}
 	public int getWa_id() {
 		return wa_id;
 	}

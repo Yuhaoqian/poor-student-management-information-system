@@ -10,4 +10,6 @@ public interface WorkApplyMapper {
 	public void save(WorkAF waf);
 	public List<WorkVO> getAllApplyWorkById(String u_id);
 	public List<WorkVerify> getAllVerifyWork();
+	public void verify(String name, int id);
+	public void verifyAll(String name);
 }

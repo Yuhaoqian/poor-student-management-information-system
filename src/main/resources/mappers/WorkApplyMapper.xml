@@ -29,6 +29,16 @@
 		on u.u_id=wa.sid and w.w_id=wa.fid
 		order by wa.wa_flag
 	</select>
+		<update id="verify">
+		update w_apply
+		set wa_flag=1, wa_reviewer=#{name}
+		where wa_id=#{id}
+	</update>
+	<update id="verifyAll">
+		update w_apply
+		set wa_flag=1, wa_reviewer=#{name}
+		where wa_flag=0
+	</update>
 	<!-- <select id="findById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Fund"> -->
 	<!-- select * from fund where f_id=#{id} -->
 	<!-- </select> -->
