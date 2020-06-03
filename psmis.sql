@@ -24,6 +24,10 @@ create table stu(
   s_info text not null,
   s_other text not null
 )charset=utf8;
+insert into stu values
+  ('172219605102','邵倩','汉','','','','','',0,'','',''),
+  ('172219605201','江芳','汉','','','','','',0,'','',''),
+  ('172219605220','钱聿豪','汉','','','','','',0,'','','');
 drop table fund;
 create table fund(
     f_id int not null primary key auto_increment,
