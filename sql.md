@@ -41,9 +41,6 @@ create table stu(
   s_other text not null
 )charset=utf8;
 ```
-
-
-
 ### 资助项目表（fund）
 
 ```sql
@@ -98,3 +95,73 @@ create table w_apply(
     wa_reviewer varchar(30) not null
 )charset=utf8;
 ```
+
+### 创新实训项目表（pratice）
+```sql
+create table pratice (
+    p_id int not null primary key auto_increment,
+    p_name varchar(30),
+    p_abs text not null,
+    p_time bigint(20) not null,
+    p_amount double not null,
+    p_img varchar(50) not null
+)charset=utf8;
+```
+### 创新实训项目申请表(p_apply)
+```sql
+drop table p_apply;
+create table p_apply(
+    pa_id int not null primary key auto_increment,
+    sid varchar(20) not null,
+    pid int not null,
+    pa_time bigint(20) not null,
+    pa_flag int not null,
+    pa_reviewer varchar(30) not null
+)charset=utf8;
+```
+
+### 志愿活动表（vol_table）
+```sql
+create table vol_table (
+    v_id int not null primary key auto_increment,
+    v_name varchar(30),
+    v_abs text not null,
+    v_time bigint(20) not null,
+    v_img varchar(50) not null
+)charset=utf8;
+```
+
+### 志愿活动申请表(v_apply)
+```sql
+drop table v_apply;
+create table v_apply(
+    va_id int not null primary key auto_increment,
+    sid varchar(20) not null,
+    vid int not null,
+    va_time bigint(20) not null,
+    va_flag int not null,
+    va_reviewer varchar(30) not null
+)charset=utf8;
+```
+
+### 问题表(question_table)
+```sql
+drop table question_table;
+create table question_table (
+    q_id int not null primary key auto_increment,
+	sid varchar(20) not null,
+	title varchar(255) not null,
+	content text not null,
+	time bigint(20) not null,
+	r_content text,
+	r_reviewer varchar(255),
+	r_time bigint(20)
+)charset=utf8;
+```
+
+### 为user增加贫困生字段
+```sql
+ALTER TABLE user ADD u_flag INT(4);
+```
+
+### 测试4
