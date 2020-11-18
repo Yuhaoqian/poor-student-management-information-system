@@ -15,6 +15,7 @@ public class Student {
 	private String s_res;
 	private String s_info;
 	private String s_other;
+	private Integer s_isps;
 	public String getS_id() {
 		return s_id;
 	}
@@ -87,13 +88,14 @@ public class Student {
 	public void setS_other(String s_other) {
 		this.s_other = s_other;
 	}
-	@Override
-	public String toString() {
-		return "Student [s_id=" + s_id + ", s_name=" + s_name + ", s_nation=" + s_nation + ", s_sex=" + s_sex
-				+ ", s_birth=" + s_birth + ", s_major=" + s_major + ", s_phone=" + s_phone + ", s_address=" + s_address
-				+ ", s_income=" + s_income + ", s_res=" + s_res + ", s_info=" + s_info + ", s_other=" + s_other + "]";
-	}
 	
+	
+	public Integer getS_isps() {
+		return s_isps;
+	}
+	public void setS_isps(Integer s_isps) {
+		this.s_isps = s_isps;
+	}
 	public Student() {
 		super();
 	}
@@ -112,6 +114,7 @@ public class Student {
 		this.s_res = s_res;
 		this.s_info = s_info;
 		this.s_other = s_other;
+		this.s_isps = 0;
 	}
 	public Student(String s_id, String s_name) {
 		super();
@@ -127,5 +130,14 @@ public class Student {
 		this.s_res = "";
 		this.s_info = "";
 		this.s_other = "";
+		this.s_isps = 0;
 	}
+	@Override
+	public String toString() {
+		return "Student [s_id=" + s_id + ", s_name=" + s_name + ", s_nation=" + s_nation + ", s_sex=" + s_sex
+				+ ", s_birth=" + s_birth + ", s_major=" + s_major + ", s_phone=" + s_phone + ", s_address=" + s_address
+				+ ", s_income=" + s_income + ", s_res=" + s_res + ", s_info=" + s_info + ", s_other=" + s_other
+				+ ", s_isps=" + s_isps + "]";
+	}
+	
 }

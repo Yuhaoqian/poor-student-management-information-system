@@ -32,7 +32,21 @@ public class StuInfoController {
 		Student stu = stuMapper.findById(u.getU_id());
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("userInfo");
+		//Map  
+        Map<String,String> map = new HashMap<String,String>();        
+		//判断学生是否已经进行贫困认定
+		if(stu.getS_isps() == 0) {
+			System.out.println("未认证呢！");	
+			map.put("unsubmitted", "display:inline-block;");
+			map.put("passed", "display:none;");
+		}else {
+			System.out.println("已经进行认证");
+			map.put("unsubmitted", "display:none");
+			map.put("passed", "display:inline-block;");
+			map.put("t","Jf");
+		}	
 		mav.addObject("stu", stu);
+		mav.addObject("map",map);  
 		return mav;
 	}
 

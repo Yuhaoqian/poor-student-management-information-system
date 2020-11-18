@@ -24,60 +24,81 @@
 
 	<body>
 		<!-- header -->
-		<div class="header">
-			<div class="logo">
-				<h1><a href="home">大学生助学</a></h1>
-			</div>
-			<!-- start header menu -->
-			<div class="header-top">
-				<div class="head-nav">
-					<nav class="navbar navbar-default">
-						<div class="container-fluid">
-							<div class="navbar-header">
-								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-										<span class="sr-only">Toggle navigation</span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-								</button>
-							</div>
-							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-								<ul class="nav navbar-nav">
-									<li><a href="home">首页 </a></li>
-									<li><a href="fund">资助项目</a></li>
-									<li><a href="work">勤工俭学</a></li>
-									<li><a href="policy">政策解读</a></li>
-									<li><a href="application">查看申请项目</a></li>
-									<li class="active"><a href="userInfo">个人信息</a></li>
-								</ul>
-								<div class="h_search">
-										<form>
-											<input type="text" class="text" value="请输入关键词..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter text here';}">
-											<input type="submit" value="搜索">
-										</form>
-								</div>
-							</div>
-						</div>
-					</nav>
-				</div>
-				<div class="search-box">
-					<div id="sb-search" class="sb-search">
-
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-
-			</div>
-			<div class="clearfix"> </div>
-		</div>
+	<!-- header -->
+	<nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0pt;">
+		<ul class="nav navbar-nav ">
+			<li ><a href="home" style="font-weight: 800;">
+				SpringBoot
+			</a></li>              
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					奖助贷
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="fund">资助项目</a></li>
+					<li><a href="work">勤工助学</a></li>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					阳光助学 
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="vol">志愿活动</a></li>
+					<li><a href="tygc">添翼工程</a></li>
+					<li><a href="list">榜样典型</a></li>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					服务指南 
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="policy">政策解读</a></li>
+					<li><a href="question">常见问题</a></li>
+					<li><a href="download">文件下载</a></li>
+				</ul>
+		 	</li >
+			<li th:attr="style=${notLogin}">
+				<a href="login" style="font-weight: 800;">
+               	 登录/注册</a>
+            </li> 
+	 		<li class="dropdown" th:attr="style=${Login}">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span th:text = "'欢迎您！'+${session.userName}">admin</span> 
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="stu_info">个人信息</a></li>
+					<li><a href="application">我的申请</a></li>
+				</ul>
+			</li>	
+		</ul>
+	</div>
+	</div>
+</nav>		
 		<!-- header -->
 		<!-- our -->
 		<div class="middle">
 			<!-- our -->
 			<div class="am-userInfo-content">
-				<div>
-					<div><strong class="am_font_bl">个人资料</strong> / <small>Personal information</small></div>
-				</div>
+				<h2 class="page-header">
+					<img src="img/icons/dz.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;">
+					 个人资料
+					 <a th:attr="style=${map.unsubmitted}" href="ask"><button type="button" class="btn btn-danger">
+						<img src="img/icons/danger.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
+						未认证
+						</button>
+					</a> 
+					<a th:attr="style=${map.passed}" href="ask.html"><button type="button" class="btn btn-info">
+						<img src="img/icons/rz.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
+						已认证
+						</button>
+					</a>  
+				</h2>
 				<form action="modify_stu_info_front" method="post" class="am-user-form">
 					<table>
 						<tr class="am-user-tr">

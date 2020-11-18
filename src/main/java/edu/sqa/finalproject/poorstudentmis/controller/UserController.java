@@ -50,7 +50,9 @@ public class UserController {
 			HttpSession session = request.getSession();
 			System.out.println("sessionid="+session.getId());
 			session.setAttribute("user", u);
-			
+			session.setAttribute("userName",u.getU_name());
+			session.setAttribute("password",u.getU_password());	
+			System.out.println("登录成功，用户名为"+u.getU_name());
 			map.put("name", u.getU_name());
 			map.put("id", id);
 			map.put("power", u.getU_power());

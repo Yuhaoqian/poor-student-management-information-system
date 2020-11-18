@@ -4,8 +4,8 @@
 	color: deepskyblue;
 }
 .am-userInfo-content{
-	margin-top: 20px;
-	margin-left: 400px;
+	width: 600px;
+	margin: 0 auto;
 }
 
 .am-user-form{
