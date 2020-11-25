@@ -66,12 +66,17 @@ $(function() {
 				},
 				// data : 'id=' + un + '&password=' + pd + '&name=' + name,
 				success : function(json) {
+					console.log(json.message);
 					$("#error_register").html(json.message);
+					if (json.message == "注册成功") {
+						post('home');
+					} else {
+						$("#error_register").html(json.message);
+					}
 				}
 			});
 		}
 		e.preventDefault();
-
 	});
 	$('#login-id').keyup(function() {
 		$('#error_login').text("");

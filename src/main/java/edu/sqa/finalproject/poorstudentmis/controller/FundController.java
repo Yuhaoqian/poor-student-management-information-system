@@ -1,9 +1,11 @@
 package edu.sqa.finalproject.poorstudentmis.controller;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.sqa.finalproject.poorstudentmis.entity.Fund;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundMapper;
+import edu.sqa.finalproject.poorstudentmis.utils.OssManagerUtil;
 
 @Controller
 public class FundController {
@@ -71,21 +74,35 @@ public class FundController {
 
 	@RequestMapping("handle_add_fund")
 	public String handleAdd(String f_name, String f_abs, String f_amount, MultipartFile f_img) {
-		// Fund f 接受表单中传来的参数，new一个Fund对象
-		// f_id，不需要设置，这是自增字段
-		Fund fund = new Fund(null, f_name, f_abs, Double.parseDouble(f_amount), null, f_img.getOriginalFilename());
-		fund.setF_time(System.currentTimeMillis());
-		// 暂时不需要别的检验机制，直接添加进数据库
-		fundMapper.save(fund);
-		// 把图片保存到img/uploads/fund中
 		try {
-			String folder = ClassUtils.getDefaultClassLoader().getResource("static/img/uploads/fund").getPath();
-			byte[] bytes = f_img.getBytes();
-			Path path = Paths.get(folder + "/" + f_img.getOriginalFilename());
-			Files.write(path, bytes);
-		} catch (Exception e) {
+			String fileName = f_img.getOriginalFilename();
+		    String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
+		    fileName = UUID.randomUUID().toString().replace("-", "") + "." + suffix;
+		    String url = OssManagerUtil.uploadImage(fileName,f_img.getInputStream().available(),f_img.getInputStream());
+		    //获取url
+		    System.out.println(url);
+		    
+			// Fund f 接受表单中传来的参数，new一个Fund对象
+			// f_id，不需要设置，这是自增字段
+			Fund fund = new Fund(null, f_name, f_abs, Double.parseDouble(f_amount),null,url);
+			fund.setF_time(System.currentTimeMillis());
+			// 暂时不需要别的检验机制，直接添加进数据库
+			fundMapper.save(fund);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	    
+	 // 把图片保存到img/uploads/fund中
+//		try {
+//			String folder = ClassUtils.getDefaultClassLoader().getResource("static/img/uploads/fund").getPath();
+//			byte[] bytes = f_img.getBytes();
+//			Path path = Paths.get(folder + "/" + f_img.getOriginalFilename());
+//			System.out.println("正在存入照片");
+//			Files.write(path, bytes);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		return "redirect:/fund_manage";
 	}
 	@RequestMapping("del_all_fund")

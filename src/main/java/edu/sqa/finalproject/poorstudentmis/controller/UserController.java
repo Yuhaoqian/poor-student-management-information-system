@@ -72,10 +72,18 @@ public class UserController {
 			map.put("message", "该账号已被注册！");
 		else {
 			userMapper.insert(u);
-			stuMapper.insert(new Student(u.getU_id(), u.getU_name()));
-			map.put("message", "注册成功！");
+//			stuMapper.insert(new Student(u.getU_id(), u.getU_name()));
+			map.put("message", "注册成功！请登录");
 		}
 		return map;
 	}
 	
+//	@ResponseBody
+//	@RequestMapping("logout")
+//	public String handleLogout(HttpSession session) {
+//		System.out.println("用户登出");
+//        //session失效
+//        session.invalidate();
+//        return "login";
+//	}
 }

@@ -102,8 +102,7 @@ public class StuInfoController {
 
 		Student s = stuMapper.findById(s_id);
 		if (s != null) {
-			map.put("message", "该学号已存在！请重新输入！");
-			
+			map.put("message", "该学号已存在！请重新输入！");			
 		} else {
 			stuMapper.insert(new Student(s_id, s_name, s_nation, s_sex, s_birth, s_major, s_phone, s_address, s_income, s_res, s_info, s_other));
 			userMapper.insert(new User(s_id, s_name, "123456", 1));

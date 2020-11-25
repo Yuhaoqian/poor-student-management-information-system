@@ -77,7 +77,7 @@
 			<div class="lat-top">
 				<div th:each="lf:${latest}" class="col-md-6 Latest-top">
 					<div class="Lat-lft">
-						<img th:src="@{'img/uploads/fund/' + ${lf.f_img}}" src="img/2.jpg" class="img-responsive" alt="" />
+						<img th:src="${lf.f_img}" src="img/2.jpg" class="img-responsive" alt="" />
 					</div>
 					<div class="Lat-rgt">
 						<h6 th:text=${lf.timeStr}>July 27, 2015</h6>
@@ -140,7 +140,7 @@
 					<a  href="more_fund" class="late">以往资助项目</a>
 				</h3>
 				<div th:each="pf:${past}" class="col-md-4 nw-top">
-					<img th:src="@{'img/uploads/fund/' + ${pf.f_img}}" src="img/6.jpg" class="img-responsive" alt="" />
+					<img th:src="${pf.f_img}" src="img/6.jpg" class="img-responsive" alt="" />
 					<h6 th:text=${pf.timeStr}>July 27, 2015</h6>
 					<h4 th:text=${pf.f_name}>Dis parturient montes</h4>
 					<h4 th:text="'资助金额: ' + ${pf.f_amount} + '元'">Dis parturient montes</h4>

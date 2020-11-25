@@ -1,5 +1,7 @@
 package edu.sqa.finalproject.poorstudentmis.controller;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,11 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.sqa.finalproject.poorstudentmis.entity.Fund;
 import edu.sqa.finalproject.poorstudentmis.entity.FundVO;
+import edu.sqa.finalproject.poorstudentmis.entity.Question;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
+import edu.sqa.finalproject.poorstudentmis.entity.Vol;
+import edu.sqa.finalproject.poorstudentmis.entity.VolA;
+import edu.sqa.finalproject.poorstudentmis.entity.VolVO;
 import edu.sqa.finalproject.poorstudentmis.entity.Work;
 import edu.sqa.finalproject.poorstudentmis.entity.WorkVO;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.QuestionMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.VolApplyMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.VolMapper;
+//import edu.sqa.finalproject.poorstudentmis.mapper.VolMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.WorkApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.WorkMapper;
 
@@ -30,13 +40,20 @@ public class FrontController {
 	private WorkApplyMapper workApplyMapper;
 	@Autowired
 	private FundApplyMapper fundApplyMapper;
+	@Autowired
+	private VolApplyMapper volApplyMapper;
+	
 
 	@RequestMapping(value = { "/", "home" })
 	public String showHome(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
+		
+		
+		
 		System.out.println("u==" + u);
 
+	
 //		if (isAdmin == null || !isAdmin.equals("0"))
 //			modelMap.addAttribute("pos", "display:none;");
 //		if (isLogin == null)
@@ -146,14 +163,19 @@ public class FrontController {
 		System.out.println("u==" + u);
 		List<WorkVO> workVOs = null;
 		List<FundVO> fundVOs = null;
+		List<VolVO> volVOs = null;
 		if (u != null) { // 如果u不为空
 			modelMap.addAttribute("Login", "display:none");
 			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
 				modelMap.addAttribute("pos", "display:none;");
 			workVOs = workApplyMapper.getAllApplyWorkById(u.getU_id());
 			fundVOs = fundApplyMapper.getAllApplyFundById(u.getU_id());
+			volVOs = volApplyMapper.getAllVolById(u.getU_id());
+			System.out.println(volVOs.toString());
+			System.out.println("我在这里1!!");
 			modelMap.addAttribute("workVOs", workVOs);
 			modelMap.addAttribute("fundVOs", fundVOs);
+			modelMap.addAttribute("volVOs", volVOs);
 		} else {
 			// 如果u为空， 不显示后台，及个人信息按钮
 			modelMap.addAttribute("notLogin", "display:none;");

@@ -104,6 +104,7 @@
 				<ul class="sidebarul">
 					<li class="selectedli active" style="background-color: lightgray">勤工俭学项目</li>
 					<li class="selectedli">资助项目</li>
+					<li class="selectedli">志愿活动</li>
 <!-- 					<li class="selectedli">通过审核的项目</li> -->
 				</ul>
 			</div>
@@ -225,7 +226,30 @@
 						</li>
 					</ul>
 				</div>
-				
+				<div id="section-three">
+					<ul>
+					<li th:if="${volVOs}" th:each="vvo:${volVOs}">
+							<div  class="title">
+								<h3>
+									<a  th:href="@{'vol_detail?vid=' + ${vvo.vid}}"  th:text=${vvo.name} href="heart-monitoring.html">全部申请的项目一项目一项目一项目一项目一</a>
+								</h3>
+								<p th:text="'项目简介: ' + ${vvo.abs}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+									Phasellus in vestibulum mi. Donec felis nunc, placerat quis
+									varius quis, posuere sed velit.</p>
+								<p th:text="'审核状态: ' + ${vvo.verify}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+									Phasellus in vestibulum mi. Donec felis nunc, placerat quis
+									varius quis, posuere sed velit.</p>
+								<p th:text="'审核人: ' + ${vvo.va_reviewer}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+									Phasellus in vestibulum mi. Donec felis nunc, placerat quis
+									varius quis, posuere sed velit.</p>
+							</div>
+						</li>
+					
+					
+						
+						
+					</ul>
+				</div>
 			</div>
 
 		</div>

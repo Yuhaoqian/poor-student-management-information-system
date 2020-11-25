@@ -103,7 +103,7 @@
 			<div th:each="w:${works}" class="product">
 				<div class="product-desc">
 					<div class="product-img">
-						<img th:src="@{'img/uploads/work/' + ${w.w_img}}" src="img/16.jpg"
+						<img th:src="${w.w_img}" src="img/16.jpg"
 							class="img-responsive " alt="" />
 					</div>
 					<div class="prod1-desc">
@@ -255,10 +255,11 @@
 		style="opacity: 0;"> </span></a>
 	<script>
 		function show_m1(e) {
-			if ($("#btn-login").css("display") != "none") {
-				alert("请先注册/登陆！");
-				return;
-			}
+//			if ($("#btn-login").css("display") != "none") {
+//				alert("请先注册/登陆！");
+//				return;
+//			}
+			
 		    $('html,body').animate({ scrollTop: 0 }, 500);
 
 			var w_id = $(e).attr("w_id")

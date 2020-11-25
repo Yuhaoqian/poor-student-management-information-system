@@ -206,7 +206,7 @@
 										<tbody>
 											<tr th:each="w:${works}" class="gradeX">
 											<td th:text=${w.w_id} class="am-text-middle">1</td>
-											<td><img th:src="@{'img/uploads/work/' + ${w.w_img}}"
+											<td><img th:src="${w.w_img}"
 												src="assets/img/k.jpg" class="tpl-table-line-img" alt=""></td>
 											<td th:text=${w.w_name} class="am-text-middle">卖火柴</td>
 											<td class="am-text-middle">
