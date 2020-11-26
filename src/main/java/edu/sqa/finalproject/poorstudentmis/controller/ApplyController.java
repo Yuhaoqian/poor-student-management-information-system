@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.sqa.finalproject.poorstudentmis.entity.FundAF;
 import edu.sqa.finalproject.poorstudentmis.entity.FundVerify;
+import edu.sqa.finalproject.poorstudentmis.entity.Student;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.entity.VolA;
 import edu.sqa.finalproject.poorstudentmis.entity.WorkAF;
 import edu.sqa.finalproject.poorstudentmis.entity.WorkVerify;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundApplyMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.StudentMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.UserMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.VolApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.WorkApplyMapper;
 
@@ -30,12 +33,21 @@ public class ApplyController {
 	WorkApplyMapper waMapper;
 	@Autowired
 	private VolApplyMapper volApplyMapper;
+	@Autowired
+	UserMapper userMapper;
+	@Autowired
+	StudentMapper studentMapper;
 	
 	@RequestMapping("handle_apply_fund")
 	public String handleApplyFund(HttpServletRequest request, int f_id) {
 		// f_id通过前台传过来，s_id在session中，fa_time为申请时间（系统生成），fa_flag（默认为0，没有通过审核）,fa_reviwer一开始是没有的
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
+		if(u == null) return "login";
+		Student s = studentMapper.findById(u.getU_id());
+		if(s.getS_isps() != 2) {
+			return "redirect:/authen";//先进行认证
+		}
 		int fid = f_id;
 		String sid = u.getU_id();
 		int fa_flag = 0;
@@ -51,6 +63,11 @@ public class ApplyController {
 		// f_id通过前台传过来，s_id在session中，fa_time为申请时间（系统生成），fa_flag（默认为0，没有通过审核）,fa_reviwer一开始是没有的
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
+		if(u == null) return "login";
+		Student s = studentMapper.findById(u.getU_id());
+		if(s.getS_isps() != 2) {
+			return "redirect:/authen";//先进行认证
+		}
 		int wid = w_id;
 		String sid = u.getU_id();
 		int wa_flag = 0;

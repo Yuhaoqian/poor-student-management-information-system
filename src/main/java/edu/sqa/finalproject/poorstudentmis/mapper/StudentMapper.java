@@ -12,4 +12,5 @@ public interface StudentMapper {
 	public void delAll();
 	public void reset();
 	public void delById(String s_id);
+	void changeISps(String s_id);//更新s_id学生的贫困生状态
 }

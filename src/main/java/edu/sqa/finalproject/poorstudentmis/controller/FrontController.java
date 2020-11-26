@@ -48,21 +48,7 @@ public class FrontController {
 	public String showHome(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
-		
-		
-		
 		System.out.println("u==" + u);
-
-	
-//		if (isAdmin == null || !isAdmin.equals("0"))
-//			modelMap.addAttribute("pos", "display:none;");
-//		if (isLogin == null)
-//			modelMap.addAttribute("notLogin", "display:none;");
-//		else {
-//			modelMap.addAttribute("Login", "display:none");
-//			modelMap.addAttribute("s_id", isLogin);
-//		}
-
 		if (u != null) { // 用户已经登录
 			modelMap.addAttribute("Login", "display:inline-block");
 			modelMap.addAttribute("notLogin", "display:none;");
@@ -82,7 +68,18 @@ public class FrontController {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		System.out.println("u==" + u);
-
+		if (u != null) { // 用户已经登录
+			modelMap.addAttribute("Login", "display:inline-block");
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:inline-block;");
+			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
+				modelMap.addAttribute("pos", "display:none;");
+		} else { // 如果u为空， 不显示后台，及个人信息按钮
+			modelMap.addAttribute("Login", "display:none");
+			modelMap.addAttribute("notLogin", "display:inline-block;");
+			modelMap.addAttribute("pos", "display:none;");
+		}
+		
 		List<Fund> funds = fundMapper.getFundList();
 		int len = funds.size();
 		List<Fund> latest = null;
@@ -95,14 +92,6 @@ public class FrontController {
 			latest = funds;
 		modelMap.addAttribute("latest", latest);
 		modelMap.addAttribute("past", past);
-		if (u != null) { // 如果u不为空
-			modelMap.addAttribute("Login", "display:none");
-			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
-				modelMap.addAttribute("pos", "display:none;");
-		} else { // 如果u为空， 不显示后台，及个人信息按钮
-			modelMap.addAttribute("notLogin", "display:none;");
-			modelMap.addAttribute("pos", "display:none;");
-		}
 		return "fund";
 	}
 
@@ -128,13 +117,15 @@ public class FrontController {
 		}
 		modelMap.addAttribute("latest", latest);
 		modelMap.addAttribute("more", more);
-
-		if (u != null) { // 如果u不为空
-			modelMap.addAttribute("Login", "display:none");
+		if (u != null) { // 用户已经登录
+			modelMap.addAttribute("Login", "display:inline-block");
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:inline-block;");
 			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
 				modelMap.addAttribute("pos", "display:none;");
 		} else { // 如果u为空， 不显示后台，及个人信息按钮
-			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("Login", "display:none");
+			modelMap.addAttribute("notLogin", "display:inline-block;");
 			modelMap.addAttribute("pos", "display:none;");
 		}
 		return "work";
@@ -145,12 +136,23 @@ public class FrontController {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		System.out.println("u==" + u);
-		if (u != null) { // 如果u不为空
-			modelMap.addAttribute("Login", "display:none");
+//		if (u != null) { // 如果u不为空
+//			modelMap.addAttribute("Login", "display:none");
+//			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
+//				modelMap.addAttribute("pos", "display:none;");
+//		} else { // 如果u为空， 不显示后台，及个人信息按钮
+//			modelMap.addAttribute("notLogin", "display:none;");
+//			modelMap.addAttribute("pos", "display:none;");
+//		}
+		if (u != null) { // 用户已经登录
+			modelMap.addAttribute("Login", "display:inline-block");
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:inline-block;");
 			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
 				modelMap.addAttribute("pos", "display:none;");
 		} else { // 如果u为空， 不显示后台，及个人信息按钮
-			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("Login", "display:none");
+			modelMap.addAttribute("notLogin", "display:inline-block;");
 			modelMap.addAttribute("pos", "display:none;");
 		}
 		return "policy";
@@ -165,7 +167,9 @@ public class FrontController {
 		List<FundVO> fundVOs = null;
 		List<VolVO> volVOs = null;
 		if (u != null) { // 如果u不为空
-			modelMap.addAttribute("Login", "display:none");
+			modelMap.addAttribute("Login", "display:inline-block");
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:inline-block;");
 			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
 				modelMap.addAttribute("pos", "display:none;");
 			workVOs = workApplyMapper.getAllApplyWorkById(u.getU_id());
@@ -178,11 +182,51 @@ public class FrontController {
 			modelMap.addAttribute("volVOs", volVOs);
 		} else {
 			// 如果u为空， 不显示后台，及个人信息按钮
-			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("Login", "display:none");
+			modelMap.addAttribute("notLogin", "display:inline-block;");
 			modelMap.addAttribute("pos", "display:none;");
 		}
+
 //		if (workVOs.size() == 0 && fundVOs.size() == 0)
 //			return "redirect:/home";
 		return "application";
+	}
+	//显示优秀榜样
+	@RequestMapping("list")
+	public String showList(HttpServletRequest request,ModelMap modelMap) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println("u==" + u);
+		if (u != null) { // 用户已经登录
+			modelMap.addAttribute("Login", "display:inline-block");
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:inline-block;");
+			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
+				modelMap.addAttribute("pos", "display:none;");
+		} else { // 如果u为空， 不显示后台，及个人信息按钮
+			modelMap.addAttribute("Login", "display:none");
+			modelMap.addAttribute("notLogin", "display:inline-block;");
+			modelMap.addAttribute("pos", "display:none;");
+		}
+		return "list";
+	}
+	//认证通知页面
+	@RequestMapping("authen")
+	public String showAuth(HttpServletRequest request,ModelMap modelMap) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println("u==" + u);
+		if (u != null) { // 用户已经登录
+			modelMap.addAttribute("Login", "display:inline-block");
+			modelMap.addAttribute("notLogin", "display:none;");
+			modelMap.addAttribute("pos", "display:inline-block;");
+			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
+				modelMap.addAttribute("pos", "display:none;");
+		} else { // 如果u为空， 不显示后台，及个人信息按钮
+			modelMap.addAttribute("Login", "display:none");
+			modelMap.addAttribute("notLogin", "display:inline-block;");
+			modelMap.addAttribute("pos", "display:none;");
+		}
+		return "authen";
 	}
 }

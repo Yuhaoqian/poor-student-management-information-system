@@ -36,4 +36,9 @@
 	<update id="reset">
 			alter table stu auto_increment=1
 	</update>
+	<update id="changeISps">
+		update stu
+		set s_isps = 1
+		where s_id=#{s_id}
+	</update>
 </mapper>
