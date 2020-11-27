@@ -1,0 +1,7 @@
+/* 问题表单的样式 */
+.ask-form{
+    background-color: rgba(153, 173, 240, 0.39);
+    padding: 10px;
+    margin-bottom:10px;
+    border-radius: 10px; 
+}

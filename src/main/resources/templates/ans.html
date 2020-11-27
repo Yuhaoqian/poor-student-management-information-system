@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<title>资助项目</title>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="css/fund.css" rel='stylesheet' type='text/css' />
+<link rel="alternate icon" type="image/png" href="img/favicon.png">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type='text/javascript' src="js/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="css/question.css" />
+<link rel="stylesheet" href="css/index.css" />
+<link rel="stylesheet" href="css/layout.css"/>
+
+</head>
+
+<body>
+	<!-- header -->
+	<nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0pt;">
+		<ul class="nav navbar-nav ">
+			<li ><a href="home" style="font-weight: 800;">
+				SpringBoot
+			</a></li>              
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					奖助贷
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="fund">资助项目</a></li>
+					<li><a href="work">勤工助学</a></li>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					阳光助学 
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="vol">志愿活动</a></li>
+					<li><a href="tygc">添翼工程</a></li>
+					<li><a href="list">榜样典型</a></li>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					服务指南 
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="policy">政策解读</a></li>
+					<li><a href="question">常见问题</a></li>
+					<li><a href="download">文件下载</a></li>
+				</ul>
+		 	</li >
+			<li th:attr="style=${notLogin}" >
+				<a href="login" style="font-weight: 800;">
+               	 登录/注册</a>
+            </li> 
+	 		<li class="dropdown" th:attr="style=${Login}">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span th:text = "'欢迎您！'+${session.userName}">admin</span> 
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="stu_info">个人信息</a></li>
+					<li><a href="application">我的申请</a></li>
+					<li><a href="logout">登出</a></li> 
+				</ul>
+			</li>	
+			<li  th:attr="style=${pos}">
+				<a href="stu_manage" style="font-weight: 800;color: cadetblue;">
+               	 后台</a>
+            </li>
+		</ul>
+	</div>
+	</div>
+</nav>
+<!--常见问题列表开始-->
+
+<div class="container">
+	<h2 class="page-header">
+		<img src="img/icons/ly.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;">
+         问题解答
+         <a href="question"><button type="button" class="btn btn-primary pull-right">
+            返回列表
+            </button>
+        </a>
+	</h2>
+	<div class="row " >
+		<div class="ask-form col-sm-10 col-sm-offset-1 align-items-center">
+			<form>
+				<div class="form-group row">
+				<label for="inputEmail3" class="col-sm-2 col-form-label">标题</label>
+				<div class="col-sm-10">
+					<input th:value="${title}" type="email" class="form-control" id="inputEmail3" placeholder="" disabled="disabled">
+				</div>
+				</div>
+
+				<div class="form-group">
+					<label for="exampleFormControlTextarea1">问题详情</label>
+					<textarea th:value="${r_content}" class="form-control" id="exampleFormControlTextarea1" rows="15" disabled="disabled"></textarea>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<!--志愿项目列表结束-->
+
+	<!-- footer -->
+	<footer class="footer">
+		<div class="footer-container">
+			<ul>
+				<li>联系电话:<a href="">4008208820</a>
+				</li>
+				<li>电子邮箱:<a href="">12345678@qq.com</a>
+				</li>
+				<li>联系地址:<a href="">江苏省张家港市杨舍镇长兴中路八号</a>
+				</li>
+
+			</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="footer-bottom">
+			<p>Copyright &copy; 2020. SQA 小宇宙 版权所有</p>
+		</div>
+	</footer>
+	<!-- footer -->
+	<a href="#" id="toTop" style="display: block;"><span
+		id="toTopHover" style="opacity: 0;"></span> <span id="toTopHover"
+        style="opacity: 0;"> </span></a>
+    <!--[if (gte IE 9)|!(IE)]><!-->
+	<script src="js/jquery.min.js"></script>
+	<!--<![endif]-->
+	<script src="js/amazeui.min.js"></script>
+	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<!-- 包括所有已编译的插件 -->
+	<script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<title>资助项目</title>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="css/fund.css" rel='stylesheet' type='text/css' />
+<link rel="alternate icon" type="image/png" href="img/favicon.png">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type='text/javascript' src="js/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="css/question.css" />
+<link rel="stylesheet" href="css/layout.css"/>
+<link rel="stylesheet" href="css/index.css" />
+
+</head>
+
+<body>
+	<!-- header -->
+	<nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0pt;">
+		<ul class="nav navbar-nav ">
+			<li ><a href="home" style="font-weight: 800;">
+				SpringBoot
+			</a></li>              
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					奖助贷
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="fund">资助项目</a></li>
+					<li><a href="work">勤工助学</a></li>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					阳光助学 
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="vol">志愿活动</a></li>
+					<li><a href="tygc">添翼工程</a></li>
+					<li><a href="list">榜样典型</a></li>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					服务指南 
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="policy">政策解读</a></li>
+					<li><a href="question">常见问题</a></li>
+					<li><a href="download">文件下载</a></li>
+				</ul>
+		 	</li >
+			<li th:attr="style=${notLogin}" >
+				<a href="login" style="font-weight: 800;">
+               	 登录/注册</a>
+            </li> 
+	 		<li class="dropdown" th:attr="style=${Login}">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span th:text = "'欢迎您！'+${session.userName}">admin</span> 
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="stu_info">个人信息</a></li>
+					<li><a href="application">我的申请</a></li>
+					<li><a href="logout">登出</a></li> 
+				</ul>
+			</li>	
+			<li  th:attr="style=${pos}">
+				<a href="stu_manage" style="font-weight: 800;color: cadetblue;">
+               	 后台</a>
+            </li>
+		</ul>
+	</div>
+	</div>
+</nav>
+<!--常见问题列表开始-->
+    <div class="container">
+        <h2 class="page-header text-center">
+            2019年家庭经济困难学生认定通知
+            <a href="handle_authen"><button type="button" class="btn btn-danger pull-right">
+                提交申请
+                </button>
+            </a>
+        </h2>
+
+        <h6 class="text-center">
+            发布人：江芳&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            发布时间：2020-11-17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览次数:6328
+        </h6>
+        <pre class="content">
+    各学院及有关学生：
+
+    根据教育部等六部门《关于做好家庭经济困难学生认定工作的指导意见》（教财[2018]16号）和《江苏科技大学学生帮困助学管理办法》精神，为及时精准的掌握家庭经济困难学生情况并做好我校学生资助工作，现启动本年度家庭经济困难学生认定工作，并将有关事宜通知如下：
+
+    一、困难认定的时间
+
+    家庭经济困难学生每学年认定一次：每学年第一学期进行困难生新认定工作；每学年第二学期进行在校困难生认定工作。本次认定的有效期为2020-2020学年（2020年8月1日至2021年7月31日）。
+
+    二、困难认定的对象及条件
+
+    学校综合考虑学生日常消费情况和影响其家庭经济状况的有关因素进行认定工作。认定等级分为困难和特困：
+
+    （一）困难学生的基本条件
+
+    家庭人均月收入在当年江苏省城乡居民最低生活保障标准以下，且存在大额或经常性的教育医疗支出、遭遇重大自然灾害或突发意外、单亲等情况（之一）。
+
+    （二）特困学生的基本条件
+
+    家庭人均月收入在当年江苏省城乡居民最低生活保障标准以下，且属于特殊困难群体（包括建档立卡贫困户、低保户、烈士子女、残疾人子女、孤儿、残疾学生和特困供养学生）。
+
+    三、在校生困难认定工作
+
+    （一）认定对象
+
+    上一年度困难认定有效的在校生（名单已发至各学院辅导员办公室）。
+
+    （二）认定程序
+
+    1．学生在学生信息与资助网（http://web.dhu.edu.cn/dhuzizhu）下载并填写《家庭经济困难学生认定申请表》（见附件），于6月20日前交至各学院辅导员办公室。其中，申请调升等级者须根据本通知中的“四/(三)特殊群体材料要求”附上有关材料。
+
+    2．学生在网上提交认定申请（具体时间和方式另行通知）。
+
+    3．学院年级（班级）认定评议小组依据学生日常消费情况，辅导员参考学生日常消费数据，对其困难情况进行认定，初评结果报学院认定工作组。
+
+    4．学院认定工作组审核通过后，认定名单及档次须在班级、学院公示至少3天。公示时，不得涉及学生个人敏感信息及隐私。
+
+    5．各学院于6月27日前完成审核，留存学生申请表复印件，将书面材料以及汇总表（见附件1）纸质版和电子版交资助中心。
+
+    四、困难生新认定工作
+
+    （一）认定对象
+
+    本人及其家庭的经济能力难以满足在校期间学习、生活基本支出的学生（包括本科生、预科生以及纳入全国研究生招生计划的全日制研究生），且未经学校困难认定。
+
+    （二）认定程序
+
+    1．新生由招生部门通过录取通知书通知；上一年度未经困难认定的在校生可在学生资助网（http://web.dhu.edu.cn/dhuzizhu）下载《东华大学家庭经济困难学生认定申请表》（见附件）。
+
+    2．学生在暑假期间准备好申请表（特殊困难群体须附上有关证明材料），于9月13日前交辅导员，并登录信息门户（http://my.dhu.edu.cn/）=>“学生工作管理系统”提交困难认定申请。
+
+    3．学院年级（班级）认定评议小组根据学生提交的材料，对照困难认定标准，建议各档次的家庭经济困难学生资格，报学院认定工作组进行审核。
+
+    4．学院认定工作组审核。认定名单及档次在班级、学院公示至少3天，公示时不得涉及学生个人敏感信息及隐私。
+
+    5．各学院于9月20日前完成审核，留存学生申请表复印件，将书面材料以及汇总表纸质版和电子版交资助中心。
+
+    （三）特殊困难群体材料要求
+
+    1．建档立卡贫困户：可提供佐证材料，或由学校通过全国学生资助管理信息系统查询核实。
+
+    2．低保户：须提供低保证复印件。
+
+    3．残疾人子女：须提供残疾证复印件。
+
+    4．烈士子女：须提供优待证复印件。
+
+    5．孤儿：须提供福利证等相关证明复印件。
+
+    6．残疾学生：须提供残疾证复印件。
+
+    7．特困供养学生：须提供救助证复印件。
+
+    五、重要说明
+
+    （一）困难认定由学生自愿申请，未按时提出申请或交齐材料的学生视作主动放弃。
+
+    （二）学生须如实向学校反映家庭的经济收入情况，并保证所提供的相关材料的真实性。我校将随机对家庭经济困难学生进行资格复查，通过家访、大数据分析、信函索证、民主评议等方式进行核实。如发现弄虚作假现象，一经核实，学校将取消认定资格，追回资助资金，并依据《江苏科技大学学生违纪处分条例》有关规定严肃处理。
+
+    （三）有下列情况之一者，不得申请困难认定：
+
+    1．家庭经济状况良好或好转（包括在校期间已获大额资助），足以支付学费和生活费；
+
+    2．酗酒，经常在酒店、网吧、KTV、酒吧等娱乐场所进行消费，或因私自费出国（境）；
+
+    3．奢侈消费或追求名牌，如购买高档通讯工具、娱乐电子产品、时装、化妆品或饰品等非必需品。
+
+    （四）学院年级（班级）认定评议小组包括辅导员、班主任、学生代表等，其中学生人数不少于年级（班级）总人数的10%。评议小组成立后，其成员名单须在本年级（班级）范围内公示。
+
+    （五）对于预科班、转专业、理科实验班、插班生等调换学院的学生，原学院须及时向新学院转交相关材料。
+
+    六、助学贷款申请程序及所需材料
+
+    （一）生源地信用贷款
+
+    生源地信用贷款是由生源地贷款经办银行，向符合条件的高校新生和在读生发放的，通过代理结算机构完成资金划付和本息回收，享受财政风险补偿金和贴息政策(借款人在校期间的贷款利息由政府全额承担)，新生可凭录取通知书在入学前户籍所在县(市)、区的学生资助管理中心(教育局)办理助学贷款。
+
+    1．到校后需要提交的材料：国家开发银行的生源地信用助学贷款受理证明（上联）或非国家开发银行的贷款确认函（抬头为江苏科技大学那一联），须写上学号和手机号。
+
+    2．提交时间与地点：
+
+    （1）新生于入学日交至两个校区报到大厅的绿色通道办理处；
+
+    （2）在校生于开学第一周交各学院辅导员老师。
+
+    3．注意事项：办理过生源地信用贷款的同学不的重复申请校园地国家助学贷款。如果未申请生源地贷款，在入学后还可以根据学校统一安排申请校园地贷款。
+
+    （二）校园地助学贷款
+
+    经学校认定的家庭经济困难学生，通过本校学生资助部门向经办银行申请办理的国家助学贷款。
+
+    1．所需材料
+
+    （1）《家庭经济困难学生认定申请表》（有学院章）的复印件；
+
+    （2）身份证复印件（正反面复印在一张纸上）；
+
+    （3）录取通知书复印件；
+
+    （4）交通银行借记卡复印件（手抄卡号于复印件上）；
+
+    （5）记好父母的身份证号。
+
+    2．学校每年9月在学生资助网发布正式办理通知。
+
+
+
+        <a href="files/rz.docx">附件：江苏科技大学家庭经济困难学生认定申请表（2020版）</a>                            江苏科技大学学生资助管理中心
+                                                                                            2020-11-16
+        </pre>
+    </div>
+
+<!--志愿项目列表结束-->
+
+	<!-- footer -->
+	<footer class="footer">
+		<div class="footer-container">
+			<ul>
+				<li>联系电话:<a href="">4008208820</a>
+				</li>
+				<li>电子邮箱:<a href="">12345678@qq.com</a>
+				</li>
+				<li>联系地址:<a href="">江苏省张家港市杨舍镇长兴中路八号</a>
+				</li>
+
+			</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="footer-bottom">
+			<p>Copyright &copy; 2020. SQA 小宇宙 版权所有</p>
+		</div>
+	</footer>
+	<!-- footer -->
+	<a href="#" id="toTop" style="display: block;"><span
+		id="toTopHover" style="opacity: 0;"></span> <span id="toTopHover"
+        style="opacity: 0;"> </span></a>
+    <!--[if (gte IE 9)|!(IE)]><!-->
+	<script src="js/jquery.min.js"></script>
+	<!--<![endif]-->
+	<script src="js/amazeui.min.js"></script>
+	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<!-- 包括所有已编译的插件 -->
+	<script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

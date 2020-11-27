@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper
+	namespace="edu.sqa.finalproject.poorstudentmis.mapper.QuestionMapper">
+	<select id="getAllQuestion" resultType="edu.sqa.finalproject.poorstudentmis.entity.Question">
+		select * from question_table order by time  desc
+	</select>
+	<insert id="insertQ">
+		insert into question_table
+		(sid, title, content,time)
+		values(#{sid}, #{title}, #{content},#{time})
+	</insert>
+</mapper>

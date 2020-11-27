@@ -1,0 +1,19 @@
+/* 志愿活动列表的样式表 */
+.item {
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+.item .item-content{
+    border-radius: 5px;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.cid img, .cid .item-img {
+    width: 100%;
+}
+.vol-de{
+    background-color: rgba(176, 199, 241, 0.384);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 12px;
+}
