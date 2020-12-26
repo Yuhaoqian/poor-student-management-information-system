@@ -7,4 +7,5 @@ import edu.sqa.finalproject.poorstudentmis.entity.MyFile;
 public interface FileMapper {
 	public void save(MyFile file);//保存文件
 	public List<MyFile> getAllFile();//获取所有的文件
+	public void delById(Integer id);
 }

@@ -7,10 +7,14 @@ import edu.sqa.finalproject.poorstudentmis.entity.Student;
 public interface StudentMapper {
 	Student findById(String id);
 	List<Student> getStuList();
+	List<Student> getPoorStuList();
 	Integer insert(Student stu);
 	void modify(Student stu);
 	public void delAll();
 	public void reset();
 	public void delById(String s_id);
 	void changeISps(String s_id);//更新s_id学生的贫困生状态
+	void verify(String s_id);//更新s_id学生的贫困生状态
+	public void verifyAll();
+
 }

@@ -95,13 +95,17 @@
 				<div class="form-group row">
 				<label for="inputEmail3" class="col-sm-2 col-form-label">标题</label>
 				<div class="col-sm-10">
-					<input th:value="${title}" type="email" class="form-control" id="inputEmail3" placeholder="" disabled="disabled">
+					<input th:value="${q.title}" type="email" class="form-control" id="inputEmail3" placeholder="" disabled="disabled">
 				</div>
 				</div>
 
 				<div class="form-group">
 					<label for="exampleFormControlTextarea1">问题详情</label>
-					<textarea th:value="${r_content}" class="form-control" id="exampleFormControlTextarea1" rows="15" disabled="disabled"></textarea>
+					<textarea th:utext="${q.content}" class="form-control" id="exampleFormControlTextarea1" rows="5" disabled="disabled"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlTextarea1">解答</label>
+					<textarea th:utext="${q.r_content}" class="form-control" id="exampleFormControlTextarea1" rows="5" disabled="disabled"></textarea>
 				</div>
 			</form>
 		</div>
@@ -137,8 +141,6 @@
 	<script src="js/jquery.min.js"></script>
 	<!--<![endif]-->
 	<script src="js/amazeui.min.js"></script>
-	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
-	<script src="https://code.jquery.com/jquery.js"></script>
 	<!-- 包括所有已编译的插件 -->
 	<script src="js/bootstrap.min.js"></script>
 </body>

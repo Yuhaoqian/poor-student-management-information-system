@@ -94,6 +94,10 @@
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学管理
 
 				</a></li>
+								<li class="sidebar-nav-link"><a href="ps_verify"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo active"></i>贫困生申请认定
+
+				</a></li>
 				<li class="sidebar-nav-link"><a
 					href="fund_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>资助项目申请审核
@@ -101,6 +105,14 @@
 				<li class="sidebar-nav-link"><a class="active" href="work_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学申请审核
 				</a></li>
+																<li class="sidebar-nav-link"><a href="vol_verify"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>志愿活动项目申请审核
+				</a></li>
+														<li class="sidebar-nav-link" ><a href="question_reply"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>问题解答</a></li>
+						
+																<li class="sidebar-nav-link" ><a href="file_manage"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>文件管理</a></li>
 			</ul>
 		</div>
 
@@ -113,7 +125,7 @@
 					<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
 						<div class="widget am-cf">
 							<div class="widget-head am-cf">
-								<div class="widget-title  am-cf">资助项目审核</div>
+								<div class="widget-title  am-cf">勤工助学项目审核</div>
 
 
 							</div>
@@ -155,9 +167,8 @@
 												<td th:text=${wv.u_name} class="am-text-middle">张鹏飞</td>
 												<td id="state" th:text=${wv.verify} class="am-text-middle">2016-09-26</td>
 												<td th:text=${wv.wa_reviewer} class="am-text-middle">2016-09-26</td>
-
-												<td class="am-text-middle">
-													<div class="tpl-table-black-operation">
+												<td th:switch=${wv.verify} class="am-text-middle">
+													<div  th:case="等待审核" class="tpl-table-black-operation">
 														<a href="javascript:;" onclick="show_m1(this)" th:attr="wa_id=${wv.wa_id}"> <i
 															class="am-icon-archive"></i> 审核
 														</a>
@@ -188,12 +199,6 @@
 			var sure = $("#m1_sure")
 			var cancel = $("#m1_cancel")
 			sure.one("click", function() {
-				var state = $("#state").html();
-				if (state == "已通过审核") {
-					black_overlay.hide();
-					m1.hide();
-					return false;
-				}
 				console.log(123)
 				window.location.href = "handle_work_verify?wa_id=" + wa_id;
 			});

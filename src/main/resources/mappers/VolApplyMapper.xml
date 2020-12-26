@@ -21,4 +21,23 @@
 		order by
 		va.va_flag desc
 	</select>
+	<select id="getAllVerifyVol"
+		resultType="edu.sqa.finalproject.poorstudentmis.entity.VolVerify">
+		select va.va_id, v.name, u.u_name, va.va_flag,
+		va.va_reviewer
+		from user u join v_apply va join vol_table v
+		on u.u_id=va.sid
+		and v.vid=va.vid
+		order by va.va_flag
+	</select>
+		<update id="verify">
+		update v_apply
+		set va_flag=1, va_reviewer=#{name}
+		where va_id=#{id}
+	</update>
+	<update id="verifyAll">
+		update v_apply
+		set va_flag=1, va_reviewer=#{name}
+		where va_flag=0
+	</update>
 </mapper>

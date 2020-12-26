@@ -94,6 +94,10 @@
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学管理
 
 				</a></li>
+								<li class="sidebar-nav-link"><a href="ps_verify"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo active"></i>贫困生申请认定
+
+				</a></li>
 				<li class="sidebar-nav-link"><a class="active"
 					href="fund_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>资助项目申请审核
@@ -101,6 +105,14 @@
 				<li class="sidebar-nav-link"><a href="work_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学申请审核
 				</a></li>
+								<li class="sidebar-nav-link"><a href="vol_verify"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>志愿活动项目申请审核
+				</a></li>
+														<li class="sidebar-nav-link" ><a href="question_reply"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>问题解答</a></li>
+						
+																<li class="sidebar-nav-link" ><a href="file_manage"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>文件管理</a></li>
 			</ul>
 		</div>
 
@@ -156,8 +168,8 @@
 												<td id="state" th:text=${fv.verify} class="am-text-middle">2016-09-26</td>
 												<td th:text=${fv.fa_reviewer} class="am-text-middle">2016-09-26</td>
 
-												<td class="am-text-middle">
-													<div class="tpl-table-black-operation">
+												<td th:switch=${fv.verify} class="am-text-middle">
+													<div  th:case="等待审核" class="tpl-table-black-operation">
 														<a href="javascript:;" onclick="show_m1(this)" th:attr="fa_id=${fv.fa_id}"> <i
 															class="am-icon-archive"></i> 审核
 														</a>
@@ -188,12 +200,6 @@
 			var sure = $("#m1_sure")
 			var cancel = $("#m1_cancel")
 			sure.one("click", function() {
-				var state = $("#state").html();
-				if (state == "已通过审核") {
-					black_overlay.hide();
-					m1.hide();
-					return false;
-				}
 				console.log(123)
 				window.location.href = "handle_fund_verify?fa_id=" + fa_id;
 			});

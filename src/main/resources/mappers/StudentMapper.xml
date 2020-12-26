@@ -10,7 +10,7 @@
 		#{s_id},#{s_name},#{s_nation},#{s_sex},
 		#{s_birth},#{s_major},#{s_phone},
 		#{s_address},#{s_income},
-		#{s_res},#{s_info},#{s_other})
+		#{s_res},#{s_info},#{s_other}, #{s_isps})
 	</insert>
 	<select id="findById"
 		resultType="edu.sqa.finalproject.poorstudentmis.entity.Student">
@@ -27,6 +27,10 @@
 		resultType="edu.sqa.finalproject.poorstudentmis.entity.Student">
 		select * from stu
 	</select>
+	<select id="getPoorStuList"
+		resultType="edu.sqa.finalproject.poorstudentmis.entity.Student">
+		select * from stu where s_isps!=0 order by s_isps
+	</select>
 		<delete id="delAll">
 		delete from stu
 	</delete>
@@ -40,5 +44,15 @@
 		update stu
 		set s_isps = 1
 		where s_id=#{s_id}
+	</update>
+	<update id="verify">
+		update stu
+		set s_isps = 2
+		where s_id=#{s_id}
+	</update>
+		<update id="verifyAll">
+		update stu
+		set s_isps=2
+		where s_isps=1
 	</update>
 </mapper>

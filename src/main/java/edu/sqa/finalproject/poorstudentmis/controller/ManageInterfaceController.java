@@ -13,13 +13,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import edu.sqa.finalproject.poorstudentmis.entity.Fund;
 import edu.sqa.finalproject.poorstudentmis.entity.FundVerify;
+import edu.sqa.finalproject.poorstudentmis.entity.MyFile;
+import edu.sqa.finalproject.poorstudentmis.entity.Question;
 import edu.sqa.finalproject.poorstudentmis.entity.Student;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
+import edu.sqa.finalproject.poorstudentmis.entity.VolVerify;
 import edu.sqa.finalproject.poorstudentmis.entity.Work;
 import edu.sqa.finalproject.poorstudentmis.entity.WorkVerify;
+import edu.sqa.finalproject.poorstudentmis.mapper.FileMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.QuestionMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.StudentMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.VolApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.WorkApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.WorkMapper;
 
@@ -35,6 +41,12 @@ public class ManageInterfaceController {
 	FundApplyMapper faMapper;
 	@Autowired
 	WorkApplyMapper waMapper;
+	@Autowired
+	VolApplyMapper vaMapper;
+	@Autowired
+	QuestionMapper questionMapper;
+	@Autowired
+	FileMapper fileMapper;
 	@RequestMapping("fund_manage")
 	public ModelAndView showFundManage(HttpServletRequest request) {
 		// 因为有了过滤器，所以进到后台的一定是已经登陆的用户，不需要再判断session中有没有user了。
@@ -58,8 +70,48 @@ public class ManageInterfaceController {
 		mav.addObject("works", works);
 		mav.addObject("u_name", u.getU_name());
 
-		return mav;	}
+		return mav;	
+	}
+	@RequestMapping("file_manage")
+	public ModelAndView showFileManage(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		List<MyFile> files = fileMapper.getAllFile();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mis/file_manage");
+		mav.addObject("files", files);
+		mav.addObject("u_name", u.getU_name());
+		return mav;	
+	}
+	@RequestMapping("ps_verify")
+	public ModelAndView showPoorStudentManage(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		List<Student> stus = stuMapper.getPoorStuList();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mis/ps_verify");
+		mav.addObject("stus", stus);
+		mav.addObject("u_name", u.getU_name());
 
+		return mav;	
+	}
+	@RequestMapping("verify_all_ps")
+	public String handlePsVerify(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		stuMapper.verifyAll();
+		System.out.println("success");
+		return "redirect:/ps_verify";
+	}
+	@RequestMapping("handle_ps_verify")
+	public String handlePoorStudentVerify(HttpServletRequest request, String s_id) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println(s_id);
+		stuMapper.verify(s_id);
+		System.out.println("success");
+		return "redirect:/ps_verify";
+	}
 	@RequestMapping("stu_manage")
 	public ModelAndView showStuManage(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -71,6 +123,22 @@ public class ManageInterfaceController {
 		mav.addObject("u_name", u.getU_name());
 
 		return mav;
+	}
+	@RequestMapping("question_reply")
+	public ModelAndView showQuestionReply(HttpServletRequest request, ModelMap modelMap) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		List<Question> questions = questionMapper.getAllQuestion();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mis/question_reply");
+		mav.addObject("questions", questions);
+		mav.addObject("u_name", u.getU_name());
+		return mav;
+	}
+	@RequestMapping("handle_question_del")
+	public String del(Integer q_id) {
+		questionMapper.delById(q_id);
+		return "redirect:/question_reply";
 	}
 	@RequestMapping("fund_verify")
 	public String showFundVerify(HttpServletRequest request, ModelMap modelMap) {
@@ -100,7 +168,6 @@ public class ManageInterfaceController {
 		System.out.println("success");
 		return "redirect:/fund_verify";
 	}
-	
 	@RequestMapping("work_verify")
 	public String showWorkVerify(HttpServletRequest request, ModelMap modelMap) {
 		List<WorkVerify> wvs = waMapper.getAllVerifyWork();
@@ -127,6 +194,33 @@ public class ManageInterfaceController {
 		waMapper.verifyAll(u.getU_name());
 		System.out.println("success");
 		return "redirect:/work_verify";
+	}
+	@RequestMapping("vol_verify")
+	public String showVolVerify(HttpServletRequest request, ModelMap modelMap) {
+		List<VolVerify> vvs = vaMapper.getAllVerifyVol();
+		modelMap.addAttribute("vvs", vvs);
+		
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		modelMap.addAttribute("u_name", u.getU_name());
+		return "mis/vol_verify";
+	}
+	@RequestMapping("handle_vol_verify")
+	public String handleVolVerify(HttpServletRequest request, int va_id) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println(va_id);
+		vaMapper.verify(u.getU_name(), va_id);
+		System.out.println("success");
+		return "redirect:/vol_verify";
+	}
+	@RequestMapping("verify_all_vol")
+	public String handleVolVerify(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		vaMapper.verifyAll(u.getU_name());
+		System.out.println("success");
+		return "redirect:/vol_verify";
 	}
 	@RequestMapping("logout")
 	public String logout(HttpServletRequest request) {

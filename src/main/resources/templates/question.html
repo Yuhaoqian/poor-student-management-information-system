@@ -89,7 +89,7 @@
         </a>
 	</h2>
     <div class="list-group" >
-        <a th:each="q:${qList}" th:href="@{'handle_ans.do?title='+${q.title}+'&r_content='+${q.r_content}}" class="list-group-item " >
+        <a th:each="q:${qList}" th:href="@{'handle_ans.do?q_id='+${q.q_id}}" class="list-group-item " >
             <i class="icon-bookmark  icon-white"></i>
             <span class="" th:text="${q.title}">国家助学贷款如何办理？</span>
             <span class="list-time pull-right" th:text = "${q.time}">2016-04-21 08:33:21</span> 
@@ -134,8 +134,6 @@
 	<script src="js/jquery.min.js"></script>
 	<!--<![endif]-->
 	<script src="js/amazeui.min.js"></script>
-	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
-	<script src="https://code.jquery.com/jquery.js"></script>
 	<!-- 包括所有已编译的插件 -->
 	<script src="js/bootstrap.min.js"></script>
 </body>

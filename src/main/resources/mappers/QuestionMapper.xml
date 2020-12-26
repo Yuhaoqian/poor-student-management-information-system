@@ -5,11 +5,23 @@
 <mapper
 	namespace="edu.sqa.finalproject.poorstudentmis.mapper.QuestionMapper">
 	<select id="getAllQuestion" resultType="edu.sqa.finalproject.poorstudentmis.entity.Question">
-		select * from question_table order by time  desc
+		select * from question_table order by time desc
 	</select>
 	<insert id="insertQ">
 		insert into question_table
 		(sid, title, content,time)
 		values(#{sid}, #{title}, #{content},#{time})
 	</insert>
+	<select id="getQuestionById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Question">
+		select * from question_table where q_id=#{q_id}
+	</select>
+		<delete id="delById">
+		delete from question_table where q_id=#{id}
+	</delete>
+	<update id="modifyReply">
+		update question_table
+		set r_content=#{r_content}, r_reviewer=#{name}
+		where q_id=#{q_id}
+	</update>
+	
 </mapper>

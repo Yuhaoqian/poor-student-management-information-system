@@ -4,7 +4,7 @@ public class User {
 	private String u_id;
 	private String u_name;
 	private String u_password;
-	private int u_power;
+	private int u_power=1; // 1 是普通权限；0 是管理员权限
 	
 	public User() {
 		super();

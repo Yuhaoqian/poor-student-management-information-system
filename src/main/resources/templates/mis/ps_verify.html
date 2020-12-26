@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>JUST - 贫困生申请认定</title>
+<meta name="description" content="这是一个 index 页面">
+<meta name="keywords" content="index">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png" href="assets/i/favicon.png">
+<link rel="apple-touch-icon-precomposed"
+	href="assets/i/app-icon72x72@2x.png">
+<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+<link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/mymodal.css">
+
+<script src="assets/js/jquery.min.js"></script>
+
+</head>
+
+<body data-type="widgets" class="theme-white">
+	<!-- 遮盖层 -->
+	<div class="black_overlay" id="bo"></div>
+	<div class="m1" id="m1">
+		<div class="d1">
+			<span>确定要认定该学生为贫困生吗？</span>
+		</div>
+		<div class="d2">
+			<button id="m1_sure">确定</button>
+			<button id="m1_cancel">取消</button>
+		</div>
+	</div>
+		<div class="m1" id="m2">
+		<div class="d1">
+			<span>确认通过所有申请？</span>
+		</div>
+		<div class="d2">
+			<button id="m2_sure">确定</button>
+			<button id="m2_cancel">取消</button>
+		</div>
+	</div>
+	<div class="am-g tpl-g">
+		<!-- 头部 -->
+		<header>
+			<!-- logo -->
+			<div class="am-fl tpl-header-logo">
+				<a href="javascript:;"><img src="assets/img/logo.png" alt=""
+					style="width: 225px"></a>
+			</div>
+			<!-- 右侧内容 -->
+			<div class="tpl-header-fluid">
+				<!-- 侧边切换 -->
+				<div class="am-fl tpl-header-switch-button am-icon-list">
+					<span> </span>
+				</div>
+
+				<!-- 其它功能-->
+				<div class="am-fr tpl-header-navbar">
+					<ul>
+						<!-- 欢迎语 -->
+						<li class="am-text-sm tpl-header-navbar-welcome"><a
+							href="javascript:;">欢迎你, <span  th:text=${u_name}>Amaze UI</span>
+						</a></li>
+						<!-- 退出 -->
+						<li class="am-text-sm"><a href="logout"> <span
+								class="am-icon-sign-out"></span> 退出
+						</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</header>
+
+		<!-- 侧边导航栏 -->
+		<div class="left-sidebar">
+			<!-- 菜单 -->
+			<ul class="sidebar-nav">
+				<li class="sidebar-nav-link"><a href="home"> <i
+						class="am-icon-home sidebar-nav-link-logo"></i>首页
+				</a></li>
+				<li class="sidebar-nav-link"><a href="stu_manage"> <i
+						class="am-icon-table sidebar-nav-link-logo"></i>学生信息管理
+				</a></li>
+				<li class="sidebar-nav-link"><a href="fund_manage"> <i
+						class="am-icon-wpforms sidebar-nav-link-logo"></i>资助项目管理
+
+				</a></li>
+				<li class="sidebar-nav-link"><a href="work_manage"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学管理
+
+				</a></li>
+				<li class="sidebar-nav-link"><a class="active" href="ps_verify"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo active"></i>贫困生申请认定
+
+				</a></li>
+				<li class="sidebar-nav-link"><a href="fund_verify"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>资助项目申请审核
+				</a></li>
+				<li class="sidebar-nav-link"><a href="work_verify"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学申请审核
+				</a></li>
+																<li class="sidebar-nav-link"><a href="vol_verify"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>志愿活动项目申请审核
+				</a></li>
+														<li class="sidebar-nav-link" ><a href="question_reply"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>问题解答</a></li>
+						
+																<li class="sidebar-nav-link" ><a href="file_manage"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>文件管理</a></li>
+			</ul>
+		</div>
+
+
+
+		<!-- 内容区域 -->
+		<div class="tpl-content-wrapper">
+			<div class="row-content am-cf">
+				<div class="row">
+					<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+						<div class="widget am-cf">
+							<div class="widget-head am-cf">
+								<div class="widget-title  am-cf">贫困生申请认定</div>
+							</div>
+							<div class="widget-body  am-fr">
+
+								<div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+									<div class="am-form-group">
+										<div class="am-btn-toolbar">
+											<div class="am-btn-group am-btn-group-xs">
+												<button id="verify_all" type="button"
+													class="am-btn am-btn-default am-btn-warning">
+													<span class="am-icon-archive"></span> 审核全部
+												</button>
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="am-u-sm-12">
+									<table width="100%"
+										class="am-table am-table-compact am-table-striped tpl-table-black ">
+										<thead>
+											<tr>
+												<th>编号</th>
+												<th>学生姓名</th>
+												<th>申请状态</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+								
+											<tr th:each="s:${stus}" class="gradeX">
+												<td th:text=${s.s_id} class="am-text-middle">Amaze UI
+													模式窗口</td>
+												<td th:text=${s.s_name} class="am-text-middle">Amaze
+													UI 模式窗口</td>
+													
+							
+												<td th:switch=${s.s_isps} class="am-text-middle">
+													<span th:case="1">待审核</span>
+													<span th:case="2">已通过</span>
+													
+												</td>
+
+												<td th:switch=${s.s_isps} class="am-text-middle">
+													<div  th:case="1" class="tpl-table-black-operation">
+														<a href="javascript:;" onclick="show_m1(this)" th:attr="s_id=${s.s_id}"> <i
+															class="am-icon-archive"></i> 审核
+														</a>
+													</div>
+												</td>
+											</tr>
+
+											<!-- more data -->
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/amazeui.min.js"></script>
+	<script src="assets/js/app.js"></script>
+	<script>
+		function show_m1(e) {
+			var s_id = $(e).attr("s_id")
+			console.log(s_id)
+			var black_overlay = $("#bo")
+			var m1 = $("#m1")
+			var sure = $("#m1_sure")
+			var cancel = $("#m1_cancel")
+			sure.one("click", function() {
+				window.location.href = "handle_ps_verify?s_id=" + s_id;
+			});
+			cancel.on("click", function() {
+				black_overlay.hide();
+				m1.hide();
+			});
+			black_overlay.show();
+			m1.show();
+		}
+		$("#verify_all").on("click", function() {
+			var black_overlay = $("#bo")
+			$("#m2").show();
+			black_overlay.show();
+			var sure = $("#m2_sure")
+			var cancel = $("#m2_cancel")
+			sure.one("click", function() {
+				window.location.href = "verify_all_ps";
+			});
+			cancel.on("click", function() {
+				black_overlay.hide();
+				$("#m2").hide();
+			});
+		})
+	</script>
+</body>
+
+</html>

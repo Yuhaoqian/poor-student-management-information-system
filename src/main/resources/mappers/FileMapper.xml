@@ -7,4 +7,13 @@
 	<select id="getAllFile" resultType="edu.sqa.finalproject.poorstudentmis.entity.MyFile">
 		select * from file order by rtime  desc
 	</select>
+		<delete id="delById">
+		delete from file where id=#{id}
+	</delete>
+	
+	<insert id="save">
+		insert into file
+		(title, url, rtime)
+		values(#{title}, #{url}, #{rtime})
+	</insert>
 </mapper>

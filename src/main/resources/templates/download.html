@@ -84,10 +84,6 @@
 		<img src="img/icons/down.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;">
          文件下载
          <i style="font-size: small;color: burlywood;">点击即可下载文件</i>
-         <a href="ask.html"><button type="button" class="btn btn-primary pull-right">
-            我要提问
-            </button>
-        </a>
 	</h2>
     <div class="list-group" >
         <a th:each="f:${files}" th:href="${f.url}" class="list-group-item " download>
@@ -133,8 +129,6 @@
 	<script src="js/jquery.min.js"></script>
 	<!--<![endif]-->
 	<script src="js/amazeui.min.js"></script>
-	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
-	<script src="https://code.jquery.com/jquery.js"></script>
 	<!-- 包括所有已编译的插件 -->
 	<script src="js/bootstrap.min.js"></script>
 </body>
