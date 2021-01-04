@@ -1,15 +1,17 @@
 package edu.sqa.finalproject.poorstudentmis.controller;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Calendar;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,11 +20,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import edu.sqa.finalproject.poorstudentmis.entity.Fund;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.entity.Vol;
 import edu.sqa.finalproject.poorstudentmis.mapper.VolMapper;
+import edu.sqa.finalproject.poorstudentmis.utils.OssManagerUtil;
 
 @Controller
 public class VolController {
@@ -131,5 +135,42 @@ public class VolController {
 			modelMap.addAttribute("pos", "display:none;");
 		}
 		return "tygc";
+	}
+	@RequestMapping("del_all_vol")
+	public String delAll() {
+		volMapper.delAll();
+		volMapper.reset();
+		return "redirect:/vol_manage";
+	}
+	@RequestMapping("del_vol")
+	public String del(Integer vid) {
+		volMapper.delById(vid);
+		return "redirect:/vol_manage";
+	}
+	@RequestMapping("handle_add_vol")
+	public String handleAdd(String v_name, String v_abs, String v_position, String num, MultipartFile v_img, String stime, String btime, String etime) throws ParseException, IOException {
+		// Work work 接受表单中传来的参数，new一个Work对象
+		// w_id，不需要设置，这是自增字段
+		
+		System.out.println("time: " + stime);
+	    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+	    Date bdate = df.parse(btime.replaceAll("T", " ") + ":00");
+	    Date edate = df.parse(etime.replaceAll("T", " ") + ":00");
+	    Date now = new Date();
+	    
+	    String fileName = v_img.getOriginalFilename();
+	    String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
+	    fileName = UUID.randomUUID().toString().replace("-", "") + "." + suffix;
+	    String url = OssManagerUtil.uploadImage(fileName,v_img.getInputStream().available(),v_img.getInputStream());
+	    //获取url
+	    System.out.println(url);
+	    Vol vol = new Vol(v_name, v_abs, v_position, url, Integer.parseInt(num), 0, stime, bdate, edate, now);
+		// 暂时不需要别的检验机制，直接添加进数据库
+		volMapper.save(vol);
+	    
+
+		return "redirect:/vol_manage";
+
 	}
 }

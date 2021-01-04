@@ -17,6 +17,7 @@ import edu.sqa.finalproject.poorstudentmis.entity.MyFile;
 import edu.sqa.finalproject.poorstudentmis.entity.Question;
 import edu.sqa.finalproject.poorstudentmis.entity.Student;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
+import edu.sqa.finalproject.poorstudentmis.entity.Vol;
 import edu.sqa.finalproject.poorstudentmis.entity.VolVerify;
 import edu.sqa.finalproject.poorstudentmis.entity.Work;
 import edu.sqa.finalproject.poorstudentmis.entity.WorkVerify;
@@ -26,6 +27,7 @@ import edu.sqa.finalproject.poorstudentmis.mapper.FundMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.QuestionMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.StudentMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.VolApplyMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.VolMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.WorkApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.WorkMapper;
 
@@ -38,6 +40,8 @@ public class ManageInterfaceController {
 	@Autowired
 	private StudentMapper stuMapper;
 	@Autowired
+	private VolMapper volMapper;
+	@Autowired
 	FundApplyMapper faMapper;
 	@Autowired
 	WorkApplyMapper waMapper;
@@ -47,6 +51,19 @@ public class ManageInterfaceController {
 	QuestionMapper questionMapper;
 	@Autowired
 	FileMapper fileMapper;
+	
+	@RequestMapping("vol_manage")
+	public ModelAndView showVolManage(HttpServletRequest request) {
+		// 因为有了过滤器，所以进到后台的一定是已经登陆的用户，不需要再判断session中有没有user了。
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		List<Vol> vols = volMapper.getAllVol();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mis/vol_manage");
+		mav.addObject("vols", vols);
+		mav.addObject("u_name", u.getU_name());
+		return mav;
+	}
 	@RequestMapping("fund_manage")
 	public ModelAndView showFundManage(HttpServletRequest request) {
 		// 因为有了过滤器，所以进到后台的一定是已经登陆的用户，不需要再判断session中有没有user了。
