@@ -1,9 +1,11 @@
 package edu.sqa.finalproject.poorstudentmis.controller;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,6 +22,7 @@ import edu.sqa.finalproject.poorstudentmis.entity.Fund;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.entity.Work;
 import edu.sqa.finalproject.poorstudentmis.mapper.WorkMapper;
+import edu.sqa.finalproject.poorstudentmis.utils.OssManagerUtil;
 
 @Controller
 public class WorkController {
@@ -98,18 +101,22 @@ public class WorkController {
 	}
 	@RequestMapping("handle_add_work")
 	public String handleAdd(String w_name, String w_abs, String w_position, String w_money, MultipartFile w_img) {
-		// Work work 接受表单中传来的参数，new一个Work对象
-		// w_id，不需要设置，这是自增字段
-		Work work = new Work(null, w_name, w_abs, null, w_position, Double.parseDouble(w_money), w_img.getOriginalFilename());
-		work.setW_time(System.currentTimeMillis());
-		// 暂时不需要别的检验机制，直接添加进数据库
-		workMapper.save(work);
-		// 把图片保存到img/uploads/work中
 		try {
-			String folder = ClassUtils.getDefaultClassLoader().getResource("static/img/uploads/work").getPath();
-			byte[] bytes = w_img.getBytes();
-			Path path = Paths.get(folder + "/" + w_img.getOriginalFilename());
-			Files.write(path, bytes);
+			System.out.println(w_img);
+			String fileName = w_img.getOriginalFilename();
+			System.out.println(fileName);
+		    String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
+		    fileName = UUID.randomUUID().toString().replace("-", "") + "." + suffix;
+		    String url = OssManagerUtil.uploadImage(fileName,w_img.getInputStream().available(),w_img.getInputStream());
+		    //获取url
+		    System.out.println(url);
+		    
+			// Fund f 接受表单中传来的参数，new一个Fund对象
+			// f_id，不需要设置，这是自增字段
+			Work work = new Work(null, w_name, w_abs, null, w_position, Double.parseDouble(w_money), url);
+			work.setW_time(System.currentTimeMillis());
+			// 暂时不需要别的检验机制，直接添加进数据库
+			workMapper.save(work);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
