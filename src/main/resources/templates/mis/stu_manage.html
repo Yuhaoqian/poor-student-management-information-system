@@ -2,23 +2,24 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>JUST - 学生信息管理</title>
-	<meta name="description" content="这是一个 index 页面">
-	<meta name="keywords" content="index">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="renderer" content="webkit">
-	<meta http-equiv="Cache-Control" content="no-siteapp" />
-	<link rel="icon" type="image/png" href="assets/i/favicon.png">
-	<link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
-	<meta name="apple-mobile-web-app-title" content="Amaze UI" />
-	<link rel="stylesheet" href="assets/css/amazeui.min.css" />
-	<link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
-	<link rel="stylesheet" href="assets/css/app.css">
-	<link rel="stylesheet" href="assets/css/mymodal.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>JUST - 学生信息管理</title>
+<meta name="description" content="这是一个 index 页面">
+<meta name="keywords" content="index">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png" href="assets/i/favicon.png">
+<link rel="apple-touch-icon-precomposed"
+	href="assets/i/app-icon72x72@2x.png">
+<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+<link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/mymodal.css">
 
-	<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
 
 </head>
 
@@ -43,26 +44,31 @@
 			<button id="m2_cancel">取消</button>
 		</div>
 	</div>
-	<div class="modal_edit" id="m3" style="height: 500px; overflow-y: auto;">
-		<form class="am-form am-form-horizontal" id="add_form" enctype="multipart/form-data" method="post"
+	<div class="modal_edit" id="m3"
+		style="height: 500px; overflow-y: auto;">
+		<form class="am-form am-form-horizontal" id="add_form"
+			enctype="multipart/form-data" method="post"
 			style="padding-top: 30px;">
 			<div class="am-form-group">
 				<label for="noticeTheme" class="am-u-sm-3 am-form-label">
 					学号： </label>
 				<div class="am-u-sm-9">
-					<input id="add_id" placeholder="请输入学号" value="" type="text" name="s_id">
+					<input id="add_id" placeholder="请输入学号" value="" type="text"
+						name="s_id">
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 姓名： </label>
 				<div class="am-u-sm-9">
-					<input id="add_name" placeholder="请输入姓名" value="" type="text" name="s_name">
+					<input id="add_name" placeholder="请输入姓名" value="" type="text"
+						name="s_name">
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 民族： </label>
 				<div class="am-u-sm-9">
-					<input id="add_nation" placeholder="请输入民族" value="" type="text" name="s_nation">
+					<input id="add_nation" placeholder="请输入民族" value="" type="text"
+						name="s_nation">
 				</div>
 			</div>
 			<div class="am-form-group">
@@ -83,60 +89,70 @@
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 专业： </label>
 				<div class="am-u-sm-9">
-					<input id="add_major" placeholder="请输入学生专业" value="" type="text" name="s_major">
+					<input id="add_major" placeholder="请输入学生专业" value="" type="text"
+						name="s_major">
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 电话： </label>
 				<div class="am-u-sm-9">
-					<input id="add_phone" placeholder="请输入电话号码" value="" type="text" name="s_phone">
+					<input id="add_phone" placeholder="请输入电话号码" value="" type="text"
+						name="s_phone">
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 家庭住址： </label>
 				<div class="am-u-sm-9">
-					<input id="add_address" placeholder="请输入家庭住址" value="" type="text" name="s_address">
+					<input id="add_address" placeholder="请输入家庭住址" value="" type="text"
+						name="s_address">
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 家庭年收入：
 				</label>
 				<div class="am-u-sm-9">
-					<input id="add_income" placeholder="请输入家庭人均年收入" value="" type="text" name="s_income">
+					<input id="add_income" placeholder="请输入家庭人均年收入" value=""
+						type="text" name="s_income">
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 家庭贫困原因：
 				</label>
 				<div class="am-u-sm-9">
-					<textarea id="add_res" rows="7" cols="50" placeholder="请输入家庭贫困原因" name="s_res"></textarea>
+					<textarea id="add_res" rows="7" cols="50" placeholder="请输入家庭贫困原因"
+						name="s_res"></textarea>
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 奖励情况： </label>
 				<div class="am-u-sm-9">
-					<textarea id="add_info" rows="7" cols="50" placeholder="请输入奖励情况" name="s_info"></textarea>
+					<textarea id="add_info" rows="7" cols="50" placeholder="请输入奖励情况"
+						name="s_info"></textarea>
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 其他信息： </label>
 				<div class="am-u-sm-9">
-					<textarea id="add_other" rows="7" cols="50" placeholder="请输入其他信息其他信息" name="s_other"></textarea>
+					<textarea id="add_other" rows="7" cols="50"
+						placeholder="请输入其他信息其他信息" name="s_other"></textarea>
 				</div>
 			</div>
 
 			<div class="am-form-group">
 				<div class="am-u-sm-9 am-u-sm-push-3">
-					<input id="me_upload" class="am-btn am-btn-success close" value="确认" type="button"> <input
-						type="button" id="me_cancel" class="am-btn am-btn-success close"
-						style="background-color: red; border: red" value="取消"> <span id="message"
-						style="color: red"></span>
+					<input id="me_upload" class="am-btn am-btn-success close"
+						value="确认" type="button"> <input type="button"
+						id="me_cancel" class="am-btn am-btn-success close"
+						style="background-color: red; border: red" value="取消"> <span
+						id="message" style="color: red"></span>
 				</div>
 			</div>
 		</form>
 	</div>
-	<div class="modal_edit" id="m4" style="height: 500px; overflow-y: auto;">
-		<form class="am-form am-form-horizontal" method="post" style="padding-top: 30px;">
+	<div class="modal_edit" id="m4"
+		style="height: 500px; overflow-y: auto;">
+		<form class="am-form am-form-horizontal" method="post"
+			style="padding-top: 30px;">
 			<div class="am-form-group">
 				<label for="noticeTheme" class="am-u-sm-3 am-form-label">
 					学号： </label>
@@ -147,13 +163,15 @@
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 姓名： </label>
 				<div class="am-u-sm-9">
-					<input id="modify_name" readonly placeholder="请输入姓名" value="" type="text" name="s_name">
+					<input id="modify_name" readonly placeholder="请输入姓名" value=""
+						type="text" name="s_name">
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 民族： </label>
 				<div class="am-u-sm-9">
-					<input id="modify_nation" placeholder="请输入民族" value="" type="text" name="s_nation">
+					<input id="modify_nation" placeholder="请输入民族" value="" type="text"
+						name="s_nation">
 				</div>
 			</div>
 			<div class="am-form-group">
@@ -174,54 +192,62 @@
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 专业： </label>
 				<div class="am-u-sm-9">
-					<input id="modify_major" placeholder="请输入学生专业" value="" type="text" name="s_major">
+					<input id="modify_major" placeholder="请输入学生专业" value="" type="text"
+						name="s_major">
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 电话： </label>
 				<div class="am-u-sm-9">
-					<input id="modify_phone" placeholder="请输入电话号码" value="" type="text" name="s_phone">
+					<input id="modify_phone" placeholder="请输入电话号码" value="" type="text"
+						name="s_phone">
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 家庭住址： </label>
 				<div class="am-u-sm-9">
-					<input id="modify_address" placeholder="请输入家庭住址" value="" type="text" name="s_address">
+					<input id="modify_address" placeholder="请输入家庭住址" value=""
+						type="text" name="s_address">
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 家庭年收入：
 				</label>
 				<div class="am-u-sm-9">
-					<input id="modify_income" placeholder="请输入家庭人均年收入" value="" type="text" name="s_income">
+					<input id="modify_income" placeholder="请输入家庭人均年收入" value=""
+						type="text" name="s_income">
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 家庭贫困原因：
 				</label>
 				<div class="am-u-sm-9">
-					<textarea id="modify_res" rows="7" cols="50" placeholder="请输入家庭贫困原因" name="s_res"></textarea>
+					<textarea id="modify_res" rows="7" cols="50"
+						placeholder="请输入家庭贫困原因" name="s_res"></textarea>
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 奖励情况： </label>
 				<div class="am-u-sm-9">
-					<textarea id="modify_info" rows="7" cols="50" placeholder="请输入奖励情况" name="s_info"></textarea>
+					<textarea id="modify_info" rows="7" cols="50" placeholder="请输入奖励情况"
+						name="s_info"></textarea>
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="notice" class="am-u-sm-3 am-form-label"> 其他信息： </label>
 				<div class="am-u-sm-9">
-					<textarea id="modify_other" rows="7" cols="50" placeholder="请输入其他信息其他信息" name="s_other"></textarea>
+					<textarea id="modify_other" rows="7" cols="50"
+						placeholder="请输入其他信息其他信息" name="s_other"></textarea>
 				</div>
 			</div>
 
 			<div class="am-form-group">
 				<div class="am-u-sm-9 am-u-sm-push-3">
-					<input id="mm_upload" class="am-btn am-btn-success close" value="确认" type="button"> <input
-						type="button" id="mm_cancel" class="am-btn am-btn-success close"
-						style="background-color: red; border: red" value="取消"> <span id="message"
-						style="color: red"></span>
+					<input id="mm_upload" class="am-btn am-btn-success close"
+						value="确认" type="button"> <input type="button"
+						id="mm_cancel" class="am-btn am-btn-success close"
+						style="background-color: red; border: red" value="取消"> <span
+						id="message" style="color: red"></span>
 				</div>
 			</div>
 		</form>
@@ -231,7 +257,8 @@
 		<header>
 			<!-- logo -->
 			<div class="am-fl tpl-header-logo">
-				<a href="javascript:;"><img src="assets/img/logo.png" alt="" style="width: 225px"></a>
+				<a href="javascript:;"><img src="assets/img/logo.png" alt=""
+					style="width: 225px"></a>
 			</div>
 			<!-- 右侧内容 -->
 			<div class="tpl-header-fluid">
@@ -244,12 +271,14 @@
 				<div class="am-fr tpl-header-navbar">
 					<ul>
 						<!-- 欢迎语 -->
-						<li class="am-text-sm tpl-header-navbar-welcome"><a href="javascript:;">欢迎你, <span th:text=${u_name}>Amaze
+						<li class="am-text-sm tpl-header-navbar-welcome"><a
+							href="javascript:;">欢迎你, <span th:text=${u_name}>Amaze
 									UI</span>
-							</a></li>
+						</a></li>
 						<!-- 退出 -->
-						<li class="am-text-sm"><a href="logout"> <span class="am-icon-sign-out"></span> 退出
-							</a></li>
+						<li class="am-text-sm"><a href="logout"> <span
+								class="am-icon-sign-out"></span> 退出
+						</a></li>
 					</ul>
 				</div>
 			</div>
@@ -260,37 +289,43 @@
 		<div class="left-sidebar">
 			<!-- 菜单 -->
 			<ul class="sidebar-nav">
-				<li class="sidebar-nav-link"><a href="home"> <i class="am-icon-home sidebar-nav-link-logo"></i>首页
-					</a></li>
-				<li class="sidebar-nav-link"><a href="stu_manage" class="active"> <i
-							class="am-icon-table sidebar-nav-link-logo"></i>学生信息管理
-					</a></li>
+				<li class="sidebar-nav-link"><a href="home"> <i
+						class="am-icon-home sidebar-nav-link-logo"></i>首页
+				</a></li>
+				<li class="sidebar-nav-link"><a href="stu_manage"
+					class="active"> <i class="am-icon-table sidebar-nav-link-logo"></i>学生信息管理
+				</a></li>
 				<li class="sidebar-nav-link"><a href="fund_manage"> <i
-							class="am-icon-wpforms sidebar-nav-link-logo"></i>资助项目管理
+						class="am-icon-wpforms sidebar-nav-link-logo"></i>资助项目管理
 
-					</a></li>
+				</a></li>
 				<li class="sidebar-nav-link"><a href="work_manage"> <i
-							class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学管理
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学管理
 
-					</a></li>
-									<li class="sidebar-nav-link"><a href="ps_verify"> <i
+				</a></li>
+				<li class="sidebar-nav-link"><a href="vol_manage"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>志愿活动项目管理
+				</a></li>
+				<li class="sidebar-nav-link"><a href="ps_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo active"></i>贫困生申请认定
 
 				</a></li>
 				<li class="sidebar-nav-link"><a href="fund_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>资助项目申请审核
 				</a></li>
-								<li class="sidebar-nav-link"><a href="work_verify"> <i
+				<li class="sidebar-nav-link"><a href="work_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学申请审核
 				</a></li>
-								<li class="sidebar-nav-link"><a href="vol_verify"> <i
+				<li class="sidebar-nav-link"><a href="vol_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>志愿活动项目申请审核
 				</a></li>
-														<li class="sidebar-nav-link" ><a href="question_reply"> <i
-						class="am-icon-bar-chart sidebar-nav-link-logo"></i>问题解答</a></li>
-						
-																<li class="sidebar-nav-link" ><a href="file_manage"> <i
-						class="am-icon-bar-chart sidebar-nav-link-logo"></i>文件管理</a></li>
+				<li class="sidebar-nav-link"><a href="question_reply"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>问题解答
+				</a></li>
+
+				<li class="sidebar-nav-link"><a href="file_manage"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>文件管理
+				</a></li>
 			</ul>
 		</div>
 
@@ -366,7 +401,7 @@
 														</a> <a href="javascript:;"
 															class="tpl-table-black-operation-del"
 															th:attr="s_id=${s.s_id}" onclick="show_m1(this)"> <i
-																class="am-icon-trash"></i> 删除
+															class="am-icon-trash"></i> 删除
 														</a>
 													</div>
 												</td>
@@ -396,13 +431,13 @@
 			$("#m4").show();
 			black_overlay.show();
 			$.ajax({
-				type: "post",
-				url: "show_stu",
-				dataType: "json",
-				data: {
-					s_id: s_id,
+				type : "post",
+				url : "show_stu",
+				dataType : "json",
+				data : {
+					s_id : s_id,
 				},
-				success: function (json) {
+				success : function(json) {
 					console.log(json.stu)
 					console.log(json.stu.s_id)
 					$("#modify_id").val(json.stu.s_id)
@@ -422,7 +457,7 @@
 			});
 			var upload = $("#mm_upload")
 			var cancel = $("#mm_cancel")
-			upload.on("click", function (e) {
+			upload.on("click", function(e) {
 				// 2. 用户可能修改了信息表，进行修改操作
 				var sid = $("#modify_id").val()
 				var sname = $("#modify_name").val()
@@ -438,31 +473,31 @@
 				var sinfo = $("#modify_info").val()
 				var sother = $("#modify_other").val()
 				$.ajax({
-					type: "post",
-					url: "modify_stu_info_back",
-					dataType: "json",
-					data: {
-						s_id: sid,
-						s_name: sname,
-						s_nation: snation,
-						s_sex: ssex,
-						s_birth: sbirth,
-						s_major: smajor,
-						s_phone: sphone,
-						s_address: saddress,
-						s_income: sincome,
-						s_res: sres,
-						s_info: sinfo,
-						s_other: sother
+					type : "post",
+					url : "modify_stu_info_back",
+					dataType : "json",
+					data : {
+						s_id : sid,
+						s_name : sname,
+						s_nation : snation,
+						s_sex : ssex,
+						s_birth : sbirth,
+						s_major : smajor,
+						s_phone : sphone,
+						s_address : saddress,
+						s_income : sincome,
+						s_res : sres,
+						s_info : sinfo,
+						s_other : sother
 					},
-					success: function (json) {
+					success : function(json) {
 						alert("修改成功！")
 						location.reload()
 					}
 				});
 				e.preventDefault();
 			})
-			cancel.on("click", function (e) {
+			cancel.on("click", function(e) {
 				black_overlay.hide();
 				$("#m4").hide();
 				e.preventDefault();
@@ -475,23 +510,23 @@
 			var m1 = $("#m1")
 			var sure = $("#m1_sure")
 			var cancel = $("#m1_cancel")
-			sure.one("click", function () {
+			sure.one("click", function() {
 				window.location.href = "del_stu?s_id=" + s_id;
 			});
-			cancel.on("click", function () {
+			cancel.on("click", function() {
 				black_overlay.hide();
 				m1.hide();
 			});
 			black_overlay.show();
 			m1.show();
 		}
-		$("#add_stu").on("click", function () {
+		$("#add_stu").on("click", function() {
 			var black_overlay = $("#bo")
 			$("#m3").show();
 			black_overlay.show();
 			var upload = $("#me_upload")
 			var cancel = $("#me_cancel")
-			upload.on("click", function (e) {
+			upload.on("click", function(e) {
 				var sid = $("#add_id").val()
 				var sname = $("#add_name").val()
 				var snation = $("#add_nation").val()
@@ -512,25 +547,25 @@
 					alert("姓名不能为空！")
 				else {
 					$.ajax({
-						type: "post",
-						url: "add_stu",
-						dataType: "json",
-						data: {
-							s_id: sid,
-							s_name: sname,
-							s_nation: snation,
-							s_sex: ssex,
-							s_birth: sbirth,
-							s_major: smajor,
-							s_phone: sphone,
-							s_address: saddress,
-							s_income: sincome,
-							s_res: sres,
-							s_info: sinfo,
-							s_other: sother
+						type : "post",
+						url : "add_stu",
+						dataType : "json",
+						data : {
+							s_id : sid,
+							s_name : sname,
+							s_nation : snation,
+							s_sex : ssex,
+							s_birth : sbirth,
+							s_major : smajor,
+							s_phone : sphone,
+							s_address : saddress,
+							s_income : sincome,
+							s_res : sres,
+							s_info : sinfo,
+							s_other : sother
 						},
 						// 'id=' + un + '&password=' + pd,
-						success: function (json) {
+						success : function(json) {
 							if (json.message == "添加成功！") {
 								alert("添加成功！")
 								location.reload()
@@ -546,22 +581,22 @@
 					e.preventDefault();
 				}
 			})
-			cancel.on("click", function (e) {
+			cancel.on("click", function(e) {
 				black_overlay.hide();
 				$("#m3").hide();
 				e.preventDefault();
 			});
 		})
-		$("#del_all").on("click", function () {
+		$("#del_all").on("click", function() {
 			var black_overlay = $("#bo")
 			$("#m2").show();
 			black_overlay.show();
 			var sure = $("#m2_sure")
 			var cancel = $("#m2_cancel")
-			sure.one("click", function () {
+			sure.one("click", function() {
 				window.location.href = "del_all_stu";
 			});
-			cancel.on("click", function () {
+			cancel.on("click", function() {
 				black_overlay.hide();
 				$("#m2").hide();
 			});

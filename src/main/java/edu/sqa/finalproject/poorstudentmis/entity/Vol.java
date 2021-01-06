@@ -14,7 +14,7 @@ public class Vol {
 	String stime;//服务时间
 	Date btime;//开始时间
 	Date etime;//结束时间
-	Date rtime;//发布时间\
+	Date rtime;//发布时间
 	
 
 	public Vol() {

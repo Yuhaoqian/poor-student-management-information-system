@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>JUST - 支援活动项目管理</title>
+<meta name="description" content="这是一个 index 页面">
+<meta name="keywords" content="index">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png" href="assets/i/favicon.png">
+<link rel="apple-touch-icon-precomposed"
+	href="assets/i/app-icon72x72@2x.png">
+<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+<link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/mymodal.css">
+
+<script src="assets/js/jquery.min.js"></script>
+
+</head>
+
+<body data-type="widgets" class="theme-white">
+	<!-- 遮盖层 -->
+	<div class="black_overlay" id="bo"></div>
+	<div class="m1" id="m1">
+		<div class="d1">
+			<span>你正在删除该项目，是否继续？</span>
+		</div>
+		<div class="d2">
+			<button id="m1_sure">确定</button>
+			<button id="m1_cancel">取消</button>
+		</div>
+	</div>
+	<div class="m1" id="m2">
+		<div class="d1">
+			<span>确认删除全部项目？</span>
+		</div>
+		<div class="d2">
+			<button id="m2_sure">确定</button>
+			<button id="m2_cancel">取消</button>
+		</div>
+	</div>
+	<div class="modal_edit" id="m3" style="height: 620px">
+	<form class="am-form am-form-horizontal" action="handle_add_vol"  enctype="multipart/form-data" method="post" style="padding-top: 30px;">
+                    <div class="am-form-group">
+                        <label for="noticeTheme" class="am-u-sm-3 am-form-label">
+                            项目名称：
+                        </label>
+                        <div class="am-u-sm-9">
+                            <input id="noticeTheme" placeholder="请输入支援活动项目名称" value="" type="text" name="v_name">
+                        </div>
+                    </div>
+                      <div class="am-form-group">
+                        <label for="notice" class="am-u-sm-3 am-form-label">
+                            项目简介：
+                        </label>
+                        <div class="am-u-sm-9">
+                            <textarea id="notice" rows="7" cols="50" placeholder="请输入项目简介" name="v_abs"></textarea>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="noticeFund" class="am-u-sm-3 am-form-label">
+                           活动地址：
+                        </label>
+                        <div class="am-u-sm-9">
+                            <input id="noticeFund" placeholder="请输入活动地址" value="" type="text" name="v_position">
+                        </div>
+                    </div>
+               
+                    <div class="am-form-group">
+                        <label for="noticeImg" class="am-u-sm-3 am-form-label">
+                           项目图片：
+                        </label>
+                        <div class="am-u-sm-9">
+                            <input id="noticeImg" value="" type="file" name="v_img">
+                        </div>
+                    </div>
+                                        <div class="am-form-group">
+                        <label for="noticeImg" class="am-u-sm-3 am-form-label">
+                           服务时间：
+                        </label>
+                        <div class="am-u-sm-9">
+                            <input id="noticeImg" value="" type="text" name="stime">
+                        </div>
+                    </div>
+                                        <div class="am-form-group">
+                        <label for="noticeImg" class="am-u-sm-3 am-form-label">
+                           报名时间：
+                        </label>
+                        <div class="am-u-sm-9">
+                            <input id="noticeImg" value="" type="datetime-local" name="btime">
+                        </div>
+                    </div>
+                                                            <div class="am-form-group">
+                        <label for="noticeImg" class="am-u-sm-3 am-form-label">
+                           截至时间：
+                        </label>
+                        <div class="am-u-sm-9">
+                            <input id="noticeImg" value="" type="datetime-local" name="etime">
+                        </div>
+                    </div>
+                                 <div class="am-form-group">
+                        <label for="noticeImg" class="am-u-sm-3 am-form-label">
+                           计划招募：
+                        </label>
+                        <div class="am-u-sm-9">
+                            <input id="noticeImg" value="" type="text" name="num">
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3">
+                            <input id="me_upload" class="am-btn am-btn-success close" value="发布志愿活动项目" type="submit">
+                           	<input type="button" id="me_cancel" class="am-btn am-btn-success close" style="background-color: red;  border:red" value="取消">
+                            
+                        </div>
+                    </div>
+                </form>
+	</div>
+	<div class="am-g tpl-g">
+		<!-- 头部 -->
+		<header>
+			<!-- logo -->
+			<div class="am-fl tpl-header-logo">
+				<a href="javascript:;"><img src="assets/img/logo.png" style="width:225px" alt=""></a>
+			</div>
+			<!-- 右侧内容 -->
+			<div class="tpl-header-fluid">
+				<!-- 侧边切换 -->
+				<div class="am-fl tpl-header-switch-button am-icon-list">
+					<span> </span>
+				</div>
+				<!-- 其它功能-->
+				<div class="am-fr tpl-header-navbar">
+					<ul>
+						<!-- 欢迎语 -->
+						<li class="am-text-sm tpl-header-navbar-welcome"><a
+							href="javascript:;">欢迎你, <span th:text=${u_name}>Amaze UI</span>
+						</a></li>
+
+						<!-- 退出 -->
+						<li class="am-text-sm"><a href="logout"> <span
+								class="am-icon-sign-out"></span> 退出
+						</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</header>
+		<!-- 侧边导航栏 -->
+		<div class="left-sidebar">
+			<!-- 菜单 -->
+			<ul class="sidebar-nav">
+				<li class="sidebar-nav-link"><a href="home"> <i
+						class="am-icon-home sidebar-nav-link-logo"></i>首页
+				</a></li>
+				<li class="sidebar-nav-link"><a href="stu_manage"> <i
+						class="am-icon-table sidebar-nav-link-logo"></i>学生信息管理
+				</a></li>
+				<li class="sidebar-nav-link"><a href="fund_manage"
+					> <i
+						class="am-icon-wpforms sidebar-nav-link-logo"></i>资助项目管理
+
+				</a></li>
+				<li class="sidebar-nav-link"><a href="work_manage"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学管理
+				</a></li>
+								<li class="sidebar-nav-link"><a href="vol_manage" class="active"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>志愿活动项目管理
+				</a></li>
+								<li class="sidebar-nav-link"><a href="ps_verify"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo active"></i>贫困生申请认定
+
+				</a></li>
+					<li class="sidebar-nav-link"><a href="fund_verify"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>资助项目申请审核
+				</a></li>
+								<li class="sidebar-nav-link"><a href="work_verify"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学申请审核
+				</a></li>
+								<li class="sidebar-nav-link"><a href="vol_verify"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>志愿活动项目申请审核
+				</a></li>
+														<li class="sidebar-nav-link" ><a href="question_reply"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>问题解答</a></li>
+						
+																<li class="sidebar-nav-link" ><a href="file_manage"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>文件管理</a></li>
+			</ul>
+		</div>
+
+
+		<!-- 内容区域 -->
+		<div class="tpl-content-wrapper">
+
+			<div class="row-content am-cf">
+
+				<div class="row">
+					<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+						<div class="widget am-cf">
+							<div class="widget-head am-cf">
+								<div class="widget-title  am-cf">志愿活动项目管理</div>
+
+
+							</div>
+							<div class="widget-body  am-fr">
+
+								<div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+									<div class="am-form-group">
+										<div class="am-btn-toolbar">
+											<div class="am-btn-group am-btn-group-xs">
+												<button type="button"
+													class="am-btn am-btn-default am-btn-success" id="add_vol">
+													<span class="am-icon-plus"></span> 新增
+												</button>
+												<button type="button"
+													class="am-btn am-btn-default am-btn-danger" id="del_all">
+													<span class="am-icon-trash-o"></span> 删除全部
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+
+							<div class="am-u-sm-12">
+
+								<table width="100%"
+									class="am-table am-table-compact am-table-striped tpl-table-black ">
+
+									<thead>
+										<tr>
+											<th>项目编号</th>
+											<th>项目缩略图</th>
+											<th>项目名称</th>
+											<th>项目简介</th>
+											<th>计划招募</th>
+											<th>已招募</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="v:${vols}" class="gradeX">
+											<td th:text=${v.vid} class="am-text-middle">1</td>
+											<td><img th:src="${v.img}"
+												src="assets/img/k.jpg" class="tpl-table-line-img" alt=""></td>
+											<td th:text=${v.name} class="am-text-middle">卖火柴</td>
+											<td class="am-text-middle">
+												<p th:text=${v.abs}
+													style="padding-top: 15px; max-width: 15em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+													卖火柴卖火柴卖火柴卖火柴卖火柴卖火柴 卖火柴卖火柴卖火柴卖火柴卖火柴卖火柴</p>
+											</td>
+
+											<td th:text=${v.num} class="am-text-middle">3000</td>
+											<td th:text=${v.anum} class="am-text-middle">2016-09-26</td>
+											<td class="am-text-middle">
+
+												<div class="tpl-table-black-operation">
+													<a href="javascript:;"
+														th:attr="vid=${v.vid},id='v' + ${v.vid}"
+														onclick="show_m1(this)"
+														class="tpl-table-black-operation-del"> <i
+														class="am-icon-trash"></i> 删除
+													</a>
+												</div>
+											</td>
+										</tr>
+										<!-- more data -->
+									</tbody>
+								</table>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<script src="assets/js/amazeui.min.js"></script>
+	<script src="assets/js/app.js"></script>
+	<script>
+		function show_m1(e) {
+			var vid = $(e).attr("vid")
+			console.log(vid)
+			var black_overlay = $("#bo")
+			var m1 = $("#m1")
+			var sure = $("#m1_sure")
+			var cancel = $("#m1_cancel")
+			sure.one("click", function() {
+				window.location.href = "del_vol?vid=" + vid;
+			});
+			cancel.on("click", function() {
+				black_overlay.hide();
+				m1.hide();
+			});
+			black_overlay.show();
+			m1.show();
+		}
+		$("#add_vol").on("click", function() {
+			var black_overlay = $("#bo")
+			$("#m3").show();
+			black_overlay.show();
+			var upload = $("#me_upload")
+			var cancel = $("#me_cancel")
+			cancel.on("click", function(e) {
+				black_overlay.hide();
+				$("#m3").hide();
+				e.preventDefault();
+			});
+		})
+		$("#del_all").on("click", function() {
+			var black_overlay = $("#bo")
+			$("#m2").show();
+			black_overlay.show();
+			var sure = $("#m2_sure")
+			var cancel = $("#m2_cancel")
+			sure.one("click", function() {
+				window.location.href = "del_all_vol";
+			});
+			cancel.on("click", function() {
+				black_overlay.hide();
+				$("#m2").hide();
+			});
+		})
+	</script>
+</body>
+
+</html>

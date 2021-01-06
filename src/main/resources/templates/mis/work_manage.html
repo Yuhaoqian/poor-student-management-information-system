@@ -44,64 +44,66 @@
 			<button id="m2_cancel">取消</button>
 		</div>
 	</div>
-	<div class="modal_edit" id="m3" style="height:470px">
-	<form class="am-form am-form-horizontal" action="handle_add_work"  enctype="multipart/form-data" method="post" style="padding-top: 30px;">
-                    <div class="am-form-group">
-                        <label for="noticeTheme" class="am-u-sm-3 am-form-label">
-                            项目名称：
-                        </label>
-                        <div class="am-u-sm-9">
-                            <input id="noticeTheme" placeholder="请输入勤工助学项目名称" value="" type="text" name="w_name">
-                        </div>
-                    </div>
-                      <div class="am-form-group">
-                        <label for="notice" class="am-u-sm-3 am-form-label">
-                            项目简介：
-                        </label>
-                        <div class="am-u-sm-9">
-                            <textarea id="notice" rows="7" cols="50" placeholder="请输入勤工助学项目简介" name="w_abs"></textarea>
-                        </div>
-                    </div>
-                    <div class="am-form-group">
-                        <label for="notice" class="am-u-sm-3 am-form-label">
-                            地点：
-                        </label>
-                        <div class="am-u-sm-9">
-                            <input id="noticeTheme" placeholder="请输入勤工助学地点" value="" type="text" name="w_position">
-                        </div>
-                    </div>
-                    <div class="am-form-group">
-                        <label for="noticeFund" class="am-u-sm-3 am-form-label">
-                           报酬(时薪)：
-                        </label>
-                        <div class="am-u-sm-9">
-                            <input id="noticeFund" placeholder="请输入勤工助学项目劳动报酬" value="" type="text" name="w_money">
-                        </div>
-                    </div>
-               
-                    <div class="am-form-group">
-                        <label for="noticeImg" class="am-u-sm-3 am-form-label">
-                           项目图片：
-                        </label>
-                        <div class="am-u-sm-9">
-                            <input id="noticeImg" value="" type="file" name="w_img">
-                        </div>
-                    </div>
-                    <div class="am-form-group">
-                        <div class="am-u-sm-9 am-u-sm-push-3">
-                            <input id="me_upload" class="am-btn am-btn-success close" value="发布勤工助学项目" type="submit">
-                           	<input type="button" id="me_cancel" class="am-btn am-btn-success close" style="background-color: red; border:red" value="取消">
-                            
-                        </div>
-                    </div>
-                </form>
+	<div class="modal_edit" id="m3" style="height: 470px">
+		<form class="am-form am-form-horizontal" action="handle_add_work"
+			enctype="multipart/form-data" method="post"
+			style="padding-top: 30px;">
+			<div class="am-form-group">
+				<label for="noticeTheme" class="am-u-sm-3 am-form-label">
+					项目名称： </label>
+				<div class="am-u-sm-9">
+					<input id="noticeTheme" placeholder="请输入勤工助学项目名称" value=""
+						type="text" name="w_name">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 项目简介： </label>
+				<div class="am-u-sm-9">
+					<textarea id="notice" rows="7" cols="50" placeholder="请输入勤工助学项目简介"
+						name="w_abs"></textarea>
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="notice" class="am-u-sm-3 am-form-label"> 地点： </label>
+				<div class="am-u-sm-9">
+					<input id="noticeTheme" placeholder="请输入勤工助学地点" value=""
+						type="text" name="w_position">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="noticeFund" class="am-u-sm-3 am-form-label">
+					报酬(时薪)： </label>
+				<div class="am-u-sm-9">
+					<input id="noticeFund" placeholder="请输入勤工助学项目劳动报酬" value=""
+						type="text" name="w_money">
+				</div>
+			</div>
+
+			<div class="am-form-group">
+				<label for="noticeImg" class="am-u-sm-3 am-form-label">
+					项目图片： </label>
+				<div class="am-u-sm-9">
+					<input id="noticeImg" value="" type="file" name="w_img">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<div class="am-u-sm-9 am-u-sm-push-3">
+					<input id="me_upload" class="am-btn am-btn-success close"
+						value="发布勤工助学项目" type="submit"> <input type="button"
+						id="me_cancel" class="am-btn am-btn-success close"
+						style="background-color: red; border: red" value="取消">
+
+				</div>
+			</div>
+		</form>
 	</div>
 	<div class="am-g tpl-g">
 		<!-- 头部 -->
 		<header>
 			<!-- logo -->
 			<div class="am-fl tpl-header-logo">
-				<a href="javascript:;"><img src="assets/img/logo.png" style="width:225px" alt=""></a>
+				<a href="javascript:;"><img src="assets/img/logo.png"
+					style="width: 225px" alt=""></a>
 			</div>
 			<!-- 右侧内容 -->
 			<div class="tpl-header-fluid">
@@ -115,7 +117,8 @@
 					<ul>
 						<!-- 欢迎语 -->
 						<li class="am-text-sm tpl-header-navbar-welcome"><a
-							href="javascript:;">欢迎你, <span th:text=${u_name}>Amaze UI</span>
+							href="javascript:;">欢迎你, <span th:text=${u_name}>Amaze
+									UI</span>
 						</a></li>
 						<!-- 退出 -->
 						<li class="am-text-sm"><a href="logout"> <span
@@ -145,24 +148,29 @@
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学管理
 
 				</a></li>
-								<li class="sidebar-nav-link"><a href="ps_verify"> <i
+				<li class="sidebar-nav-link"><a href="vol_manage"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>志愿活动项目管理
+				</a></li>
+				<li class="sidebar-nav-link"><a href="ps_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo active"></i>贫困生申请认定
 
 				</a></li>
 				<li class="sidebar-nav-link"><a href="fund_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>资助项目申请审核
 				</a></li>
-								<li class="sidebar-nav-link"><a href="work_verify"> <i
+				<li class="sidebar-nav-link"><a href="work_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学申请审核
 				</a></li>
-															<li class="sidebar-nav-link"><a href="vol_verify"> <i
+				<li class="sidebar-nav-link"><a href="vol_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>志愿活动项目申请审核
 				</a></li>
-														<li class="sidebar-nav-link" ><a href="question_reply"> <i
-						class="am-icon-bar-chart sidebar-nav-link-logo"></i>问题解答</a></li>
-						
-																<li class="sidebar-nav-link" ><a href="file_manage"> <i
-						class="am-icon-bar-chart sidebar-nav-link-logo"></i>文件管理</a></li>
+				<li class="sidebar-nav-link"><a href="question_reply"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>问题解答
+				</a></li>
+
+				<li class="sidebar-nav-link"><a href="file_manage"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>文件管理
+				</a></li>
 			</ul>
 		</div>
 
@@ -217,35 +225,34 @@
 										</thead>
 										<tbody>
 											<tr th:each="w:${works}" class="gradeX">
-											<td th:text=${w.w_id} class="am-text-middle">1</td>
-											<td><img th:src="${w.w_img}"
-												src="assets/img/k.jpg" class="tpl-table-line-img" alt=""></td>
-											<td th:text=${w.w_name} class="am-text-middle">卖火柴</td>
-											<td class="am-text-middle">
-												<p th:text=${w.w_abs}
-													style="padding-top: 15px; max-width: 15em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-													卖火柴卖火柴卖火柴卖火柴卖火柴卖火柴 卖火柴卖火柴卖火柴卖火柴卖火柴卖火柴</p>
-											</td>
-											<td th:text=${w.w_position} class="am-text-middle">图书馆</td>
+												<td th:text=${w.w_id} class="am-text-middle">1</td>
+												<td><img th:src="${w.w_img}" src="assets/img/k.jpg"
+													class="tpl-table-line-img" alt=""></td>
+												<td th:text=${w.w_name} class="am-text-middle">卖火柴</td>
+												<td class="am-text-middle">
+													<p th:text=${w.w_abs}
+														style="padding-top: 15px; max-width: 15em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+														卖火柴卖火柴卖火柴卖火柴卖火柴卖火柴 卖火柴卖火柴卖火柴卖火柴卖火柴卖火柴</p>
+												</td>
+												<td th:text=${w.w_position} class="am-text-middle">图书馆</td>
 
-											<td th:text=${w.w_money} class="am-text-middle">3000</td>
-											<td th:text=${w.timeStr} class="am-text-middle">2016-09-26</td>
-											<td class="am-text-middle">
-												<div class="tpl-table-black-operation">
-													<a href="javascript:;"
-														th:attr="w_id=${w.w_id}"
-														onclick="show_m1(this)"
-														class="tpl-table-black-operation-del"> <i
-														class="am-icon-trash"></i> 删除
-													</a>
-												</div>
-											</td>
-										</tr>
-											
+												<td th:text=${w.w_money} class="am-text-middle">3000</td>
+												<td th:text=${w.timeStr} class="am-text-middle">2016-09-26</td>
+												<td class="am-text-middle">
+													<div class="tpl-table-black-operation">
+														<a href="javascript:;" th:attr="w_id=${w.w_id}"
+															onclick="show_m1(this)"
+															class="tpl-table-black-operation-del"> <i
+															class="am-icon-trash"></i> 删除
+														</a>
+													</div>
+												</td>
+											</tr>
+
 										</tbody>
 									</table>
 								</div>
-					
+
 							</div>
 						</div>
 					</div>

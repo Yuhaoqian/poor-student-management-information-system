@@ -35,7 +35,7 @@
 			<button id="m1_cancel">取消</button>
 		</div>
 	</div>
-		<div class="m1" id="m2">
+	<div class="m1" id="m2">
 		<div class="d1">
 			<span>确认通过所有申请？</span>
 		</div>
@@ -64,7 +64,8 @@
 					<ul>
 						<!-- 欢迎语 -->
 						<li class="am-text-sm tpl-header-navbar-welcome"><a
-							href="javascript:;">欢迎你, <span  th:text=${u_name}>Amaze UI</span>
+							href="javascript:;">欢迎你, <span th:text=${u_name}>Amaze
+									UI</span>
 						</a></li>
 						<!-- 退出 -->
 						<li class="am-text-sm"><a href="logout"> <span
@@ -94,7 +95,11 @@
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学管理
 
 				</a></li>
-								<li class="sidebar-nav-link"><a href="ps_verify"> <i
+
+				<li class="sidebar-nav-link"><a href="vol_manage"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>志愿活动项目管理
+				</a></li>
+				<li class="sidebar-nav-link"><a href="ps_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo active"></i>贫困生申请认定
 
 				</a></li>
@@ -105,14 +110,16 @@
 				<li class="sidebar-nav-link"><a href="work_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>勤工助学申请审核
 				</a></li>
-								<li class="sidebar-nav-link"><a href="vol_verify"> <i
+				<li class="sidebar-nav-link"><a href="vol_verify"> <i
 						class="am-icon-bar-chart sidebar-nav-link-logo"></i>志愿活动项目申请审核
 				</a></li>
-														<li class="sidebar-nav-link" ><a href="question_reply"> <i
-						class="am-icon-bar-chart sidebar-nav-link-logo"></i>问题解答</a></li>
-						
-																<li class="sidebar-nav-link" ><a href="file_manage"> <i
-						class="am-icon-bar-chart sidebar-nav-link-logo"></i>文件管理</a></li>
+				<li class="sidebar-nav-link"><a href="question_reply"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>问题解答
+				</a></li>
+
+				<li class="sidebar-nav-link"><a href="file_manage"> <i
+						class="am-icon-bar-chart sidebar-nav-link-logo"></i>文件管理
+				</a></li>
 			</ul>
 		</div>
 
@@ -169,8 +176,9 @@
 												<td th:text=${fv.fa_reviewer} class="am-text-middle">2016-09-26</td>
 
 												<td th:switch=${fv.verify} class="am-text-middle">
-													<div  th:case="等待审核" class="tpl-table-black-operation">
-														<a href="javascript:;" onclick="show_m1(this)" th:attr="fa_id=${fv.fa_id}"> <i
+													<div th:case="等待审核" class="tpl-table-black-operation">
+														<a href="javascript:;" onclick="show_m1(this)"
+															th:attr="fa_id=${fv.fa_id}"> <i
 															class="am-icon-archive"></i> 审核
 														</a>
 													</div>

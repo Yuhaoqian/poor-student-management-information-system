@@ -11,4 +11,18 @@
 		resultType="edu.sqa.finalproject.poorstudentmis.entity.Vol">
 		select * from vol_table where vid=#{vid}
 	</select>
+	<delete id="delAll">
+		delete from vol_table
+	</delete>
+	<delete id="delById">
+		delete from vol_table where vid=#{id}
+	</delete>
+		<update id="reset">
+			alter table work auto_increment=1
+	</update>
+		<insert id="save">
+		insert into vol_table
+		(name, abs, address, img, num, anum, stime, btime, etime, rtime)
+		values(#{name}, #{abs}, #{address}, #{img}, #{num}, #{anum}, #{stime}, #{btime}, #{etime}, #{rtime})
+	</insert>
 </mapper>
