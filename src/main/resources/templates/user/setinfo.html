@@ -54,7 +54,7 @@
       <div class="layui-card" style="width: 100%;height: 150px;background-image: url(img/background/infobg.png);margin-bottom:0px;">
             <div class="layui-row">
                 <div class="layui-col-md2" style="padding: 20px;padding-left: 50px;">
-                    <img src="img/tx.jpg" width="100px" style="border-radius: 100%;display: inline;">
+                    <img th:src="${stu.avatar_url}" src="img/tx.jpg" width="100px" style="border-radius: 100%;display: inline;">
                     <p>
                         <img src="img/icons/star.png" width="25px">
                         <img src="img/icons/star.png" width="25px">
@@ -134,62 +134,69 @@
           
           <!-- 左边导航结束 -->
           <!-- 右边面板开始 -->
-          <div class="layui-col-md10">
+          <div class="layui-col-md10" id="layerDemo">
             <div class="layui-card" style="height: 720px;">
                 <!--卡片栏开始-->
                 <div class="layui-tab layui-tab-brief" lay-filter="test">
                 <ul class="layui-tab-title">
                     <li class="layui-this" lay-id="11">基本信息</li>
-                    <li lay-id="22" id="pk" data-method="notice">贫困认定</li>
-                    <li lay-id="33" >修改密码</li>
+                    <li lay-id="22" id ="pk" data-method="notice">贫困认定</li>
+       
                     <li lay-id="44">头像设置</li>
                 </ul>
                 <div class="layui-tab-content" style="height: 100px;">
                     <!--卡片一基本信息开始-->
+                    
                     <div class="layui-tab-item layui-show">
-                        <form class="layui-form" action="" style="width: 500px;">
+                        <form class="layui-form" action="" style="width: 500px;" method="post">
                             <div class="layui-form-item">
-                              <label for = "s_name" class="layui-form-label">昵称</label>
+                              <label for = "stu_id" class="layui-form-label">学号</label>
                               <div class="layui-input-block">
-                                <input type="text" name="title" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input" id="s_name">
+                                <input th:value=${stu.stu_id}  type="text" name="stu_id" autocomplete="off" class="layui-input">
+                              </div>
+                            </div>
+                            <div class="layui-form-item">
+                              <label for = "s_name" class="layui-form-label">姓名</label>
+                              <div class="layui-input-block">
+                                <input th:value=${stu.s_name}  type="text" name="s_name" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input" id="s_name">
                               </div>
                             </div>
                             <div class="layui-form-item">
                               <label class="layui-form-label">性别</label>
                               <div class="layui-input-block">
-                                <input type="radio" name="sex" value="男" title="男" checked>
-                                <input type="radio" name="sex" value="女" title="女" >
+                                <input th:checked="${stu.s_sex=='男'  || stu.s_sex == ''}" type="radio" name="s_sex" value="男" title="男" checked>
+                                <input th:checked="${stu.s_sex=='女'}"  type="radio" name="s_sex" value="女" title="女" >
                               </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">专业</label>
                                 <div class="layui-input-block">
-                                <select name="major" lay-verify="required">
+                                <select name="s_major" lay-verify="required">
                                   <option value=""></option>
-                                  <option value="0">软件工程</option>
-                                  <option value="1">电气及其自动化</option>
-                                  <option value="2">财务管理</option>
-                                  <option value="3">物流管理</option>
-                                  <option value="4">机械及其自动化</option>
+                                  <option th:selected="${stu.s_major == '软件工程'}" value="软件工程">软件工程</option>
+                                  <option th:selected="${stu.s_major == '电气及其自动化'}"  value="电气及其自动化">电气及其自动化</option>
+                                  <option th:selected="${stu.s_major == '财务管理'}"  value="财务管理">财务管理</option>
+                                  <option th:selected="${stu.s_major == '物流管理'}"  value="物流管理">物流管理</option>
+                                  <option th:selected="${stu.s_major == '机械及其自动化'}"  value="机械及其自动化">机械及其自动化</option>
+                                  <option th:selected="${stu.s_major == '材料工程'}"  value="材料工程">材料工程</option>
                                 </select>
                               </div>
                             </div>
                             <div class="layui-form-item">
                                 <label for = "s_email" class="layui-form-label">邮箱</label>
                                 <div class="layui-input-block">
-                                  <input type="text" name="title" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input" id="s_email">
+                                  <input th:value=${stu.s_email} type="text" name="s_email" lay-verify="email" placeholder="请输入邮箱" autocomplete="off" class="layui-input" id="s_email">
                                 </div>
                               </div>
                               <div class="layui-form-item">
                                 <label for = "s_phone" class="layui-form-label">电话</label>
                                 <div class="layui-input-block">
-                                  <input type="text" name="title" required  lay-verify="required" placeholder="请输入电话" autocomplete="off" class="layui-input" id="s_phone">
+                                  <input th:value=${stu.s_phone} type="text" name="s_phone" lay-verify="phone" placeholder="请输入电话" autocomplete="off" class="layui-input" id="s_phone">
                                 </div>
                               </div>
                             <div class="layui-form-item">
                               <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                <button class="layui-btn" lay-submit lay-filter="formDemo" data-method="offset" data-type="auto" >立即提交</button>
                               </div>
                             </div>
                         </form>
@@ -198,164 +205,132 @@
                     <!--卡片一基本信息结束-->
                     <!--卡片二贫困认定开始-->
                     <div class="layui-tab-item" >
-                        <form id = "f2" class="layui-form " action="" style="width: 760px;">
+                        <form id = "f2" class="layui-form " action="modify_stu_info2" method = "post" style="width: 760px;">
                             <div class="layui-inline">
                                 <label class="layui-form-label">家庭月收入及个人月生活费（单位元）</label>
                                 <div class="layui-input-inline" style="width: 100px;">
-                                  <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+                                  <input th:value=${stu.s_income} type="text" name="a1" placeholder="￥" autocomplete="off" class="layui-input">
                                 </div>
                                 
                                 <div class="layui-input-inline" style="width: 100px;">
-                                  <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+                                  <input th:value=${stu.s_outcome} type="text" name="a2" placeholder="￥" autocomplete="off" class="layui-input">
                                 </div>
                               </div>
                               
                             <div class="layui-form-item">
                               <label class="layui-form-label">家庭是否无固定经济来源</label>
                               <div class="layui-input-block">
-                                <input type="radio" name="b1" value="1" title="是" >
-                                <input type="radio" name="b1" value="0" title="否" checked>
+                                <input th:checked="${b1=='1'  || b1 == ''}" type="radio" name="b1" value="1" title="是" >
+                                <input th:checked="${b1=='0' }" type="radio" name="b1" value="0" title="否" checked>
                               </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">家庭所在地区是否为贫困山区</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="b2" value="1" title="是" >
-                                    <input type="radio" name="b2" value="0" title="否" checked>
+                                    <input th:checked="${b2=='1'  || b2 == ''}" type="radio" name="b2" value="1" title="是" >
+                                    <input th:checked="${b2=='0' }" type="radio" name="b2" value="0" title="否" checked>
                                 </div>
                               </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">是否为孤儿</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="b3" value="1" title="是" >
-                                    <input type="radio" name="b3" value="0" title="否" checked>
+                                    <input th:checked="${b3=='1'  || b3 == ''}" type="radio" name="b3" value="1" title="是" >
+                                    <input th:checked="${b3=='0' }"  type="radio" name="b3" value="0" title="否" checked>
                                 </div>
                             </div>
 
                             <div class="layui-form-item">
                                 <label class="layui-form-label">是否属于烈士家庭</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="b4" value="1" title="是" >
-                                    <input type="radio" name="b4" value="0" title="否" checked>
+                                    <input th:checked="${b4=='1'  || b4 == ''}" type="radio" name="b4" value="1" title="是" >
+                                    <input th:checked="${b4=='0' }"  type="radio" name="b4" value="0" title="否" checked>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">是否属于低保家庭</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="b5" value="1" title="是" >
-                                    <input type="radio" name="b5" value="0" title="否" checked>
+                                    <input th:checked="${b5=='1'  || b5 == ''}" type="radio" name="b5" value="1" title="是" >
+                                    <input th:checked="${b5=='0' }"  type="radio" name="b5" value="0" title="否" checked>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">是否属于农村五保户家庭的子女</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="b6" value="1" title="是" >
-                                    <input type="radio" name="b6" value="0" title="否" checked>
+                                    <input th:checked="${b6=='1'  || b6 == ''}" type="radio" name="b6" value="1" title="是" >
+                                    <input  th:checked="${b6=='0' }" type="radio" name="b6" value="0" title="否" checked>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label"> 是否家庭双方或一方残疾</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="c1" value="1" title="是" >
-                                    <input type="radio" name="c1" value="0" title="否" checked>
+                                    <input th:checked="${c1=='1'  || c1 == ''}" type="radio" name="c1" value="1" title="是" >
+                                    <input th:checked="${c1=='0' }"  type="radio" name="c1" value="0" title="否" checked>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">单亲家庭，只有一方为其提供经济来源</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="c2" value="1" title="是" >
-                                    <input type="radio" name="c2" value="0" title="否" checked>
+                                    <input th:checked="${c2=='1'  || c2 == ''}" type="radio" name="c2" value="1" title="是" >
+                                    <input th:checked="${c2=='0' }"  type="radio" name="c2" value="0" title="否" checked>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">多子女上学</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="c3" value="1" title="是" >
-                                    <input type="radio" name="c3" value="0" title="否" checked>
+                                    <input th:checked="${c3=='1'  || c3 == ''}" type="radio" name="c3" value="1" title="是" >
+                                    <input th:checked="${c3=='0' }"  type="radio" name="c3" value="0" title="否" checked>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">父母双下岗</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="c4" value="1" title="是">
-                                    <input type="radio" name="c4" value="0" title="否" checked>
+                                    <input th:checked="${c4=='1'  || c4 == ''}"  type="radio" name="c4" value="1" title="是">
+                                    <input th:checked="${c4=='0' }"  type="radio" name="c4" value="0" title="否" checked>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label"> 是否父母纯农户（除农业无其他收入）</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="c5" value="1" title="是" >
-                                    <input type="radio" name="c5" value="0" title="否" checked>
+                                    <input th:checked="${c5=='1'  || c5 == ''}"  type="radio" name="c5" value="1" title="是" >
+                                    <input th:checked="${c5=='0' }"  type="radio" name="c5" value="0" title="否" checked>
                                 </div>
                             </div>
      
                             <div class="layui-form-item">
                                 <label class="layui-form-label">出现其他情况导致家庭极度困难</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="d1" value="1" title="是" >
-                                    <input type="radio" name="d1" value="0" title="否" checked>
+                                    <input th:checked="${d1=='1'  || d1 == ''}"  type="radio" name="d1" value="1" title="是" >
+                                    <input th:checked="${d1=='0' }"  type="radio" name="d1" value="0" title="否" checked>
                                 </div>
                             </div>
                               <div class="layui-form-item layui-form-text">
                                 <label class="layui-form-label">其他说明</label>
                                 <div class="layui-input-block">
-                                  <textarea name="desc" placeholder="其他特殊情况可在此说明，非必填" class="layui-textarea"></textarea>
+                                  <textarea th:text=${stu.s_other} name="s_other" placeholder="其他特殊情况可在此说明，非必填" class="layui-textarea"></textarea>
                                 </div>
                               </div>
                               <div class="layui-form-item">
                                 <div class="layui-input-block">
                                   <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                                  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                                 </div>
                             </div>
 
                         </form>
                     </div>
                      <!--卡片二贫困认定结束-->
-                    <!--卡片三重置密码开始-->
-                    <div class="layui-tab-item">
-                        <form action="" method="post">
-                            <div class="layui-form-item">
-                              <label for="L_nowpass" class="layui-form-label">当前密码</label>
-                              <div class="layui-input-inline">
-                                <input type="password" id="L_nowpass" name="nowPass" autocomplete="off" class="layui-input">
-                              </div>
-                            </div>
-                            <div class="layui-form-item">
-                              <label for="L_pass" class="layui-form-label">新密码</label>
-                              <div class="layui-input-inline">
-                                <input type="password" id="L_pass" name="newPass" autocomplete="off" class="layui-input">
-                              </div>
-                              <div class="layui-form-mid layui-word-aux">6到16个字符</div>
-                            </div>
-                            <div class="layui-form-item">
-                              <label for="L_repass" class="layui-form-label">确认密码</label>
-                              <div class="layui-input-inline">
-                                <input type="password" id="L_repass" name="repass"  autocomplete="off" class="layui-input">
-                              </div>
-                            </div>
-                        
-                            <div class="layui-form-item">
-                                <div class="layui-input-block">
-                                    <button type="submit" class="layui-btn" key="set-mine" lay-filter="*" lay-submit>确认修改</button>
-                                </div>
-                              </div>
-                          </form>
-                    </div>
-                    <!--卡片三重置密码结束-->
                     <!--卡片四上传头像开始-->
                     <div class="layui-tab-item">
                         <div class="layui-row">
                             <div class="layui-col-md2">
-                                <img src="img/tx.jpg" width="150px">
+                                <img th:src="${stu.avatar_url}" src="img/tx.jpg" width="150px">
                             </div>
                             
                             <div class="layui-col-md6">
-                                <button type="button" class="layui-btn" id="test1" style="border-radius: 15px;background-color: darkseagreen;">
+                                <button type="button" class="layui-btn" id="upload-btn" style="border-radius: 15px;background-color: darkseagreen;">
                                     <i class="layui-icon">&#xe67c;</i>点击上传你的头像
                                 </button>
                                 <p style="padding: 10px;font-size: 16px;">在这里设置你的头像……</br>
-                                    请使用2M以内的jpg、gif、png图片。</p>
+                                    	请使用2M以内的jpg、gif、png图片。</p>
                             </div>                            
                         </div>
 
@@ -419,11 +394,6 @@
     layui.use('form', function(){
       var form = layui.form;
       
-      //监听提交
-      form.on('submit(formDemo)', function(data){
-        layer.msg(JSON.stringify(data.field));
-        return false;
-      });
     });
     </script>
 <script>
@@ -455,5 +425,59 @@
       });
     });
     </script>
+    <script>
+layui.use('layer', function(){ //独立版的layer无需执行这一句
+  var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+  //触发事件
+  var active = {
+    offset: function(othis){
+      var type = othis.data('type');
+      
+      layer.open({
+        type: 1
+        ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+        ,id: 'layerDemo'+type //防止重复弹出
+        ,content: '<div style="padding: 20px 100px;"> 修改成功 </div>'
+        ,btn: '关闭'
+        ,btnAlign: 'c' //按钮居中
+        ,shade: 0 //不显示遮罩
+        ,yes: function(){
+          layer.closeAll();
+        }
+      });
+    }
+  };
+  
+  $('#layerDemo .layui-btn').on('click', function(){
+    var othis = $(this), method = othis.data('method');
+    active[method] ? active[method].call(this, othis) : '';
+  });
+  
+});
+</script>
+<script>
+layui.use('upload', function(){
+  var upload = layui.upload;
+   
+  //执行实例
+  var uploadInst = upload.render({
+    elem: '#upload-btn' //绑定元素
+    ,url: 'http://127.0.0.1:8080/poor-student-mis/modifyAvatar' //上传接口
+    ,accept: 'file'
+    ,done: function(res){
+          layui.use('layer', function(){
+              var layer = layui.layer;
+                layer.msg(res.url, {
+                       time: 1000, //6s后自动关闭
+                       icon:1
+                 });
+            });
+    }
+    ,error: function(){
+      //请求异常回调
+    }
+  });
+});
+</script>
 </body>
 </html>

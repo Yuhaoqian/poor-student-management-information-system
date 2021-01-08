@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper
+	namespace="edu.sqa.finalproject.poorstudentmis.mapper.NoticeMapper">
+	<select id="getAllNotice" resultType="edu.sqa.finalproject.poorstudentmis.entity.Notice">
+		select * from notice_table order by  n_time desc
+	</select>
+</mapper>
