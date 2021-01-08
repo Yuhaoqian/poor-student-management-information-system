@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Star {
-	private String star_id;
+	private Integer star_id;
 	private String s_id;
 	private String ptr_id;//指向的文章
 	private Date star_time;//收藏的时间
@@ -12,7 +12,7 @@ public class Star {
 	public Star() {
 		super();
 	}
-	public Star(String star_id, String s_id, String ptr_id, Date star_time, String is_top) {
+	public Star(Integer star_id, String s_id, String ptr_id, Date star_time, String is_top) {
 		super();
 		this.star_id = star_id;
 		this.s_id = s_id;
@@ -20,10 +20,10 @@ public class Star {
 		this.star_time = star_time;
 		this.is_top = is_top;
 	}
-	public String getStar_id() {
+	public Integer getStar_id() {
 		return star_id;
 	}
-	public void setStar_id(String star_id) {
+	public void setStar_id(Integer star_id) {
 		this.star_id = star_id;
 	}
 	public String getS_id() {

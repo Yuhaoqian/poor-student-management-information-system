@@ -3,11 +3,13 @@ package edu.sqa.finalproject.poorstudentmis.mapper;
 import java.util.List;
 
 import edu.sqa.finalproject.poorstudentmis.entity.PoorStu;
+import edu.sqa.finalproject.poorstudentmis.entity.PoorVo;
 import edu.sqa.finalproject.poorstudentmis.entity.Student;
 
 public interface PoorStudentMapper2 {
 	PoorStu findById(String stu_id);//根据学号查找
 	List<PoorStu> getStuList();
+	List<PoorVo> getScoreTop(Integer topnum);//取出前n个
 	List<PoorStu> getPoorStuList();//获取学生列表
 	Integer insert(PoorStu stu);//插入学生
 	void modify1(PoorStu stu);//修改基础信息

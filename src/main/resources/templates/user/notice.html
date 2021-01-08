@@ -147,7 +147,32 @@
                             <i class="layui-icon">&#xe640;</i>
                             清空所有
                         </button>
-                        <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+                        <div th:each="n:${notice}" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+                            <div class="layui-card-body">
+                              <div class="layui-row layui-col-space15">
+                                <div class="layui-col-md2" >
+                                    <img src="img/icons/notic.png" style="border-radius: 100%;wid 80px;">
+                                    
+                                </div>
+                                <div class="layui-col-md10">
+                                    <p>
+                                    	<span th:text=${n.n_time}> 2021年1月7日星期四 下午08:43 </span>
+                                        
+                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
+                                            <i class="layui-icon">&#xe640;</i>
+                                        </button>
+                                    </p>
+                                    <hr>
+                                    <p style="font-size: larger;font-weight: 900;">
+                                        <span th:text=${n.n_title}>国家奖学金申请即将截止，请尽快申请</span>
+                                        		
+                                        <a th:href="@{${n.n_href}}" href="www.baidu.com" style="color: green;font-size: smaller;">查看详情</a>
+                                    </p>
+                                </div>
+                              </div> 
+                            </div>
+                        </div>
+                        <div  th:remove="all"  class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                             <div class="layui-card-body">
                               <div class="layui-row layui-col-space15">
                                 <div class="layui-col-md2" >
@@ -163,14 +188,14 @@
                                     </p>
                                     <hr>
                                     <p style="font-size: larger;font-weight: 900;">
-                                        国家奖学金申请即将截止，请尽快申请
+                                       	 国家奖学金申请即将截止，请尽快申请
                                         <a href="www.baidu.com" style="color: green;font-size: smaller;">查看详情</a>
                                     </p>
                                 </div>
                               </div> 
                             </div>
                         </div>
-                        <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+                        <div th:remove="all" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                             <div class="layui-card-body">
                               <div class="layui-row layui-col-space15">
                                 <div class="layui-col-md2" >
@@ -186,37 +211,14 @@
                                     </p>
                                     <hr>
                                     <p style="font-size: larger;font-weight: 900;">
-                                        国家奖学金申请即将截止，请尽快申请
+                                        	国家奖学金申请即将截止，请尽快申请
                                         <a href="www.baidu.com" style="color: green;font-size: smaller;">查看详情</a>
                                     </p>
                                 </div>
                               </div> 
                             </div>
                         </div>
-                        <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
-                            <div class="layui-card-body">
-                              <div class="layui-row layui-col-space15">
-                                <div class="layui-col-md2" >
-                                    <img src="img/icons/notic.png" style="border-radius: 100%;wid 80px;">
-                                    
-                                </div>
-                                <div class="layui-col-md10">
-                                    <p>
-                                        2021年1月7日星期四 下午08:43
-                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                            <i class="layui-icon">&#xe640;</i>
-                                        </button>
-                                    </p>
-                                    <hr>
-                                    <p style="font-size: larger;font-weight: 900;">
-                                        国家奖学金申请即将截止，请尽快申请
-                                        <a href="www.baidu.com" style="color: green;font-size: smaller;">查看详情</a>
-                                    </p>
-                                </div>
-                              </div> 
-                            </div>
-                        </div>
-                        <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+                        <div th:remove="all" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                             <div class="layui-card-body">
                               <div class="layui-row layui-col-space15">
                                 <div class="layui-col-md2" >

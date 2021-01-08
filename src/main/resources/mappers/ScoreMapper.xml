@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper
+	namespace="edu.sqa.finalproject.poorstudentmis.mapper.ScoreMapper">
+	<select id="getAllScore" resultType="edu.sqa.finalproject.poorstudentmis.entity.Score">
+		select * from score where s_id = #{s_id} limit 4
+	</select>
+</mapper>

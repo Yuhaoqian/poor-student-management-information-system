@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Notice {
-	private String n_id;
+	private Integer n_id;
 	private String n_title;
 	private Date n_time;
 	private String n_href;
@@ -13,7 +13,7 @@ public class Notice {
 	public Notice() {
 		super();
 	}
-	public Notice(String n_id, String n_title, Date n_time, String n_href, Integer n_isread) {
+	public Notice(Integer n_id, String n_title, Date n_time, String n_href, Integer n_isread) {
 		super();
 		this.n_id = n_id;
 		this.n_title = n_title;
@@ -21,10 +21,10 @@ public class Notice {
 		this.n_href = n_href;
 		this.n_isread = n_isread;
 	}
-	public String getN_id() {
+	public Integer getN_id() {
 		return n_id;
 	}
-	public void setN_id(String n_id) {
+	public void setN_id(Integer n_id) {
 		this.n_id = n_id;
 	}
 	public String getN_title() {

@@ -12,6 +12,10 @@
 		resultType="edu.sqa.finalproject.poorstudentmis.entity.PoorStu">
 		select * from poor_stu
 	</select>
+	<select id="getScoreTop"
+		resultType="edu.sqa.finalproject.poorstudentmis.entity.PoorVo">
+		select stu_id,s_name,score,avatar_url from poor_stu order by score desc limit #{topnum}
+	</select>
 	<update id="modify1">
 		update poor_stu
 		set s_name=#{s_name}, s_sex=#{s_sex},

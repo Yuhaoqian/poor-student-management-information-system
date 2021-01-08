@@ -142,12 +142,36 @@
                 </ul>
                 <div class="layui-tab-content" style="height: 100px;">
                     <!--卡片一积分商城开始-->
-                    <div class="layui-tab-item layui-show">
+                    <div t class="layui-tab-item layui-show">
                         <button type = "button" class="layui-btn layui-btn-radius layui-btn-danger" style="margin-bottom: 10px;">
                             <i class="layui-icon">&#xe640;</i>
                             清空所有
                         </button>
-                        <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+                        <div th:each="s:${score}" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+                            <div class="layui-card-body">
+                              <div class="layui-row layui-col-space15">
+                                <div class="layui-col-md2" >
+                                    <img src="img/icons/LeetCoin.png" style="border-radius: 100%;width: 80px;">
+                                    <p style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">
+                                        <span>+</span>
+                                        <span id="jf_cnt" th:text="${s.cnt}">100</span>
+                                    </p>
+                                </div>
+                                <div class="layui-col-md10">
+                                    <p>
+                                        <span th:text="${s.time}">2021年1月7日星期四 下午08:43</span>
+                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
+                                            <i class="layui-icon">&#xe640;</i>
+                                        </button>
+                                    </p>
+                                    <hr>
+                                    <p style="color: rgb(247, 175, 108);">任务奖励</p>
+                                    <p style="font-size: larger;font-weight: 900;" th:text="${s.content}">新用户注册</p>
+                                </div>
+                              </div> 
+                            </div>
+                        </div>
+                        <div th:remove="all" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                             <div class="layui-card-body">
                               <div class="layui-row layui-col-space15">
                                 <div class="layui-col-md2" >
@@ -171,7 +195,7 @@
                               </div> 
                             </div>
                         </div>
-                        <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+                        <div th:remove="all" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                             <div class="layui-card-body">
                               <div class="layui-row layui-col-space15">
                                 <div class="layui-col-md2" >
@@ -195,31 +219,7 @@
                               </div> 
                             </div>
                         </div>
-                        <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
-                            <div class="layui-card-body">
-                              <div class="layui-row layui-col-space15">
-                                <div class="layui-col-md2" >
-                                    <img src="img/icons/LeetCoin.png" style="border-radius: 100%;width: 80px;">
-                                    <p style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">
-                                        <span>+</span>
-                                        <span id="jf_cnt">100</span>
-                                    </p>
-                                </div>
-                                <div class="layui-col-md10">
-                                    <p>
-                                        2021年1月7日星期四 下午08:43
-                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                            <i class="layui-icon">&#xe640;</i>
-                                        </button>
-                                    </p>
-                                    <hr>
-                                    <p style="color: rgb(247, 175, 108);">任务奖励</p>
-                                    <p style="font-size: larger;font-weight: 900;">新用户注册</p>
-                                </div>
-                              </div> 
-                            </div>
-                        </div>
-                        <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+                        <div th:remove="all" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                             <div class="layui-card-body">
                               <div class="layui-row layui-col-space15">
                                 <div class="layui-col-md2" >
@@ -264,21 +264,21 @@
                           </div>
                        </div>
                        <!--排行榜开始-->
-                       <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+                       <div th:each="r:${rank}"  class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                         <div class="layui-card-body">
                           <div class="layui-row layui-col-space15">
                             <div class="layui-col-md1" >
-                              <span style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">1</span>  
-                              <img src="img/tx.jpg" style="border-radius: 100%;width: 40px;">    
+                              <span th:text=${r.rank} style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">1</span>  
+                              <img th:src="${r.avatar_url}" src="img/tx.jpg" style="border-radius: 100%;width: 40px;">    
                             </div>
                             <div class="layui-col-md11">
-                                <p style="color: rgb(247, 175, 108);">月半巧乐兹</p>
-                                <p style="font-size: larger;font-weight: 900;">积分：1000</p>
+                                <p th:text=${r.s_name} style="color: rgb(247, 175, 108);">月半巧乐兹</p>
+                                <p th:text=${r.score} style="font-size: larger;font-weight: 900;">积分：1000</p>
                             </div>
                           </div> 
                         </div>
                     </div>
-                    <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+                    <div  th:remove="all" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                       <div class="layui-card-body">
                         <div class="layui-row layui-col-space15">
                           <div class="layui-col-md1" >
@@ -292,7 +292,7 @@
                         </div> 
                       </div>
                   </div>
-                  <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+                  <div  th:remove="all" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                     <div class="layui-card-body">
                       <div class="layui-row layui-col-space15">
                         <div class="layui-col-md1" >
@@ -306,7 +306,7 @@
                       </div> 
                     </div>
                 </div>
-                <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+                <div  th:remove="all" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                   <div class="layui-card-body">
                     <div class="layui-row layui-col-space15">
                       <div class="layui-col-md1" >
@@ -320,7 +320,7 @@
                     </div> 
                   </div>
               </div>
-              <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+              <div  th:remove="all" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                 <div class="layui-card-body">
                   <div class="layui-row layui-col-space15">
                     <div class="layui-col-md1" >
@@ -334,7 +334,7 @@
                   </div> 
                 </div>
             </div>
-            <div class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
+            <div  th:remove="all" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
               <div class="layui-card-body">
                 <div class="layui-row layui-col-space15">
                   <div class="layui-col-md1" >

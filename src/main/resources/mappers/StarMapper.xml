@@ -5,6 +5,6 @@
 <mapper
 	namespace="edu.sqa.finalproject.poorstudentmis.mapper.StarMapper">
 	<select id="getAllStar" resultType="edu.sqa.finalproject.poorstudentmis.entity.Star">
-		select * from star order by is_top desc,star_time  desc
+		select * from star order by is_top desc,star_time  desc limit 7 
 	</select>
 </mapper>

@@ -14,11 +14,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.sqa.finalproject.poorstudentmis.entity.Notice;
 import edu.sqa.finalproject.poorstudentmis.entity.PoorStu;
+import edu.sqa.finalproject.poorstudentmis.entity.PoorVo;
+import edu.sqa.finalproject.poorstudentmis.entity.Score;
 import edu.sqa.finalproject.poorstudentmis.entity.Star;
 import edu.sqa.finalproject.poorstudentmis.entity.Student;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
+import edu.sqa.finalproject.poorstudentmis.mapper.NoticeMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.PoorStudentMapper2;
+import edu.sqa.finalproject.poorstudentmis.mapper.ScoreMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.StarMapper;
 
 @Controller
@@ -28,6 +33,10 @@ public class CenterController {
 	PoorStudentMapper2 poorStudentMapper;
 	@Autowired
 	StarMapper starMapper;
+	@Autowired
+	NoticeMapper noticeMapper;
+	@Autowired
+	ScoreMapper scoreMapper;
 	//显示账户设置页面
 	@RequestMapping("showSet")
 	public ModelAndView showCenter(HttpServletRequest request) {
@@ -74,7 +83,7 @@ public class CenterController {
 	}
 	//显示收藏页面
 	@RequestMapping("showStar")
-	public String showStar(HttpServletRequest request) {
+	public String showStar(HttpServletRequest request,ModelMap modelMap) {
 		List<Star> stars = starMapper.getAllStar();//获取所有搜藏的页面
 		System.out.println(stars.toString());
 		System.out.println("正在调用showStar");
@@ -86,11 +95,15 @@ public class CenterController {
 			//直接显示首页 HomeServlet
 			return "login";
 		}
+		modelMap.addAttribute("star", stars);
 		return "user/star";
 	}	
 	//显示消息页面
 	@RequestMapping("showMessage")
-	public String showMessage(HttpServletRequest request) {
+	public String showMessage(HttpServletRequest request,ModelMap modelMap) {
+		System.out.println("正在调用所有公告");
+		List<Notice> ns = noticeMapper.getAllNotice();
+		System.out.println(ns.toString());
 		System.out.println("正在调用showMessage");
 		//判断session中是否有user对象 有则说明登录成功过 直接显示首页
 		HttpSession session = request.getSession();
@@ -100,12 +113,12 @@ public class CenterController {
 			//直接显示首页 HomeServlet
 			return "login";
 		}
+		modelMap.addAttribute("notice", ns);
 		return "user/notice";
 	}
 	//显示积分页面
 	@RequestMapping("showScore")
-	public String showScore(HttpServletRequest request) {
-		System.out.println("正在调用showCenter");
+	public String showScore(HttpServletRequest request,ModelMap modelMap) {
 		//判断session中是否有user对象 有则说明登录成功过 直接显示首页
 		HttpSession session = request.getSession();
 		User u = (User)session.getAttribute("user");
@@ -114,6 +127,17 @@ public class CenterController {
 			//直接显示首页 HomeServlet
 			return "login";
 		}
+		System.out.println("正在调用所有积分明细");
+		List<Score> scores = scoreMapper.getAllScore(u.getU_id());
+		System.out.println(scores.toString());
+		System.out.println("正在调用showScore");
+		List<PoorVo> ps = poorStudentMapper.getScoreTop(6);
+		for(int i=0;i<ps.size();i++) {
+			ps.get(i).setRank(i+1);
+		}
+		System.out.println("排行榜："+ps.toString());
+		modelMap.addAttribute("score", scores);
+		modelMap.addAttribute("rank", ps);
 		return "user/score";
 	}	
 	@RequestMapping("showTest")
@@ -191,4 +215,5 @@ public class CenterController {
         
 		return "redirect:/showStar";
 	}
+	
 }
