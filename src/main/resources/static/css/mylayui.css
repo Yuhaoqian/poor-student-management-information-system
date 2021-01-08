@@ -1,0 +1,10 @@
+#f2 .layui-form-label{
+    width: 240px;
+}
+#f2 .layui-form-item {
+    margin-bottom: 0px;
+}
+#f2 .layui-textarea{
+    width: 400px;
+    margin-bottom: 10px;
+}
