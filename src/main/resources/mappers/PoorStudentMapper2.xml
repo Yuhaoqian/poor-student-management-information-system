@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper
+	namespace="edu.sqa.finalproject.poorstudentmis.mapper.PoorStudentMapper2">
+	<select id="findById"
+		resultType="edu.sqa.finalproject.poorstudentmis.entity.PoorStu">
+		select * from poor_stu where stu_id=#{stu_id}
+	</select>
+	<select id="getStuList"
+		resultType="edu.sqa.finalproject.poorstudentmis.entity.PoorStu">
+		select * from poor_stu
+	</select>
+</mapper>

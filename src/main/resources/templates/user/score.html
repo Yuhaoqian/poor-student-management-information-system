@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <!-- <link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css"  media="all"> -->
-  <link rel="stylesheet" href="../assets/layui/css/layui.css">
-  <link rel="stylesheet" href="../css/mylayui.css">
+  <link rel="stylesheet" href="assets/layui/css/layui.css">
+  <link rel="stylesheet" href="css/mylayui.css">
 </head>
 <body>
     <!--导航栏开始-->
@@ -39,7 +39,7 @@
           
       </li>
       <li class="layui-nav-item">
-          <a href=""><img src="../img/tx.jpg" class="layui-nav-img"></a>
+          <a href=""><img src="img/tx.jpg" class="layui-nav-img"></a>
           <dl class="layui-nav-child">
             <dd><a href="javascript:;">我的主页</a></dd>
             <dd><a href="javascript:;">我的申请</a></dd>
@@ -49,14 +49,14 @@
   </ul>
   <!--导航栏结束-->
       <!--上方头像开始-->
-      <div class="layui-card" style="width: 100%;height: 150px;background-image: url(../img/background/infobg.png);margin-bottom:0px;">
+      <div class="layui-card" style="width: 100%;height: 150px;background-image: url(img/background/infobg.png);margin-bottom:0px;">
             <div class="layui-row">
                 <div class="layui-col-md2" style="padding: 20px;padding-left: 50px;">
-                    <img src="../img/tx.jpg" width="100px" style="border-radius: 100%;display: inline;">
+                    <img src="img/tx.jpg" width="100px" style="border-radius: 100%;display: inline;">
                     <p>
-                        <img src="../img/icons/star.png" width="25px">
-                        <img src="../img/icons/star.png" width="25px">
-                        <img src="../img/icons/star.png" width="25px">
+                        <img src="img/icons/star.png" width="25px">
+                        <img src="img/icons/star.png" width="25px">
+                        <img src="img/icons/star.png" width="25px">
                     </p>
                 </div>
                 <div class="layui-col-md6" style="font-size: 16px;padding-top: 40px;padding-bottom: 10px;">
@@ -71,22 +71,22 @@
                    
                 </div> 
                 <div class="layui-col-md4" style="padding-top: 50px;">
-                    <a th:attr="style=${map.unsubmitted}" href="authen">
+                    <a href="authen">
                         <button type="button" class="layui-btn layui-btn-danger">
-						<img src="../img/icons/danger.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
+						<img src="img/icons/danger.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
 						未认证
 						</button>
 					</a> 
-					<a th:attr="style=${map.checking}" href="#">
+					<a href="#">
                         <button type="button" class="layui-btn layui-btn-warm">
-						<img src="../img/icons/rz.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
+						<img src="img/icons/rz.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
 						审核中
                         </button>
                         
 					</a>  
-					<a th:attr="style=${map.passed}" href="#">
+					<a  href="#">
                         <button type="button" class="layui-btn">
-						<img src="../img/icons/rz.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
+						<img src="img/icons/rz.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
 						已认证
 						</button>
 					</a>
@@ -103,25 +103,25 @@
           <div class="layui-col-md2" >
             <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user" style="height: 720px;">
               <li class="layui-nav-item">
-                <a href="/showHome.do">
+                <a href="showSet">
                   <i class="layui-icon">&#xe620;</i>
                   账号设置
                 </a>
               </li>
               <li class="layui-nav-item ">
-                <a href="/showUserIndex.do">
+                <a href="showStar">
                   <i class="layui-icon">&#xe612;</i>
                   我的收藏
                 </a>
               </li>
               <li class="layui-nav-item">
-                <a href="javascript:void(0);">
+                <a href="showMessage">
                   <i class="layui-icon">&#xe611;</i>
                   我的消息<span class="layui-badge">9</span>
                 </a>
               </li>
               <li class="layui-nav-item layui-this">
-                <a href="/showMessage.do">
+                <a href="showScore">
                   <i class="layui-icon">&#xe609;</i>
                   我的积分
                 </a>
@@ -135,10 +135,10 @@
           <div class="layui-col-md10">
             <div class="layui-card" style="height: 720px;">
                 <!--卡片栏开始-->
-                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <div class="layui-tab layui-tab-brief" lay-filter="test">
                 <ul class="layui-tab-title">
-                    <li>积分明细</li>
-                    <li>积分排行</li>
+                    <li class="layui-this" lay-id="11">积分明细</li>
+                    <li lay-id="22">积分排行</li>
                 </ul>
                 <div class="layui-tab-content" style="height: 100px;">
                     <!--卡片一积分商城开始-->
@@ -151,7 +151,7 @@
                             <div class="layui-card-body">
                               <div class="layui-row layui-col-space15">
                                 <div class="layui-col-md2" >
-                                    <img src="../img/icons/LeetCoin.png" style="border-radius: 100%;width: 80px;">
+                                    <img src="img/icons/LeetCoin.png" style="border-radius: 100%;width: 80px;">
                                     <p style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">
                                         <span>+</span>
                                         <span id="jf_cnt">100</span>
@@ -175,7 +175,7 @@
                             <div class="layui-card-body">
                               <div class="layui-row layui-col-space15">
                                 <div class="layui-col-md2" >
-                                    <img src="../img/icons/LeetCoin.png" style="border-radius: 100%;width: 80px;">
+                                    <img src="img/icons/LeetCoin.png" style="border-radius: 100%;width: 80px;">
                                     <p style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">
                                         <span>+</span>
                                         <span id="jf_cnt">100</span>
@@ -199,7 +199,7 @@
                             <div class="layui-card-body">
                               <div class="layui-row layui-col-space15">
                                 <div class="layui-col-md2" >
-                                    <img src="../img/icons/LeetCoin.png" style="border-radius: 100%;width: 80px;">
+                                    <img src="img/icons/LeetCoin.png" style="border-radius: 100%;width: 80px;">
                                     <p style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">
                                         <span>+</span>
                                         <span id="jf_cnt">100</span>
@@ -223,7 +223,7 @@
                             <div class="layui-card-body">
                               <div class="layui-row layui-col-space15">
                                 <div class="layui-col-md2" >
-                                    <img src="../img/icons/LeetCoin.png" style="border-radius: 100%;width: 80px;">
+                                    <img src="img/icons/LeetCoin.png" style="border-radius: 100%;width: 80px;">
                                     <p style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">
                                         <span>+</span>
                                         <span id="jf_cnt">100</span>
@@ -250,14 +250,14 @@
                         <div class="layui-card" style="background-color: rgba(176, 225, 248, 0.438);border-radius: 20px;">
                             <div class="layui-card-body" style="font-weight: 800;font-size: 16px;">  
                                 <p style="font-size: larger;">
-                                    <img src="../img/icons/jf.png" style="width: 40px;">
+                                    <img src="img/icons/jf.png" style="width: 40px;">
                                     当前积分: <span>1000</span>
-                                    <img src="../img/icons/rate.png" style="width: 40px;">
+                                    <img src="img/icons/rate.png" style="width: 40px;">
                                     当前排名: <span>11</span>
                                   </p>
                                 <p style="color: rgb(94, 94, 94);">很遗憾未能进入排行榜！再接再厉</p>
                                 <p style="color: gold;">
-                                    <img src="../img/icons/tips.png" style="width: 30px;">
+                                    <img src="img/icons/tips.png" style="width: 30px;">
                                     tips:每日登录、阅读文章、评论文章、反馈问题都能获得积分噢！</p>
                                 <div class="layui-panel">
                                 </div>
@@ -269,7 +269,7 @@
                           <div class="layui-row layui-col-space15">
                             <div class="layui-col-md1" >
                               <span style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">1</span>  
-                              <img src="../img/tx.jpg" style="border-radius: 100%;width: 40px;">    
+                              <img src="img/tx.jpg" style="border-radius: 100%;width: 40px;">    
                             </div>
                             <div class="layui-col-md11">
                                 <p style="color: rgb(247, 175, 108);">月半巧乐兹</p>
@@ -283,7 +283,7 @@
                         <div class="layui-row layui-col-space15">
                           <div class="layui-col-md1" >
                             <span style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">1</span>  
-                            <img src="../img/tx.jpg" style="border-radius: 100%;width: 40px;">    
+                            <img src="img/tx.jpg" style="border-radius: 100%;width: 40px;">    
                           </div>
                           <div class="layui-col-md11">
                               <p style="color: rgb(247, 175, 108);">月半巧乐兹</p>
@@ -297,7 +297,7 @@
                       <div class="layui-row layui-col-space15">
                         <div class="layui-col-md1" >
                           <span style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">1</span>  
-                          <img src="../img/tx.jpg" style="border-radius: 100%;width: 40px;">    
+                          <img src="img/tx.jpg" style="border-radius: 100%;width: 40px;">    
                         </div>
                         <div class="layui-col-md11">
                             <p style="color: rgb(247, 175, 108);">月半巧乐兹</p>
@@ -311,7 +311,7 @@
                     <div class="layui-row layui-col-space15">
                       <div class="layui-col-md1" >
                         <span style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">1</span>  
-                        <img src="../img/tx.jpg" style="border-radius: 100%;width: 40px;">    
+                        <img src="img/tx.jpg" style="border-radius: 100%;width: 40px;">    
                       </div>
                       <div class="layui-col-md11">
                           <p style="color: rgb(247, 175, 108);">月半巧乐兹</p>
@@ -325,7 +325,7 @@
                   <div class="layui-row layui-col-space15">
                     <div class="layui-col-md1" >
                       <span style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">1</span>  
-                      <img src="../img/tx.jpg" style="border-radius: 100%;width: 40px;">    
+                      <img src="img/tx.jpg" style="border-radius: 100%;width: 40px;">    
                     </div>
                     <div class="layui-col-md11">
                         <p style="color: rgb(247, 175, 108);">月半巧乐兹</p>
@@ -339,7 +339,7 @@
                 <div class="layui-row layui-col-space15">
                   <div class="layui-col-md1" >
                     <span style="font-size: 24px;color: rgba(255, 217, 0, 0.986);font-weight: 900;">1</span>  
-                    <img src="../img/tx.jpg" style="border-radius: 100%;width: 40px;">    
+                    <img src="img/tx.jpg" style="border-radius: 100%;width: 40px;">    
                   </div>
                   <div class="layui-col-md11">
                       <p style="color: rgb(247, 175, 108);">月半巧乐兹</p>
@@ -362,7 +362,7 @@
 
         </div>
       </div> 
-<script src="../assets/layui/layui.js"></script>
+<script src="assets/layui/layui.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layui.use('element', function(){
