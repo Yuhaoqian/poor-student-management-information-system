@@ -1,6 +1,7 @@
 package edu.sqa.finalproject.poorstudentmis.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -84,6 +85,7 @@ public class CenterController {
 		modelMap.addAttribute("c4",ls[9]);
 		modelMap.addAttribute("c5",ls[10]);
 		modelMap.addAttribute("d1",ls[11]);
+		
 		return "user/setinfo";
 //		return "test";
 	}
@@ -230,6 +232,7 @@ public class CenterController {
 		System.out.println(s_info);
 		System.out.println("贫困等级为: "+poor_level);
 		poorStudentMapper.modify2(u.getU_id(), a1, a2, s_info, s_other, poor_level);
+		poorStudentMapper.updateCheck(u.getU_id(), 0);//设为审核中
 		System.out.println(a1+"\t"+a2);
 		System.out.println(b1+b2+b3+b4+b5+b6);
 		System.out.println(c1+c2+c3+c4+c5);
@@ -325,6 +328,13 @@ public class CenterController {
 			return "login";
 		}
 		System.out.println(u.getU_id()+"查看过公告了！");
+		Date now = new Date();
+		
+		Score s = new Score(u.getU_id(),"查看公告",now,2,0);
+		PoorStu p = poorStudentMapper.findById(u.getU_id());
+		Integer newscore = p.getScore() + 2;
+		poorStudentMapper.updateScore(u.getU_id(), newscore);//更新积分
+		scoreMapper.save(s);//插入积分明细
 		noticeMapper.modifyIsRead(n_id);
 		return "redirect:/showMessage";
 	}	

@@ -24,4 +24,9 @@
 		update score
 		set isread = 1
 	</update>
+	<insert id="save">
+		insert into score
+		(s_id, content, time, cnt, isread)
+		values(#{s_id}, #{content}, #{time}, #{cnt}, #{isread})
+	</insert>
 </mapper>

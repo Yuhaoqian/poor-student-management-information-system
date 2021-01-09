@@ -14,7 +14,7 @@ public interface ScoreMapper {
 	public void delAll();//删除所有
 	public void modifyIsRead(Integer id);//标为已读
 	public void modifyAllIsRead();//清空未读信息
-	public void reset();
+	public void save(Score s);
 	void save(Star vol);
 
 

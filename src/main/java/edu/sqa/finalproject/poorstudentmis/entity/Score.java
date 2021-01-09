@@ -14,9 +14,8 @@ public class Score {
 	public Score() {
 		super();
 	}
-	public Score(Integer id,String s_id, String content, Date time, Integer cnt, Integer isread) {
+	public Score(String s_id, String content, Date time, Integer cnt, Integer isread) {
 		super();
-		this.id = id;
 		this.s_id = s_id;
 		this.content = content;
 		this.time = time;

@@ -14,6 +14,7 @@ public class PoorStu {
 	private String avatar_url;//头像地址
 	private String s_info;//问卷中的单元按钮
 	private String s_other;//其他信息
+	private Integer s_ischeck;//后台是否审核
 	public PoorStu() {
 		super();
 	}
@@ -30,6 +31,16 @@ public class PoorStu {
 		this.s_major = s_major;
 		this.s_email = s_email;
 		this.s_phone = s_phone;
+		this.s_info = "0,0,0,0,0,0,0,0,0,0,0,0";
+		this.s_ischeck = -1;//默认值为-1
+	}
+	
+	
+	public Integer getS_ischeck() {
+		return s_ischeck;
+	}
+	public void setS_ischeck(Integer s_ischeck) {
+		this.s_ischeck = s_ischeck;
 	}
 	public String getStu_id() {
 		return stu_id;

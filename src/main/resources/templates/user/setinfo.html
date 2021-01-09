@@ -60,7 +60,7 @@
                         <img src="img/icons/star.png" width="25px">
                     </p>
                 </div>
-                <div class="layui-col-md6" style="font-size: 16px;padding-top: 40px;padding-bottom: 10px;">
+                <div class="layui-col-md8" style="font-size: 16px;padding-top: 40px;padding-bottom: 10px;">
                     <p style="padding-bottom: 10px;">
                         <i class="layui-icon" style="color: #1E9FFF;">&#xe60c;</i>
                         <span style="color: white;font-weight: 800;"> 江芳 欢迎您！</span>
@@ -71,21 +71,21 @@
                    </p>
                    
                 </div> 
-                <div class="layui-col-md4" style="padding-top: 50px;">
-                    <a  href="authen">
+                <div class="layui-col-md2" style="padding-top: 50px;">
+                    <a  th:if="${stu.s_ischeck} eq '-1'" href="authen">
                         <button type="button" class="layui-btn layui-btn-danger">
 						<img src="img/icons/danger.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
 						未认证
 						</button>
 					</a> 
-					<a href="#">
+					<a th:if="${stu.s_ischeck} eq '0'" href="#">
                         <button type="button" class="layui-btn layui-btn-warm">
 						<img src="img/icons/rz.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
 						审核中
                         </button>
                         
 					</a>  
-					<a href="#">
+					<a th:if="${stu.s_ischeck} eq '1'" href="#">
                         <button type="button" class="layui-btn">
 						<img src="img/icons/rz.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
 						已认证
@@ -102,7 +102,7 @@
             <!-- 个人头像结束 -->
           <!-- 左边导航开始 -->
           <div class="layui-col-md2" >
-            <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user" style="height: 720px;">
+            <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user" style="height: 800px;">
               <li class="layui-nav-item  layui-this">
                 <a href="showSet">
                   <i class="layui-icon">&#xe620;</i>
@@ -134,7 +134,7 @@
           <!-- 左边导航结束 -->
           <!-- 右边面板开始 -->
           <div class="layui-col-md10" id="layerDemo">
-            <div class="layui-card" style="height: 720px;">
+            <div class="layui-card" style="height: 800px;">
                 <!--卡片栏开始-->
                 <div class="layui-tab layui-tab-brief" lay-filter="test">
                 <ul class="layui-tab-title">
@@ -204,6 +204,18 @@
                     <!--卡片一基本信息结束-->
                     <!--卡片二贫困认定开始-->
                     <div class="layui-tab-item" th:fragment="pkrd">
+                          <div th:if="${stu.s_ischeck} eq '1'" class="layui-card" style="background-color: rgba(176, 225, 248, 0.438);border-radius: 20px;">
+                            <div class="layui-card-body" style="font-weight: 800;font-size: 16px;">  
+                                <p style="font-size: larger;">
+                                    <img src="img/icons/pkrz.png" style="width: 40px;">
+                                   	 认证等级: <span th:text="${stu.poor_level}">3</span>
+                                    <img src="img/icons/danger2.png" style="width: 30px;">
+                                   		<span style="color: red;">非必要不要重复提交贫困认定申请！！</span>
+                                  </p>
+                                <div class="layui-panel">
+                                </div>
+                          </div>
+                       </div>
                         <form id = "f2" class="layui-form " action="modify_stu_info2" method = "post" style="width: 760px;">
                             <div class="layui-inline">
                                 <label class="layui-form-label">家庭月收入及个人月生活费（单位元）</label>

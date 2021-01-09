@@ -28,7 +28,16 @@
 			s_info = #{s_info}, s_other = #{s_other},poor_level=#{poor_level}
 		where stu_id=#{stu_id}
 	</update>
-	
+	<update id="updateScore">
+		update poor_stu
+		set score=#{score}
+		where stu_id=#{stu_id}
+	</update>
+	<update id="updateCheck">
+		update poor_stu
+		set s_ischeck=#{s_ischeck}
+		where stu_id=#{stu_id}
+	</update>
 	<update id="modifyAvatar">
 		update poor_stu
 		set avatar_url=#{avatar_url}
