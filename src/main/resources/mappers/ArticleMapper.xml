@@ -6,22 +6,47 @@
 	namespace="edu.sqa.finalproject.poorstudentmis.mapper.ArticleMapper">
 	<select id="getAllArticle" resultType="edu.sqa.finalproject.poorstudentmis.entity.Article">
 		select 
-		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.top, ps.s_name
+		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.top, ps.s_name, ps.avatar_url
 		from article a join poor_stu ps join category c
 		on a.sid = ps.stu_id and a.category_id = c.id
 		order by top desc, created_time desc
 	</select>
+	
+	<select id="getLatestArticle" resultType="edu.sqa.finalproject.poorstudentmis.entity.Article">
+		select 
+		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.top, ps.s_name, ps.avatar_url
+		from article a join poor_stu ps join category c
+		on a.sid = ps.stu_id and a.category_id = c.id
+		order by created_time desc
+		limit 0, 5
+	</select>
+	<select id="getHotestArticle" resultType="edu.sqa.finalproject.poorstudentmis.entity.Article">
+		select 
+		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.star, a.top, ps.s_name, ps.avatar_url
+		from article a join poor_stu ps join category c
+		on a.sid = ps.stu_id and a.category_id = c.id
+		order by a.like desc, a.views desc
+		limit 0, 5
+	</select>
 	<select id="getArticleByCategoryId" resultType="edu.sqa.finalproject.poorstudentmis.entity.Article">
 		select 
-		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.top, ps.s_name
+		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.star, a.top, ps.s_name, ps.avatar_url
 		from article a join poor_stu ps join category c
 		on a.sid = ps.stu_id and a.category_id = c.id
 		where a.category_id = #{category_id}
 		order by top desc, created_time desc
 	</select>
+		<select id="getArticleByKeyword" resultType="edu.sqa.finalproject.poorstudentmis.entity.Article">
+		select 
+		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.star, a.top, ps.s_name, ps.avatar_url
+		from article a join poor_stu ps join category c
+		on a.sid = ps.stu_id and a.category_id = c.id
+		where a.title like #{keyword} or a.content like #{keyword}
+		order by top desc, created_time desc
+	</select>
 		<select id="getArticleByStuId" resultType="edu.sqa.finalproject.poorstudentmis.entity.Article">
 		select 
-		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.top, ps.s_name
+		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.star, a.top, ps.s_name, ps.avatar_url
 		from article a join poor_stu ps join category c
 		on a.sid = ps.stu_id and a.category_id = c.id
 		where a.sid = #{sid}
@@ -34,7 +59,7 @@
 	</insert>
 	<select id="getArticleById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Article">
 		select 
-		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.top, ps.s_name
+		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like,  a.star, a.top, ps.s_name, ps.avatar_url
 		from article a join poor_stu ps join category c
 		on a.sid = ps.stu_id and a.category_id = c.id
 		where a.id=#{id}
@@ -45,6 +70,38 @@
 	<select id="getAllCategory" resultType="edu.sqa.finalproject.poorstudentmis.entity.Category">
 		select * from category
 	</select>
-
+		<select id="getCategoryById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Category">
+		select * from category where id=#{id}
+	</select>
+	<update id="like">
+		update article
+		set `like`=`like`+1
+		where id=#{id}
+		
+	</update>
+	<update id="view">
+		update article
+		set views=views+1
+		where id=#{id}
+		
+	</update>
+	<update id="star">
+		update article
+		set star=star+1
+		where id=#{id}
+		
+	</update>
+		<insert id="save_comment">
+		insert into comment
+		(sid, name, content, created_time, article_id)
+		values(#{sid}, #{name}, #{content},#{created_time}, #{article_id})
+	</insert>
+	<select id="getCommentByArticleId" resultType="edu.sqa.finalproject.poorstudentmis.entity.Comment">
+		select 
+		c.name, c.content, c.created_time, ps.avatar_url
+		from comment as c join article as a join poor_stu as ps
+		on a.id=c.article_id and c.sid=ps.stu_id
+		where a.id=#{id}
+	</select>
 	
 </mapper>

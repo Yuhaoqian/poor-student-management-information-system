@@ -13,7 +13,10 @@ public interface StarMapper {
 	public void delById(Integer star_id);//删除文章
 	public void delAll();//删除所有收藏文章
 	public void reset();
-	void save(Star vol);
+	
+	
+	void save(Star star);
+	Star findBySidAndAid(String s_id, Integer a_id);
 
 
 }

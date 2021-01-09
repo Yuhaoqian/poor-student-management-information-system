@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="article/fragments::html_head">
+<meta charset="utf-8">
+</head>
+
+<body>
+
+	<ul th:replace="article/fragments::navbar">
+	</ul>
+	<div class="layui-container" style="margin-top: 20px">
+		<div class="layui-row layui-col-space15">
+			<div class="layui-col-md8 content detail">
+				<div class="fly-panel detail-box">
+					<h1 th:text=${a.title}>Fly Template v3.0，基于 layui 的极简社区页面模版</h1>
+					<div class="fly-detail-info">
+						发布时间：<span th:text=${a.created_time}>2017-11-30</span>&nbsp;| 作者：<span th:text=${a.s_name}>Yuhao Qian</span> <span
+							class="fly-list-nums"> 
+
+						<i class="iconfont" title="人气">&#xe60b;</i> <span th:text=${a.views}></span>
+
+						</span>
+					</div>
+
+					<div class="detail-body photos" th:text=${a.content}>
+					</div>
+					<div class="jieda-reply">
+						<span class="jieda-zan" type="zan" onclick="like(this)"> 
+						<i class="iconfont icon-zan"></i> <em th:text=${a.like} th:attr="id=${a.id}"></em>
+						</span>
+						
+						<a th:if="${u}==null" th:attr="id=${a.id}" onclick="star(this)" style="color: blue" th:text="加入收藏夹"></a>
+						
+						<a th:if="${star} eq 0" th:attr="id=${a.id}" onclick="star(this)" style="color: blue" th:text="加入收藏夹"></a>
+						<a th:if="${star} eq 1" style="color: red" th:text="已收藏"></a>
+						
+					</div>
+				</div>
+
+				<div class="fly-panel detail-box" id="flyReply">
+					<fieldset class="layui-elem-field layui-field-title"
+						style="text-align: center;">
+						<legend>评论</legend>
+					</fieldset>
+
+					<ul class="jieda" id="jieda">
+						<li th:each="c:${comments}" data-id="111" class="jieda-daan"><a
+							name="item-1111111111"></a>
+							<div class="detail-about detail-about-reply">
+								<a class="fly-avatar" href=""> <img
+									th:src="${c.avatar_url}"
+									alt=" ">
+								</a>
+								<div class="fly-detail-user">
+									<a href="" class="fly-link"> <cite th:text=${c.name}>贤心</cite>
+									</a>
+
+
+								</div>
+
+								<div class="detail-hits">
+									<span th:text=${c.created_time}>2017-11-30</span>
+								</div>
+
+							</div>
+							<div class="detail-body jieda-body photos">
+								<p th:text=${c.content}>香菇那个蓝瘦，这是一条被采纳的回帖</p>
+
+							</div></li>
+
+
+
+						<!-- 无数据时 -->
+						<!-- <li class="fly-none">消灭零回复</li> -->
+					</ul>
+
+					<div class="layui-form layui-form-pane">
+						<form method="post">
+							<div class="layui-form-item layui-form-text">
+								<div class="layui-input-block">
+									<textarea id="L_content" name="content" required
+										lay-verify="required" placeholder="请输入内容"
+										class="layui-textarea fly-editor" style="height: 150px;"></textarea>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<input type="hidden" name="article_id" th:value=${a.id}>
+								<button class="layui-btn" onclick="comment(event)" lay-filter="*" lay-submit>提交回复</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div th:replace="article/fragments::right_top"></div>
+			<div th:replace="article/fragments::right_bottom"></div>
+		</div>
+	</div>
+	<script src="assets/layui/layui.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	
+	<script>
+		function like(object) {
+			console.log(object)
+			var y = $(object).children('em')
+			$(object).addClass('zanok')
+			$(object).removeAttr('onclick')	
+			$.ajax({
+				url:"like?id=" + y.attr("id"),
+				success: function(result) {
+					//alert(result.message)
+				}
+			})
+			y.html(parseInt(y.html())+1)
+		}
+		function star(object) {
+			console.log(object)
+			$.ajax({
+				url:"star?id=" + $(object).attr("id"),
+				success: function(result) {
+					
+					if (result.message == "请先登录") {
+						alert(result.message)
+					} else {
+						// 成功
+						alert(result.message)
+						$(object).removeAttr('onclick')	
+						$(object).html('已收藏')
+						$(object).css('color', 'red')
+					}
+				}
+			})
+		}
+		function comment(event) {
+            event.preventDefault();
+            $.ajax({
+				url:"comment",
+				data: {
+					content: $("textarea[name='content']").val(),
+					article_id: $("input[name='article_id']").val(),
+				},
+				success: function(result) {
+					
+					if (result.message == "请先登录") {
+						alert(result.message)
+					} else {
+						// 成功
+						alert(result.message)
+						window.location.reload()
+					}
+				}
+			})
+		}
+	</script>
+</body>
+
+</html>

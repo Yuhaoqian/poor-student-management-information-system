@@ -23,4 +23,12 @@
 	<delete id="delAll">
 		delete from star
 	</delete>
+	<insert id="save">
+		insert into star(s_id,a_id,a_title,star_time,is_top)
+		values
+		(#{s_id},#{a_id},#{a_title},#{star_time},#{is_top})
+	</insert>
+	<select id="findBySidAndAid" resultType="edu.sqa.finalproject.poorstudentmis.entity.Star">
+		select * from star where s_id=#{s_id} and a_id=#{a_id}
+	</select>
 </mapper>
