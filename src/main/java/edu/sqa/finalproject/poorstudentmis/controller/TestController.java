@@ -29,4 +29,9 @@ public class TestController {
 		}
 		return map;
 	}
+	
+	@RequestMapping("test2")
+	public String test() {
+		return "mis/motherpage";
+	}
 }
