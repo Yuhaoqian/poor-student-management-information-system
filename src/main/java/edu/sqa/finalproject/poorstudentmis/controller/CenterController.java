@@ -120,9 +120,11 @@ public class CenterController {
 			//直接显示首页 HomeServlet
 			return "login";
 		}
+		Integer num = noticeMapper.getNum();
+		System.out.println("未读的消息数为："+num);
 		System.out.println(u.getU_id());//获取用户id
 		modelMap.addAttribute("notice", ns);
-		
+		modelMap.addAttribute("num", num);
 //		List<Question> qs = questionMapper.getAllQuestion();
 		List<Question> qs = questionMapper.getAllQuestionById("172219605201");
 		
@@ -141,17 +143,34 @@ public class CenterController {
 			//直接显示首页 HomeServlet
 			return "login";
 		}
+		//
+		PoorStu p = poorStudentMapper.findById(u.getU_id());//获取
+		Integer myscore = p.getScore();
+		modelMap.addAttribute("myscore", myscore);
 		System.out.println("正在调用所有积分明细");
 		List<Score> scores = scoreMapper.getAllScore(u.getU_id());
+		Integer myrank = -1;
 		System.out.println(scores.toString());
 		System.out.println("正在调用showScore");
-		List<PoorVo> ps = poorStudentMapper.getScoreTop(6);
+		List<PoorVo> ps = poorStudentMapper.getScoreTop();
 		for(int i=0;i<ps.size();i++) {
+			PoorVo tmp = ps.get(i);
+			if(tmp.getS_id() == u.getU_id() || tmp.getS_id().equals(u.getU_id())) {
+				myrank = i+1;
+			}
 			ps.get(i).setRank(i+1);
 		}
+		modelMap.addAttribute("myrank", myrank);
+		System.out.println("myrank"+myrank+"\t"+"myscore"+myscore);
 		System.out.println("排行榜："+ps.toString());
 		modelMap.addAttribute("score", scores);
-		modelMap.addAttribute("rank", ps);
+		modelMap.addAttribute("rank", ps.subList(0, 6));
+		//判断是否进入排行榜
+		Integer flag = 0;
+		if(myrank <= 6) {
+			flag = 1;
+		}
+		modelMap.addAttribute("flag", flag);
 		return "user/score";
 	}	
 	@RequestMapping("showTest")
@@ -240,9 +259,98 @@ public class CenterController {
 	}
 	//取消收藏置顶
 	@RequestMapping("handel_cancel_top")
-	 public String CancelTop(Integer star_id) {
+	 public String ModifyTop(Integer star_id) {
 		System.out.println("收藏文章的id为"+star_id);
+		starMapper.modifyTop(star_id);
 		return "redirect:/showStar";
 	}
-	
+	//删除收藏的文章
+	@RequestMapping("cancel_star")
+	 public String CancelTop(Integer star_id) {
+		System.out.println("收藏文章的id为"+star_id);
+		starMapper.delById(star_id);
+		return "redirect:/showStar";
+	}	
+	//删除所有搜藏文章
+	@RequestMapping("handel_del_all_star")
+	 public String DellAllStar() {
+		starMapper.delAll();
+		return "redirect:/showStar";
+	}
+	//删除指定我的问题
+	@RequestMapping("handel_del_question")
+	 public String HandelDelQuestion(Integer q_id) {
+		questionMapper.delById(q_id);
+		return "redirect:/showMessage";
+	}	
+	//删除所有我的提问
+	@RequestMapping("handel_del_all_question")
+	 public String HandelDelAllQuestion() {
+		questionMapper.delAll();
+		return "redirect:/showMessage";
+	}
+	//删除指定公告
+	@RequestMapping("handel_del_notice")
+	 public String HandelDelNotice(Integer n_id) {
+		System.out.println("获取到的公告id为"+n_id);
+		noticeMapper.delById(n_id);
+		return "redirect:/showMessage";
+	}	
+	//删除所有公告
+	@RequestMapping("handel_del_all_notice")
+	 public String HandelDelAllNotice() {
+//		questionMapper.delAll();
+		noticeMapper.delAll();
+		return "redirect:/showMessage";
+	}
+	//删除所有积分
+	@RequestMapping("handel_del_all_score")
+	 public String HandelDelAllScore() {
+		scoreMapper.delAll();
+		return "redirect:/showScore";
+	}	
+	//删除指定的积分
+	@RequestMapping("handel_del_score")
+	 public String HandelDelScore(Integer id) {
+		scoreMapper.delById(id);
+		return "redirect:/showScore";
+	}	
+	//公告标为已读
+	@RequestMapping("handel_notice_isread")
+	 public String HandelNoticeIsread(HttpServletRequest request,Integer n_id) {
+		HttpSession session = request.getSession();
+		User u = (User)session.getAttribute("user");
+		System.out.println("u=="+u);
+		if(u == null) {
+			return "login";
+		}
+		System.out.println(u.getU_id()+"查看过公告了！");
+		noticeMapper.modifyIsRead(n_id);
+		return "redirect:/showMessage";
+	}	
+	//一键标为已读
+	@RequestMapping("handel_notice_all_isread")
+	 public String HandelNoticeAllIsread(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User u = (User)session.getAttribute("user");
+		System.out.println("u=="+u);
+		if(u == null) {
+			return "login";
+		}
+		System.out.println(u.getU_id()+"查看过公告了！");
+		noticeMapper.modifyAllIsRead();
+		return "redirect:/showMessage";
+	}
+	//积分通知标为已读
+	@RequestMapping("handel_score_isread")
+	 public String HandelScoreIsread(Integer id) {
+		scoreMapper.modifyIsRead(id);
+		return "redirect:/showScore";
+	}
+	//积分一键标为已读
+	@RequestMapping("handel_score_all_isread")
+	 public String HandelScoreAllIsread() {
+		scoreMapper.modifyAllIsRead();
+		return "redirect:/showScore";
+	}
 }

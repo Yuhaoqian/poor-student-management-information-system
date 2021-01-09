@@ -35,7 +35,7 @@
           </dl>
         </li>
         <li class="layui-nav-item"><a href="">
-            我的消息<span class="layui-badge">9</span></a>
+            我的消息<span class="layui-badge" th:text="${num}">9</span></a>
             
         </li>
         <li class="layui-nav-item">
@@ -117,7 +117,9 @@
               <li class="layui-nav-item  layui-this">
                 <a href="showMessage">
                   <i class="layui-icon">&#xe611;</i>
-                  我的消息<span class="layui-badge">9</span>
+                  我的消息
+                  
+                  <span class="layui-badge" th:text = "${num}">9</span>
                 </a>
               </li>
               <li class="layui-nav-item">
@@ -143,10 +145,13 @@
                 <div class="layui-tab-content" style="height: 100px;">
                     <!--卡片一公告开始-->
                     <div class="layui-tab-item layui-show">
-                        <button type = "button" class="layui-btn layui-btn-radius layui-btn-danger" style="margin-bottom: 10px;">
+                        <a th:href="@{handel_notice_all_isread}">
+                            <button type = "button" class="layui-btn layui-btn-radius layui-btn-warm" style="margin-bottom: 10px;">
                             <i class="layui-icon">&#xe640;</i>
-                            清空所有
-                        </button>
+                            	一键标为已读
+                       		 </button>
+                        </a>
+                  
                         <div th:each="n:${notice}" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                             <div class="layui-card-body">
                               <div class="layui-row layui-col-space15">
@@ -157,12 +162,18 @@
                                 <div class="layui-col-md10">
                                     <p>
                                     	<span th:text=${n.n_time}> 2021年1月7日星期四 下午08:43 </span>
-                                        <button th:if="${n.n_isread} eq '0'" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-danger" style="position: absolute;right: 60px;">
-                                		标为已读
-                           			   	</button>
-                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                            <i class="layui-icon">&#xe640;</i>
-                                        </button>
+                                        <a th:href="@{'handel_notice_isread?n_id='+${n.n_id}}">
+                                             <button th:if="${n.n_isread} eq '0'" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-danger" style="position: absolute;right: 10px;">
+                                			标为已读
+                           			   		</button>
+                                        </a>
+                                        <!--  
+                         				<a th:href="@{'handel_del_notice?n_id='+${n.n_id}}">
+                         				     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
+	                                            <i class="layui-icon">&#xe640;</i>
+	                                        </button>
+                         				</a> -->
+                               
                                     </p>
                                     <hr>
                                     <p style="font-size: larger;font-weight: 900;">
@@ -248,10 +259,13 @@
                     <!--卡片一公告结束-->
                     <!--卡片二我的提问开始-->
                     <div class="layui-tab-item">
-                      <button type = "button" class="layui-btn layui-btn-radius layui-btn-danger" style="margin-bottom: 10px;">
+                      <a th:href="@{handel_del_all_question}">
+                        <button type = "button" class="layui-btn layui-btn-radius layui-btn-danger" style="margin-bottom: 10px;">
                           <i class="layui-icon">&#xe640;</i>
-                          清空所有
-                      </button>
+                    	      清空所有
+                      	</button>
+                      </a>
+                    
                       <div th:each="q:${question}" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                           <div class="layui-card-body">
                             <div class="layui-row layui-col-space15">
@@ -264,10 +278,12 @@
                                   	 <span th:text=${q.time}>
                                   		 2021年1月7日星期四 下午08:43
                                   	 </span>
-                                      
-                                      <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                          <i class="layui-icon">&#xe640;</i>
-                                      </button>
+                                      <a th:href="@{'handel_del_question?q_id='+${q.q_id}}">
+                                           <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
+	                                          <i class="layui-icon">&#xe640;</i>
+	                                      </button>
+                                      </a>
+
                                   </p>
                                   <hr>
                                   <p style="font-size: larger;font-weight: 900;">

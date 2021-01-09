@@ -30,7 +30,7 @@
 		and v.vid=va.vid
 		order by va.va_flag
 	</select>
-		<update id="verify">
+	<update id="verify">
 		update v_apply
 		set va_flag=1, va_reviewer=#{name}
 		where va_id=#{id}

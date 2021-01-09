@@ -5,6 +5,23 @@
 <mapper
 	namespace="edu.sqa.finalproject.poorstudentmis.mapper.ScoreMapper">
 	<select id="getAllScore" resultType="edu.sqa.finalproject.poorstudentmis.entity.Score">
-		select * from score where s_id = #{s_id} limit 4
+		select * from score 
+		where s_id = #{s_id} and isread = 0
+		order by  isread, time desc limit 4
 	</select>
+	<delete id="delById">
+		delete from score where id=#{id}
+	</delete>
+	<delete id="delAll">
+		delete from score
+	</delete>
+	<update id="modifyIsRead">
+		update score
+		set isread = 1
+		where id=#{id}
+	</update>
+	<update id="modifyAllIsRead">
+		update score
+		set isread = 1
+	</update>
 </mapper>

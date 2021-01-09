@@ -22,7 +22,11 @@
 		select * from question_table where q_id=#{q_id}
 	</select>
 	<delete id="delById">
-		delete from question_table where q_id=#{id}
+		delete from question_table where q_id=#{q_id}
+	</delete>
+	
+	<delete id="delAll">
+		delete from question_table
 	</delete>
 	<update id="modifyReply">
 		update question_table

@@ -143,10 +143,13 @@
                 <div class="layui-tab-content" style="height: 100px;">
                     <!--卡片一积分商城开始-->
                     <div t class="layui-tab-item layui-show">
-                        <button type = "button" class="layui-btn layui-btn-radius layui-btn-danger" style="margin-bottom: 10px;">
+                        <a th:href="@{handel_score_all_isread}">
+                           <button type = "button" class="layui-btn layui-btn-radius layui-btn-warm" style="margin-bottom: 10px;">
                             <i class="layui-icon">&#xe640;</i>
-                            清空所有
-                        </button>
+	                       	    一键标为已读
+	                        </button>               
+                        </a>
+
                         <div th:each="s:${score}" class="layui-card" style="background-color: rgba(236, 234, 234, 0.438);border-radius: 20px;">
                             <div class="layui-card-body">
                               <div class="layui-row layui-col-space15">
@@ -160,9 +163,18 @@
                                 <div class="layui-col-md10">
                                     <p>
                                         <span th:text="${s.time}">2021年1月7日星期四 下午08:43</span>
-                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                            <i class="layui-icon">&#xe640;</i>
-                                        </button>
+                                         <a th:href="@{'handel_score_isread?id='+${s.id}}">
+                                             <button th:if="${s.isread} eq '0'" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-danger" style="position: absolute;right: 10px;">
+                                			标为已读
+                           			   		</button>
+                                        </a>
+                                        <!--  
+                                        <a th:href="@{'handel_del_score?id='+${s.id}}">
+                                            <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
+                                           	 <i class="layui-icon">&#xe640;</i>
+                                     	   </button>
+                                        </a> -->
+
                                     </p>
                                     <hr>
                                     <p style="color: rgb(247, 175, 108);">任务奖励</p>
@@ -251,11 +263,12 @@
                             <div class="layui-card-body" style="font-weight: 800;font-size: 16px;">  
                                 <p style="font-size: larger;">
                                     <img src="img/icons/jf.png" style="width: 40px;">
-                                    当前积分: <span>1000</span>
+                                   	 当前积分: <span th:text="${myscore}">1000</span>
                                     <img src="img/icons/rate.png" style="width: 40px;">
-                                    当前排名: <span>11</span>
+                                    	当前排名: <span th:text="${myrank}">11</span>
                                   </p>
-                                <p style="color: rgb(94, 94, 94);">很遗憾未能进入排行榜！再接再厉</p>
+                                <p th:if="${flag} eq '0'" style="color: rgb(94, 94, 94);">很遗憾未能进入排行榜！再接再厉</p>
+                                <p th:if="${flag} eq '1'" style="color: rgb(94, 94, 94);">恭喜您进入排行榜！继续加油吧！！</p>
                                 <p style="color: gold;">
                                     <img src="img/icons/tips.png" style="width: 30px;">
                                     tips:每日登录、阅读文章、评论文章、反馈问题都能获得积分噢！</p>

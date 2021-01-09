@@ -1,5 +1,6 @@
 package edu.sqa.finalproject.poorstudentmis.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Score {
@@ -46,8 +47,10 @@ public class Score {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getTime() {
-		return time;
+	public String getTime() {
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String dateStr=sdf.format(time);
+		return dateStr;
 	}
 	public void setTime(Date time) {
 		this.time = time;

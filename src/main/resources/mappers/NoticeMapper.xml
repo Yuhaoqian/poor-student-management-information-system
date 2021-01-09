@@ -5,6 +5,30 @@
 <mapper
 	namespace="edu.sqa.finalproject.poorstudentmis.mapper.NoticeMapper">
 	<select id="getAllNotice" resultType="edu.sqa.finalproject.poorstudentmis.entity.Notice">
-		select * from notice_table order by  n_isread, n_time desc limit 6
+		select * from notice_table 
+		where n_isread = 0
+		order by  n_isread, n_time desc limit 6
 	</select>
+	<select id= "getNum" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		from notice_table
+		where n_isread = 0
+	</select>
+	<delete id="delById">
+		delete from notice_table where n_id=#{n_id}
+	</delete>
+	
+	<delete id="delAll">
+		delete from notice_table
+	</delete>
+	<update id="modifyIsRead">
+		update notice_table
+		set n_isread = 1
+		where n_id=#{n_id}
+	</update>
+	<update id="modifyAllIsRead">
+		update notice_table
+		set n_isread = 1
+	</update>
+	
 </mapper>

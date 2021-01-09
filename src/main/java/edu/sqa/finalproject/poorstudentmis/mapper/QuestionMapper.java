@@ -10,7 +10,8 @@ public interface QuestionMapper {
 	List<Question> getAllQuestionById(String sid);//获取某个用户的所有问题
 	Integer insertQ(Question q);
 	Question getQuestionById(int q_id);
-	public void delById(Integer id);
+	public void delById(Integer q_id);
+	public void delAll();//删除所有
 	void modifyReply(int q_id, String r_content, String name);
 }
 

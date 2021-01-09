@@ -12,4 +12,15 @@
 		where s_id = #{s_id}
 		order by is_top desc,star_time  desc limit 7 
 	</select>
+	<update id="modifyTop">
+		update star
+		set is_top = 1 - is_top
+		where star_id=#{star_id}
+	</update>
+	<delete id="delById">
+		delete from star where star_id=#{star_id}
+	</delete>
+	<delete id="delAll">
+		delete from star
+	</delete>
 </mapper>
