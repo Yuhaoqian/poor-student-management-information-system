@@ -12,7 +12,10 @@ public interface StarMapper {
 	public void delById(Integer id);
 	public void delAll();
 	public void reset();
-	void save(Star vol);
+	
+	
+	void save(Star star);
+	Star findBySidAndAid(String s_id, Integer a_id);
 
 
 }

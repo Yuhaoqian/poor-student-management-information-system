@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="article/fragments::html_head">
+	<meta charset="utf-8">
+</head>
+<body>
+
+    <ul th:replace="article/fragments::navbar">
+  	</ul>
+    <div class="layui-container" style="margin-top:20px">
+      <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8">
+          <div class="fly-panel">
+            <div class="fly-panel-title fly-filter">
+              <a>置顶</a>
+            </div>
+            <ul class="fly-list">
+              <li th:each="a:${top}">
+                <a class="fly-avatar">
+                  <img th:src="${a.avatar_url}" src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt="贤心">
+                </a>
+                <h2>          
+                  <a th:href="@{'detail?id=' + ${a.id}}" ><span class="layui-badge layui-bg-red">置顶</span>
+                  <span th:text=${a.title}>基于 layui 的极简社区页面模版</span></a>
+                </h2>
+                <div class="fly-list-info">
+                  <a href="user/home.html" link>
+                    <cite th:text="${a.s_name}">Yuhao Qian</cite>
+                  </a>
+                  <span th:text="${a.created_time}">2021-01-09 15:26</span>
+                  <span>
+                    <i class="iconfont icon-liulan1" title="回答"></i> 
+                 <i class="iconfont" title="人气">&#xe60b;</i>&nbsp;<span th:text=${a.views}></span>
+                  </span>           
+                </div>
+
+              </li>
+              
+            </ul>
+          </div>
+    
+          <div class="fly-panel" style="margin-bottom: 0;">
+            
+            <div class="fly-panel-title fly-filter">
+              <a>文章列表</a>
+            </div>
+    
+            <ul class="fly-list">
+              <li th:each="a:${as}">
+                <a class="fly-avatar">
+                  <img th:src="${a.avatar_url}" src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt="贤心">
+                </a>
+                <h2>
+                  <a  th:href="@{'detail?id=' + ${a.id}}" th:text="${a.title}">基于 layui 的极简社区页面模版</a>
+                </h2>
+                <div class="fly-list-info">
+                  <a href="user/home.html" link>
+                    <cite th:text="${a.s_name}">Yuhao Qian</cite>
+                  </a>
+                  <span th:text="${a.created_time}">2021-01-09 15:26</span>
+                  <span>
+                    <i class="iconfont icon-liulan1" title="回答"></i> 
+                 <i class="iconfont" title="人气">&#xe60b;</i>&nbsp;<span th:text=${a.views}></span>
+                  </span>           
+                </div>
+
+              </li>
+              
+            </ul>
+
+    
+          </div>
+        </div>
+        <div th:replace="article/fragments::right_top">
+         </div>
+        <div th:replace="article/fragments::right_bottom">
+        </div>
+      </div>
+    </div>
+<script src="assets/layui/layui.js"></script>
+
+</body>
+</html>

@@ -6,16 +6,16 @@ import java.util.Date;
 public class Star {
 	private Integer star_id;
 	private String s_id;
-	private String a_id;//指向的文章
+	private Integer a_id;//指向的文章
 	private String a_title;//文章标题
 	private Date star_time;//收藏的时间
-	private String is_top;//是否置顶
+	private Integer is_top;//是否置顶
 	
 	
 	public Star() {
 		super();
 	}
-	public Star(Integer star_id, String s_id, String a_id, String a_title, Date star_time, String is_top) {
+	public Star(Integer star_id, String s_id, Integer a_id, String a_title, Date star_time, Integer is_top) {
 		super();
 		this.star_id = star_id;
 		this.s_id = s_id;
@@ -24,15 +24,24 @@ public class Star {
 		this.star_time = star_time;
 		this.is_top = is_top;
 	}
+	
+	public Star(String s_id, Integer a_id, String a_title) {
+		super();
+		this.s_id = s_id;
+		this.a_id = a_id;
+		this.a_title = a_title;
+		this.star_time = new Date();
+		this.is_top = 0;
+	}
 	@Override
 	public String toString() {
 		return "Star [star_id=" + star_id + ", s_id=" + s_id + ", a_id=" + a_id + ", a_title=" + a_title
 				+ ", star_time=" + star_time + ", is_top=" + is_top + "]";
 	}
-	public String getA_id() {
+	public Integer getA_id() {
 		return a_id;
 	}
-	public void setA_id(String a_id) {
+	public void setA_id(Integer a_id) {
 		this.a_id = a_id;
 	}
 	public String getA_title() {
@@ -61,10 +70,10 @@ public class Star {
 	public void setStar_time(Date star_time) {
 		this.star_time = star_time;
 	}
-	public String getIs_top() {
+	public Integer getIs_top() {
 		return is_top;
 	}
-	public void setIs_top(String is_top) {
+	public void setIs_top(Integer is_top) {
 		this.is_top = is_top;
 	}
 

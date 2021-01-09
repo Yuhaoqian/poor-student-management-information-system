@@ -13,9 +13,12 @@ public class Article {
 	private String category;
 	private Integer views;
 	private Integer like;
+	private Integer star;
+
 	private Integer top;
 	private String sid;
 	private String s_name;
+	private String avatar_url;
 	
 	
 	public Article() {
@@ -23,20 +26,31 @@ public class Article {
 	}
 	
 
-	public Article(Integer id, String title, String content, String excerpt, Date created_time, String category,
-			Integer views, Integer like, Integer top, String s_name) {
+
+
+
+	public Article(Integer id, String title, String content, String excerpt, Date created_time, Integer category_id,
+			String category, Integer views, Integer like, Integer star, Integer top, String sid, String s_name,
+			String avatar_url) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.excerpt = excerpt;
 		this.created_time = created_time;
+		this.category_id = category_id;
 		this.category = category;
 		this.views = views;
 		this.like = like;
+		this.star = star;
 		this.top = top;
+		this.sid = sid;
 		this.s_name = s_name;
+		this.avatar_url = avatar_url;
 	}
+
+
+
 
 
 	public Article(String title, String content, Integer top, Integer category_id, String sid) {
@@ -49,6 +63,39 @@ public class Article {
 		this.category_id = category_id;
 		this.sid = sid;
 
+	}
+
+
+	public Integer getCategory_id() {
+		return category_id;
+	}
+
+
+	public void setCategory_id(Integer category_id) {
+		this.category_id = category_id;
+	}
+
+
+	public String getSid() {
+		return sid;
+	}
+
+
+	public void setSid(String sid) {
+		this.sid = sid;
+	}
+
+
+
+
+
+	public String getAvatar_url() {
+		return avatar_url;
+	}
+
+
+	public void setAvatar_url(String avatar_url) {
+		this.avatar_url = avatar_url;
 	}
 
 
@@ -122,6 +169,23 @@ public class Article {
 	public void setTop(Integer top) {
 		this.top = top;
 	}
+	
+
+
+	public Integer getStar() {
+		return star;
+	}
+
+
+
+
+
+	public void setStar(Integer star) {
+		this.star = star;
+	}
+
+
+
 
 
 	public Article(Integer id, String title, String content, String excerpt, Date created_time, Integer category_id,
