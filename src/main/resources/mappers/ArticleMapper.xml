@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper
+	namespace="edu.sqa.finalproject.poorstudentmis.mapper.ArticleMapper">
+	<select id="getAllArticle" resultType="edu.sqa.finalproject.poorstudentmis.entity.Article">
+		select 
+		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.top, ps.s_name
+		from article a join poor_stu ps join category c
+		on a.sid = ps.stu_id and a.category_id = c.id
+		order by top desc, created_time desc
+	</select>
+	<select id="getArticleByCategoryId" resultType="edu.sqa.finalproject.poorstudentmis.entity.Article">
+		select 
+		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.top, ps.s_name
+		from article a join poor_stu ps join category c
+		on a.sid = ps.stu_id and a.category_id = c.id
+		where a.category_id = #{category_id}
+		order by top desc, created_time desc
+	</select>
+		<select id="getArticleByStuId" resultType="edu.sqa.finalproject.poorstudentmis.entity.Article">
+		select 
+		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.top, ps.s_name
+		from article a join poor_stu ps join category c
+		on a.sid = ps.stu_id and a.category_id = c.id
+		where a.sid = #{sid}
+		order by top desc, created_time desc
+	</select>
+	<insert id="save">
+		insert into article
+		(title, content, excerpt, created_time, category_id, views, `like`, star, top, sid)
+		values(#{title}, #{content}, #{excerpt},#{created_time}, #{category_id}, 0, 0, 0, #{top}, #{sid})
+	</insert>
+	<select id="getArticleById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Article">
+		select 
+		a.id, a.title, a.content, a.excerpt, a.created_time, c.name as category, a.views, a.like, a.top, ps.s_name
+		from article a join poor_stu ps join category c
+		on a.sid = ps.stu_id and a.category_id = c.id
+		where a.id=#{id}
+	</select>
+		<delete id="delById">
+		delete from article where id=#{id}
+	</delete>
+	<select id="getAllCategory" resultType="edu.sqa.finalproject.poorstudentmis.entity.Category">
+		select * from category
+	</select>
+
+	
+</mapper>

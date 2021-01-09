@@ -11,6 +11,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.sqa.finalproject.poorstudentmis.entity.Article;
+import edu.sqa.finalproject.poorstudentmis.entity.Category;
 import edu.sqa.finalproject.poorstudentmis.entity.Fund;
 import edu.sqa.finalproject.poorstudentmis.entity.FundVerify;
 import edu.sqa.finalproject.poorstudentmis.entity.MyFile;
@@ -21,6 +23,7 @@ import edu.sqa.finalproject.poorstudentmis.entity.Vol;
 import edu.sqa.finalproject.poorstudentmis.entity.VolVerify;
 import edu.sqa.finalproject.poorstudentmis.entity.Work;
 import edu.sqa.finalproject.poorstudentmis.entity.WorkVerify;
+import edu.sqa.finalproject.poorstudentmis.mapper.ArticleMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FileMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundMapper;
@@ -51,7 +54,31 @@ public class ManageInterfaceController {
 	QuestionMapper questionMapper;
 	@Autowired
 	FileMapper fileMapper;
+	@Autowired
+	ArticleMapper articleMapper;
 	
+	@RequestMapping("article_manage")
+	public ModelAndView showArticleManage(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		List<Article> articles = articleMapper.getAllArticle();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mis/article_manage");
+		mav.addObject("articles", articles);
+		mav.addObject("u_name", u.getU_name());
+		return mav;
+	}
+	@RequestMapping("write_article")
+	public ModelAndView showWriteArticle(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		List<Category> categories = articleMapper.getAllCategory();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mis/write_article");
+		mav.addObject("u_name", u.getU_name());
+		mav.addObject("categories", categories);
+		return mav;
+	}
 	@RequestMapping("vol_manage")
 	public ModelAndView showVolManage(HttpServletRequest request) {
 		// 因为有了过滤器，所以进到后台的一定是已经登陆的用户，不需要再判断session中有没有user了。
