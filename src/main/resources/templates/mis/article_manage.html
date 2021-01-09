@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="mis/fragments::html_head">
+<meta charset="utf-8">
+</head>
+
+<body data-type="widgets" class="theme-white">
+	<div class="black_overlay" id="bo"></div>
+	<div class="m1" id="m1">
+		<div class="d1">
+			<span>确定要删除该文章吗？</span>
+		</div>
+		<div class="d2">
+			<button id="m1_sure">确定</button>
+			<button id="m1_cancel">取消</button>
+		</div>
+	</div>
+	<div class="am-g tpl-g">
+		<!-- 头部 -->
+		<header th:replace="mis/fragments::header"></header>
+		<!-- 侧边导航栏 -->
+		<div class="left-sidebar" th:replace="mis/fragments::sidebar"></div>
+
+
+		<!-- 内容区域 -->
+		<div class="tpl-content-wrapper">
+
+			<div class="row-content am-cf">
+
+				<div class="row">
+					<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <div class="widget am-cf">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title  am-cf">文章列表</div>
+
+
+                            </div>
+                            <div class="widget-body  am-fr">
+
+                                <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                                    <div class="am-form-group">
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <a href="write_article"><button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span>&nbsp;写文章</button></a>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="am-u-sm-12">
+                                    <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
+                                        <thead>
+                                            <tr>
+                                                <th>文章标题</th>
+                                                <th>摘要</th>
+                                                <th>分类</th>
+                                                <th>作者</th>
+                                                <th>时间</th>
+                                                <th>浏览量</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>                                        
+                                            <tr th:each="a:${articles}" class="gradeX">
+                                                <td th:if="${a.top eq 1}">
+                                                <b>[置顶]&nbsp;</b><span th:text=${a.title}></span>
+                                               	
+                                                </td>
+                                                <td th:if="${a.top ne 1}">
+                                                <span th:text=${a.title}></span>
+                                                </td>
+                                            
+                                                <td th:text=${a.excerpt} style="padding-top: 15px; max-width: 15em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"></td>
+                                                <td th:text=${a.category}></td>
+                                                <td th:text=${a.s_name}>张鹏飞</td>
+                                                <td th:text=${a.created_time}>2016-09-26</td>
+                                                                                                <td th:text=${a.views}>2016-09-26</td>
+                                                
+                                                <td>
+                                                    <div class="tpl-table-black-operation">
+
+                                                <a href="javascript:;" onclick="show_m1(this)"
+														th:attr="id=${a.id}" class="tpl-table-black-operation-del">
+														<i class="am-icon-trash"></i> 删除
+													</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!-- more data -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="am-u-lg-12 am-cf">
+
+                                    <div class="am-fr">
+                                        <ul class="am-pagination tpl-pagination">
+                                            <li class="am-disabled"><a href="#">«</a></li>
+                                            <li class="am-active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">4</a></li>
+                                            <li><a href="#">5</a></li>
+                                            <li><a href="#">»</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+			<script src="assets/js/amazeui.min.js"></script>
+		<script src="assets/js/app.js"></script>
+		<script>
+		function show_m1(e) {
+			var id = $(e).attr("id")
+			var black_overlay = $("#bo")
+			var m1 = $("#m1")
+			var sure = $("#m1_sure")
+			var cancel = $("#m1_cancel")
+			sure.one("click", function () {
+				window.location.href = "handle_article_del?id=" + id;
+			});
+			cancel.on("click", function () {
+				black_overlay.hide();
+				m1.hide();
+			});
+			black_overlay.show();
+			m1.show();
+		}
+		</script>
+</body>
+
+</html>
