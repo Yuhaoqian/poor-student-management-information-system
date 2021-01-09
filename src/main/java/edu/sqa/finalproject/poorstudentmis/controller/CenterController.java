@@ -58,6 +58,9 @@ public class CenterController {
 		System.out.println(p.toString());
 		
 		String s_info = p.getS_info();
+		if(s_info == "" || s_info == null) {
+			s_info = "0,0,0,0,0,0,0,0,0,0,0,0";
+		}
 		String[] ls = s_info.split(",");
 		System.out.println("分割结果如下++++++++");
 		for(int i=0;i<ls.length;i++) {
