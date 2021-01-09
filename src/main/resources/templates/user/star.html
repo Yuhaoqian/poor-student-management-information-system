@@ -139,11 +139,10 @@
                 <div class="layui-tab layui-tab-brief" lay-filter="test">
 	                <ul class="layui-tab-title">
 	                    <li class="layui-this" lay-id="11">文章</li>
-	                    <li lay-id="22">文件</li>
-	                    <li lay-id="33">问题</li>
+	               
 	                </ul>
                 <div class="layui-tab-content" style="height: 100px;">
-                    <!--卡片一基本信息开始-->
+                    <!--卡片一文章开始-->
                     <div class="layui-tab-item layui-show">
                       <button type = "button" class="layui-btn layui-btn-radius layui-btn-danger" style="margin-bottom: 10px;">
                         <i class="layui-icon">&#xe640;</i>
@@ -151,14 +150,19 @@
                       </button>
                       <div class="layui-card" style="border-radius: 12px;box-shadow: 2px 2px 2px 2px #888888;">
                         <div class="layui-card-body" style="font-weight: 800;font-size: 16px;">  
-                          <div th:each="st:${star}"  style="border-bottom: 3px solid rgb(204, 200, 200);padding:8px;">
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/ar.png" style="padding-left: 0px;">
-                              <span >收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
+                          <div th:each="st:${star}"  style="border-bottom: 2px solid rgb(238, 238, 238);padding:8px;">
+                            <p style="color: rgb(94, 94, 94);position: relative;" >
+                              <img th:if="${st.is_top} eq '1'" src="img/icons/top.png" style="width:30px;position: absolute;top: 0px;">
+                              <img src="img/icons/ar.png" style="padding-left: 30px;">
+                              <span th:text=${st.a_title} >收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
+                              <button th:if="${st.is_top} eq '0'" type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
+                                		置顶
                               </button>
+                              <a th:href="@{'handel_cancel_top?star_id='+${st.star_id}}">
+	                              <button th:if="${st.is_top} eq '1'" type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-danger" style="position: absolute;right: 60px;">
+	                                		取消置顶
+	                              </button>
+                              </a>
                               <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
                                 <i class="layui-icon">&#xe640;</i>
                               </button>
@@ -267,254 +271,9 @@
                       </div>
                     </div>
                     <!--卡片一基本信息结束-->
-                    <!--卡片二贫困认定开始-->
-                    <div class="layui-tab-item" >
-                      <button type = "button" class="layui-btn layui-btn-radius layui-btn-danger" style="margin-bottom: 10px;">
-                        <i class="layui-icon">&#xe640;</i>
-                        清空所有
-                      </button>
-                      <div class="layui-card" style="border-radius: 12px;box-shadow: 5px 5px 5px 5px #888888;">
-                        <div class="layui-card-body" style="font-weight: 800;font-size: 16px;">  
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/filedown.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/file.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/file.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/file.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/file.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/file.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/file.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                        </div>
-                      </div>
-                    </div>
-                     <!--卡片二贫困认定结束-->
-                    <!--卡片三贫困认定开始-->
-                    <div class="layui-tab-item" >
-                      <button type = "button" class="layui-btn layui-btn-radius layui-btn-danger" style="margin-bottom: 10px;">
-                        <i class="layui-icon">&#xe640;</i>
-                        清空所有
-                      </button>
-                      <div class="layui-card" style="border-radius: 12px;box-shadow: 5px 5px 5px 5px #888888;">
-                        <div class="layui-card-body" style="font-weight: 800;font-size: 16px;">  
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/qu2.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/file.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/file.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/file.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/file.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/file.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                          <div>
-                            <p style="color: rgb(94, 94, 94);">
-                              <img src="img/icons/top.png" style="width:30px;position: relative;top: 0px;">
-                              <img src="img/icons/file.png" style="padding-left: 0px;">
-                              <span>收到习总书记回信后，他们向全国高校毕业生发出倡议</span>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 60px;">
-                                取消置顶
-                              </button>
-                              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="position: absolute;right: 10px;">
-                                <i class="layui-icon">&#xe640;</i>
-                              </button>
-                            </p>
-                            <p style="color: rgb(201, 200, 196);padding-left: 80px;">
-                               <span>2020-03-28 17:15:45</span>
-                          </div>
-                          <hr>
-                        </div>
-                      </div>
-                    </div>
-                     <!--卡片三贫困认定结束-->                    
+               
+             
+                   
 
 
                     
@@ -528,6 +287,7 @@
         </div>
       </div> 
 <script src="assets/layui/layui.js"></script>
+<script src="js/jquery-1.12.4.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layui.use('element', function(){

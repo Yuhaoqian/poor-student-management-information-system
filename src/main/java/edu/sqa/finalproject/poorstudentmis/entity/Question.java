@@ -12,8 +12,10 @@ public class Question {
 	private String r_content;
 	private String r_reviewer;
 	private Date r_time;
+	private Integer tag_id;
 	
 	
+
 	public Question() {
 		super();
 	}
@@ -24,6 +26,26 @@ public class Question {
 		this.content = content;
 		
 		this.time = time;
+	}
+	
+	public Question(Integer q_id, String sid, String title, String content, Date time, String r_content,
+			String r_reviewer, Date r_time, Integer tag_id) {
+		super();
+		this.q_id = q_id;
+		this.sid = sid;
+		this.title = title;
+		this.content = content;
+		this.time = time;
+		this.r_content = r_content;
+		this.r_reviewer = r_reviewer;
+		this.r_time = r_time;
+		this.tag_id = tag_id;
+	}
+	public Integer getTag_id() {
+		return tag_id;
+	}
+	public void setTag_id(Integer tag_id) {
+		this.tag_id = tag_id;
 	}
 	public Integer getQ_id() {
 		return q_id;
@@ -80,7 +102,9 @@ public class Question {
 	@Override
 	public String toString() {
 		return "Question [q_id=" + q_id + ", sid=" + sid + ", title=" + title + ", content=" + content + ", time="
-				+ time + ", r_content=" + r_content + ", r_reviewer=" + r_reviewer + ", r_time=" + r_time + "]";
+				+ time + ", r_content=" + r_content + ", r_reviewer=" + r_reviewer + ", r_time=" + r_time + ", tag_id="
+				+ tag_id + "]";
 	}
+	
 	
 }

@@ -7,4 +7,9 @@
 	<select id="getAllStar" resultType="edu.sqa.finalproject.poorstudentmis.entity.Star">
 		select * from star order by is_top desc,star_time  desc limit 7 
 	</select>
+	<select id="getAllStarById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Star">
+		select * from star 
+		where s_id = #{s_id}
+		order by is_top desc,star_time  desc limit 7 
+	</select>
 </mapper>

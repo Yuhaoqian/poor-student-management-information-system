@@ -2,6 +2,7 @@ package edu.sqa.finalproject.poorstudentmis.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,14 +19,17 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.sqa.finalproject.poorstudentmis.entity.Notice;
 import edu.sqa.finalproject.poorstudentmis.entity.PoorStu;
 import edu.sqa.finalproject.poorstudentmis.entity.PoorVo;
+import edu.sqa.finalproject.poorstudentmis.entity.Question;
 import edu.sqa.finalproject.poorstudentmis.entity.Score;
 import edu.sqa.finalproject.poorstudentmis.entity.Star;
 import edu.sqa.finalproject.poorstudentmis.entity.Student;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.mapper.NoticeMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.PoorStudentMapper2;
+import edu.sqa.finalproject.poorstudentmis.mapper.QuestionMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.ScoreMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.StarMapper;
+import edu.sqa.finalproject.poorstudentmis.utils.OssManagerUtil;
 
 @Controller
 public class CenterController {
@@ -37,9 +42,11 @@ public class CenterController {
 	NoticeMapper noticeMapper;
 	@Autowired
 	ScoreMapper scoreMapper;
+	@Autowired
+	QuestionMapper questionMapper;
 	//显示账户设置页面
 	@RequestMapping("showSet")
-	public ModelAndView showCenter(HttpServletRequest request) {
+	public String showCenter(HttpServletRequest request,ModelMap modelMap) {
 		
 		List<PoorStu> ps = poorStudentMapper.getStuList();
 		System.out.println(ps.toString());
@@ -49,8 +56,9 @@ public class CenterController {
 		User u = (User)session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
 		if(u == null) {
-			mav.setViewName("login");
-			return mav;
+			return "login";
+//			mav.setViewName("login");
+//			return mav;
 		}
 		//获取学生信息
 		System.out.println("u=="+u.getU_id());
@@ -62,33 +70,27 @@ public class CenterController {
 			s_info = "0,0,0,0,0,0,0,0,0,0,0,0";
 		}
 		String[] ls = s_info.split(",");
-		System.out.println("分割结果如下++++++++");
-		for(int i=0;i<ls.length;i++) {
-			System.out.println(ls[i]);
-		}
-		mav.setViewName("user/setinfo");
-		mav.addObject("stu",p);
-		mav.addObject("b1",ls[0]);
-		mav.addObject("b2",ls[1]);
-		mav.addObject("b3",ls[2]);
-		mav.addObject("b4",ls[3]);
-		mav.addObject("b5",ls[4]);
-		mav.addObject("b6",ls[5]);
-		mav.addObject("c1",ls[6]);
-		mav.addObject("c2",ls[7]);
-		mav.addObject("c3",ls[8]);
-		mav.addObject("c4",ls[9]);
-		mav.addObject("c5",ls[10]);
-		mav.addObject("d1",ls[11]);
-		return mav;
-//		return "user/setinfo";
+		modelMap.addAttribute("stu", p);
+		modelMap.addAttribute("stu",p);
+		modelMap.addAttribute("b1",ls[0]);
+		modelMap.addAttribute("b2",ls[1]);
+		modelMap.addAttribute("b3",ls[2]);
+		modelMap.addAttribute("b4",ls[3]);
+		modelMap.addAttribute("b5",ls[4]);
+		modelMap.addAttribute("b6",ls[5]);
+		modelMap.addAttribute("c1",ls[6]);
+		modelMap.addAttribute("c2",ls[7]);
+		modelMap.addAttribute("c3",ls[8]);
+		modelMap.addAttribute("c4",ls[9]);
+		modelMap.addAttribute("c5",ls[10]);
+		modelMap.addAttribute("d1",ls[11]);
+		return "user/setinfo";
 //		return "test";
 	}
 	//显示收藏页面
 	@RequestMapping("showStar")
 	public String showStar(HttpServletRequest request,ModelMap modelMap) {
-		List<Star> stars = starMapper.getAllStar();//获取所有搜藏的页面
-		System.out.println(stars.toString());
+		
 		System.out.println("正在调用showStar");
 		//判断session中是否有user对象 有则说明登录成功过 直接显示首页
 		HttpSession session = request.getSession();
@@ -98,6 +100,8 @@ public class CenterController {
 			//直接显示首页 HomeServlet
 			return "login";
 		}
+		List<Star> stars = starMapper.getAllStarById(u.getU_id());//获取所有搜藏的页面
+		System.out.println(stars.toString());
 		modelMap.addAttribute("star", stars);
 		return "user/star";
 	}	
@@ -116,7 +120,14 @@ public class CenterController {
 			//直接显示首页 HomeServlet
 			return "login";
 		}
+		System.out.println(u.getU_id());//获取用户id
 		modelMap.addAttribute("notice", ns);
+		
+//		List<Question> qs = questionMapper.getAllQuestion();
+		List<Question> qs = questionMapper.getAllQuestionById("172219605201");
+		
+		System.out.println("正在打印本人提出的所有问题"+qs.toString());
+		modelMap.addAttribute("question",qs);
 		return "user/notice";
 	}
 	//显示积分页面
@@ -205,17 +216,32 @@ public class CenterController {
 		System.out.println(c1+c2+c3+c4+c5);
 		System.out.println(d1);
 		return "redirect:/showSet";//重定向
+//		return "user/setinfo::pkrd";
 	}
 	//修改头像
 	@RequestMapping("modifyAvatar")
-	public String uploadFile(HttpServletRequest request) throws IOException {
-		System.out.println("调用modifyAvatar了啊！");
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-        
-        // 获取上传的文件
-        MultipartFile multiFile = multipartRequest.getFile("file");
-        System.out.println(multiFile.getName());
-        
+	 public String modifyAvatar(HttpSession session, @RequestParam("avatar") MultipartFile avatar) {
+        User user = (User) session.getAttribute("user");
+
+		try {
+	        System.out.println(avatar);
+			String fileName = avatar.getOriginalFilename();
+			System.out.println(fileName);
+		    String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
+		    fileName = UUID.randomUUID().toString().replace("-", "") + "." + suffix;
+		    String avatar_url;
+		    avatar_url = OssManagerUtil.uploadImage(fileName,avatar.getInputStream().available(),avatar.getInputStream());
+			 System.out.println(avatar_url);
+			 poorStudentMapper.modifyAvatar(user.getU_id(), avatar_url);//修改头像
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        return "redirect:/showSet";
+	}
+	//取消收藏置顶
+	@RequestMapping("handel_cancel_top")
+	 public String CancelTop(Integer star_id) {
+		System.out.println("收藏文章的id为"+star_id);
 		return "redirect:/showStar";
 	}
 	

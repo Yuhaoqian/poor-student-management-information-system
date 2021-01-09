@@ -5,6 +5,6 @@
 <mapper
 	namespace="edu.sqa.finalproject.poorstudentmis.mapper.NoticeMapper">
 	<select id="getAllNotice" resultType="edu.sqa.finalproject.poorstudentmis.entity.Notice">
-		select * from notice_table order by  n_time desc limit 6
+		select * from notice_table order by  n_isread, n_time desc limit 6
 	</select>
 </mapper>

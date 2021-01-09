@@ -10,8 +10,7 @@
   <link rel="stylesheet" href="assets/layui/css/layui.css">
   <link rel="stylesheet" href="css/mylayui.css">
 </head>
-<body>
-    <!--导航栏开始-->
+<body>	
     <!--导航栏开始-->
     <ul class="layui-nav layui-bg-cyan">
       <li class="layui-nav-item"><a href="">学生信息与贫困资助平台</a></li>
@@ -148,7 +147,7 @@
                     <!--卡片一基本信息开始-->
                     
                     <div class="layui-tab-item layui-show">
-                        <form class="layui-form" action="" style="width: 500px;" method="post">
+                        <form class="layui-form" action="modify_stu_info1" style="width: 500px;" method="post">
                             <div class="layui-form-item">
                               <label for = "stu_id" class="layui-form-label">学号</label>
                               <div class="layui-input-block">
@@ -196,7 +195,7 @@
                               </div>
                             <div class="layui-form-item">
                               <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="formDemo" data-method="offset" data-type="auto" >立即提交</button>
+                                <button class="layui-btn" lay-submit lay-filter="formDemo" data-method="offset" data-type="auto" οnsubmit="return sumbit_sure()" >立即提交</button>
                               </div>
                             </div>
                         </form>
@@ -204,7 +203,7 @@
                     </div>
                     <!--卡片一基本信息结束-->
                     <!--卡片二贫困认定开始-->
-                    <div class="layui-tab-item" >
+                    <div class="layui-tab-item" th:fragment="pkrd">
                         <form id = "f2" class="layui-form " action="modify_stu_info2" method = "post" style="width: 760px;">
                             <div class="layui-inline">
                                 <label class="layui-form-label">家庭月收入及个人月生活费（单位元）</label>
@@ -311,7 +310,7 @@
                               </div>
                               <div class="layui-form-item">
                                 <div class="layui-input-block">
-                                  <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                  <button id= "pk-btn-submit" class="layui-btn" lay-submit lay-filter="formDemo" >点击提交</button>
                                 </div>
                             </div>
 
@@ -326,10 +325,14 @@
                             </div>
                             
                             <div class="layui-col-md6">
-                                <button type="button" class="layui-btn" id="upload-btn" style="border-radius: 15px;background-color: darkseagreen;">
-                                    <i class="layui-icon">&#xe67c;</i>点击上传你的头像
-                                </button>
-                                <p style="padding: 10px;font-size: 16px;">在这里设置你的头像……</br>
+                            	<form enctype="multipart/form-data" action="modifyAvatar" method="post" id="avatar-post">
+	                            	 <button type="button" class="layui-btn" id="avatar-btn" style="border-radius: 15px;background-color: darkseagreen;">
+	                                    <i class="layui-icon">&#xe67c;</i>点击上传你的头像
+	                                </button>
+	                                <input type="file" style="visibility: hidden;" name="avatar" id="get-avatar">
+	                                
+                            	</form>
+                               <p style="padding: 10px;font-size: 16px;">在这里设置你的头像……</br>
                                     	请使用2M以内的jpg、gif、png图片。</p>
                             </div>                            
                         </div>
@@ -347,6 +350,7 @@
         </div>
       </div> 
 <script src="assets/layui/layui.js"></script>
+<script src="js/jquery-1.12.4.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layui.use('element', function(){
@@ -425,14 +429,14 @@
       });
     });
     </script>
-    <script>
+<!-- 
+<script>
 layui.use('layer', function(){ //独立版的layer无需执行这一句
   var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
   //触发事件
   var active = {
     offset: function(othis){
       var type = othis.data('type');
-      
       layer.open({
         type: 1
         ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
@@ -454,7 +458,7 @@ layui.use('layer', function(){ //独立版的layer无需执行这一句
   });
   
 });
-</script>
+</script> -->
 <script>
 layui.use('upload', function(){
   var upload = layui.upload;
@@ -478,6 +482,18 @@ layui.use('upload', function(){
     }
   });
 });
+</script>
+<script>
+$(function () {
+	$('#avatar-btn').on('click', function () {
+	    return $('#get-avatar').click();
+	});
+
+	$('#get-avatar').change(function () {
+	    $('#avatar-post').submit();
+	});	
+})
+
 </script>
 </body>
 </html>

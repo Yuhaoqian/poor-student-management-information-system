@@ -6,19 +6,40 @@ import java.util.Date;
 public class Star {
 	private Integer star_id;
 	private String s_id;
-	private String ptr_id;//指向的文章
+	private String a_id;//指向的文章
+	private String a_title;//文章标题
 	private Date star_time;//收藏的时间
 	private String is_top;//是否置顶
+	
+	
 	public Star() {
 		super();
 	}
-	public Star(Integer star_id, String s_id, String ptr_id, Date star_time, String is_top) {
+	public Star(Integer star_id, String s_id, String a_id, String a_title, Date star_time, String is_top) {
 		super();
 		this.star_id = star_id;
 		this.s_id = s_id;
-		this.ptr_id = ptr_id;
+		this.a_id = a_id;
+		this.a_title = a_title;
 		this.star_time = star_time;
 		this.is_top = is_top;
+	}
+	@Override
+	public String toString() {
+		return "Star [star_id=" + star_id + ", s_id=" + s_id + ", a_id=" + a_id + ", a_title=" + a_title
+				+ ", star_time=" + star_time + ", is_top=" + is_top + "]";
+	}
+	public String getA_id() {
+		return a_id;
+	}
+	public void setA_id(String a_id) {
+		this.a_id = a_id;
+	}
+	public String getA_title() {
+		return a_title;
+	}
+	public void setA_title(String a_title) {
+		this.a_title = a_title;
 	}
 	public Integer getStar_id() {
 		return star_id;
@@ -31,12 +52,6 @@ public class Star {
 	}
 	public void setS_id(String s_id) {
 		this.s_id = s_id;
-	}
-	public String getPtr_id() {
-		return ptr_id;
-	}
-	public void setPtr_id(String ptr_id) {
-		this.ptr_id = ptr_id;
 	}
 	public String getStar_time() {
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -52,10 +67,6 @@ public class Star {
 	public void setIs_top(String is_top) {
 		this.is_top = is_top;
 	}
-	@Override
-	public String toString() {
-		return "Star [star_id=" + star_id + ", s_id=" + s_id + ", ptr_id=" + ptr_id + ", star_time=" + star_time
-				+ ", is_top=" + is_top + "]";
-	}
+
 	
 }
