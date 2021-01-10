@@ -136,14 +136,6 @@ public class FrontController {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		System.out.println("u==" + u);
-//		if (u != null) { // 如果u不为空
-//			modelMap.addAttribute("Login", "display:none");
-//			if (u.getU_power() == 1) // 如果权限为1（普通用户），不显示后台
-//				modelMap.addAttribute("pos", "display:none;");
-//		} else { // 如果u为空， 不显示后台，及个人信息按钮
-//			modelMap.addAttribute("notLogin", "display:none;");
-//			modelMap.addAttribute("pos", "display:none;");
-//		}
 		if (u != null) { // 用户已经登录
 			modelMap.addAttribute("Login", "display:inline-block");
 			modelMap.addAttribute("notLogin", "display:none;");
@@ -186,9 +178,6 @@ public class FrontController {
 			modelMap.addAttribute("notLogin", "display:inline-block;");
 			modelMap.addAttribute("pos", "display:none;");
 		}
-
-//		if (workVOs.size() == 0 && fundVOs.size() == 0)
-//			return "redirect:/home";
 		return "application";
 	}
 	//显示优秀榜样

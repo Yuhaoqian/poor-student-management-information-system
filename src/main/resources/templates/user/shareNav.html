@@ -40,17 +40,17 @@
           <dd><a href="download">文件下载</a></dd>
         </dl>
       </li>
-      <li th:if="${session.userName} eq ''" class="layui-nav-item">
+      <li th:if="${session.userName == null || session.userName == ''}"  class="layui-nav-item">
           <a href="login" style="font-weight: 800;">
           	登录/注册
           </a>     
       </li>
-      <li th:if="${session.userName} ne ''"class="layui-nav-item">
+      <li th:if="${session.userName != null}" class="layui-nav-item">
       <a href="showMessage">
          	 我的消息<span class="layui-badge" th:text = "${session.noticeNum}">9</span></a>
           
       </li>
-      <li th:if="${session.userName} ne ''" class="layui-nav-item">
+      <li   th:if="${session.userName != null}" class="layui-nav-item">
           <a href=""  >
           	<img th:src="${session.avatar_url}" src="img/tx.jpg" class="layui-nav-img">
           </a>

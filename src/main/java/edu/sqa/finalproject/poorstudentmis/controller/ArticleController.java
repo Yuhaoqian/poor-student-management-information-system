@@ -1,6 +1,7 @@
 package edu.sqa.finalproject.poorstudentmis.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import edu.sqa.finalproject.poorstudentmis.entity.Article;
 import edu.sqa.finalproject.poorstudentmis.entity.Category;
 import edu.sqa.finalproject.poorstudentmis.entity.Comment;
+import edu.sqa.finalproject.poorstudentmis.entity.PoorStu;
+import edu.sqa.finalproject.poorstudentmis.entity.Score;
 import edu.sqa.finalproject.poorstudentmis.entity.Star;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.mapper.ArticleMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.PoorStudentMapper2;
+import edu.sqa.finalproject.poorstudentmis.mapper.ScoreMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.StarMapper;
 
 @Controller
@@ -28,6 +33,10 @@ public class ArticleController {
 	ArticleMapper articleMapper;
 	@Autowired
 	StarMapper starMapper;
+	@Autowired
+	ScoreMapper scoreMapper;
+	@Autowired
+	PoorStudentMapper2 poorstuMapper;
 	@RequestMapping("show_article")
 	public String showArticle(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
@@ -129,6 +138,14 @@ public class ArticleController {
 		modelMap.addAttribute("a", a);
 		
 		articleMapper.view(id); // 访问量+1
+		//阅读文章
+		
+		Date now = new Date();//获取最新时间
+		Score s = new Score(u.getU_id(),"查看文章",now,2,0);
+		PoorStu p = poorstuMapper.findById(u.getU_id());
+		Integer newscore = p.getScore() + 2;
+		poorstuMapper.updateScore(u.getU_id(), newscore);//更新积分
+		scoreMapper.save(s);//插入积分明细
 		
 		// 判断该用户是否收藏
 		if (u != null) {
@@ -138,7 +155,6 @@ public class ArticleController {
 			} else {
 				modelMap.addAttribute("star", 0);
 			}
-
 		}
 		
 		// 评论
@@ -187,6 +203,13 @@ public class ArticleController {
 			return map;
 		}
 		articleMapper.star(id); // 收藏数+1
+		Date now = new Date();//获取最新时间
+		Score s = new Score(u.getU_id(),"收藏文章",now,2,0);
+		PoorStu p = poorstuMapper.findById(u.getU_id());
+		Integer newscore = p.getScore() + 2;
+		poorstuMapper.updateScore(u.getU_id(), newscore);//更新积分
+		scoreMapper.save(s);//插入积分明细
+		
 		// 还需要把点赞记录插入数据表star中
 		Article a = articleMapper.getArticleById(id);
 		Star star = new Star(u.getU_id(), a.getId(), a.getTitle());
@@ -215,6 +238,14 @@ public class ArticleController {
 		Comment comment = new Comment(u.getU_id(), u.getU_name(), request.getParameter("content"), Integer.parseInt(request.getParameter("article_id")));
 		articleMapper.save_comment(comment);
 		map.put("message", "评论成功");
+		
+		Date now = new Date();
+		Score s = new Score(u.getU_id(),"评论",now,3,0);
+		PoorStu p = poorstuMapper.findById(u.getU_id());
+		Integer newscore = p.getScore() + 3;
+		poorstuMapper.updateScore(u.getU_id(), newscore);//更新积分
+		scoreMapper.save(s);//插入积分明细
+		
 		return map;
 	}	
 	@RequestMapping("handle_add_article")

@@ -1,5 +1,6 @@
 package edu.sqa.finalproject.poorstudentmis.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.sqa.finalproject.poorstudentmis.entity.PoorStu;
+import edu.sqa.finalproject.poorstudentmis.entity.Score;
 import edu.sqa.finalproject.poorstudentmis.entity.Student;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.mapper.NoticeMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.PoorStudentMapper2;
+import edu.sqa.finalproject.poorstudentmis.mapper.ScoreMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.StudentMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.UserMapper;
 
@@ -29,6 +32,8 @@ public class UserController {
 	private PoorStudentMapper2 poostudentmapper;
 	@Autowired
 	private NoticeMapper noticeMapper;
+	@Autowired
+	private ScoreMapper scoreMapper;
 	@RequestMapping("login")
 	public String showLogin(HttpServletRequest request) {
 		//判断session中是否有user对象 有则说明登录成功过 直接显示首页
@@ -72,6 +77,14 @@ public class UserController {
 			session.setAttribute("avatar_url",p.getAvatar_url());//获取头像
 			System.out.println("头像为"+p.getAvatar_url());
 			System.out.println("登录成功，用户名为"+u.getU_name());
+			//每日登录加积分
+			Date now = new Date();
+			Score s = new Score(u.getU_id(),"每日登录",now,5,0);
+			Integer newscore = p.getScore() + 2;
+		
+			poostudentmapper.updateScore(u.getU_id(), newscore);//更新积分
+			scoreMapper.save(s);//插入积分明细
+			
 			map.put("name", u.getU_name());
 			map.put("id", id);
 			map.put("power", u.getU_power());

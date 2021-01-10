@@ -17,15 +17,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.sqa.finalproject.poorstudentmis.entity.Article;
 import edu.sqa.finalproject.poorstudentmis.entity.Category;
+import edu.sqa.finalproject.poorstudentmis.entity.PoorStu;
 import edu.sqa.finalproject.poorstudentmis.entity.Question;
+import edu.sqa.finalproject.poorstudentmis.entity.Score;
 import edu.sqa.finalproject.poorstudentmis.entity.Tag;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
+import edu.sqa.finalproject.poorstudentmis.mapper.PoorStudentMapper2;
 import edu.sqa.finalproject.poorstudentmis.mapper.QuestionMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.ScoreMapper;
 
 @Controller
 public class QuestionController {
 	@Autowired
 	QuestionMapper questionMapper;
+	@Autowired
+	PoorStudentMapper2 poorstudentMapper;
+	@Autowired
+	ScoreMapper scoreMapper;
 	
 	@RequestMapping("question")
 	public String showVol(HttpServletRequest request,ModelMap modelMap) {
@@ -95,6 +103,15 @@ public class QuestionController {
 		// 标签
 		List<Tag> tags = questionMapper.getAllTag();
 		modelMap.addAttribute("tags", tags);
+		
+		//加积分
+		Date now = new Date();
+		Score s = new Score(u.getU_id(),"提问",now,3,0);
+		PoorStu p = poorstudentMapper.findById(u.getU_id());
+		Integer newscore = p.getScore() + 3;
+		poorstudentMapper.updateScore(u.getU_id(), newscore);//更新积分
+		scoreMapper.save(s);//插入积分明细
+		
 		return "service/ask";
 	}
 	@RequestMapping("handle_ask")

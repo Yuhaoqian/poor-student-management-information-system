@@ -131,7 +131,7 @@ public class CenterController {
 		modelMap.addAttribute("num", num);
 		session.setAttribute("noticeNum",num);//设置消息数
 //		List<Question> qs = questionMapper.getAllQuestion();
-		List<Question> qs = questionMapper.getAllQuestionById("172219605201");
+		List<Question> qs = questionMapper.getAllQuestionById(u.getU_id());
 		
 		System.out.println("正在打印本人提出的所有问题"+qs.toString());
 		PoorStu p = poorStudentMapper.findById(u.getU_id());

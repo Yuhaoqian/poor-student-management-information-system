@@ -17,13 +17,14 @@ import org.springframework.web.multipart.MultipartFile;
 import edu.sqa.finalproject.poorstudentmis.entity.Fund;
 import edu.sqa.finalproject.poorstudentmis.entity.MyFile;
 import edu.sqa.finalproject.poorstudentmis.mapper.FileMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.PoorStudentMapper2;
+import edu.sqa.finalproject.poorstudentmis.mapper.ScoreMapper;
 import edu.sqa.finalproject.poorstudentmis.utils.OssManagerUtil;
 
 @Controller
 public class DownloadController {
 	@Autowired
 	FileMapper fileMapper;
-	
 	@RequestMapping("download")
 	public String showDownload(ModelMap modelMap) {
 		List<MyFile> files = fileMapper.getAllFile();
