@@ -16,6 +16,7 @@ import edu.sqa.finalproject.poorstudentmis.entity.Category;
 import edu.sqa.finalproject.poorstudentmis.entity.Fund;
 import edu.sqa.finalproject.poorstudentmis.entity.FundVerify;
 import edu.sqa.finalproject.poorstudentmis.entity.MyFile;
+import edu.sqa.finalproject.poorstudentmis.entity.PoorStu;
 import edu.sqa.finalproject.poorstudentmis.entity.Question;
 import edu.sqa.finalproject.poorstudentmis.entity.Student;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
@@ -27,6 +28,7 @@ import edu.sqa.finalproject.poorstudentmis.mapper.ArticleMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FileMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.PoorStudentMapper2;
 import edu.sqa.finalproject.poorstudentmis.mapper.QuestionMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.StudentMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.VolApplyMapper;
@@ -42,6 +44,9 @@ public class ManageInterfaceController {
 	private WorkMapper workMapper;
 	@Autowired
 	private StudentMapper stuMapper;
+	
+	@Autowired
+	private PoorStudentMapper2 psMapper;
 	@Autowired
 	private VolMapper volMapper;
 	@Autowired
@@ -131,13 +136,18 @@ public class ManageInterfaceController {
 	public ModelAndView showPoorStudentManage(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
-		List<Student> stus = stuMapper.getPoorStuList();
+		List<PoorStu> stus = psMapper.getPoorStuList();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mis/ps_verify");
 		mav.addObject("stus", stus);
 		mav.addObject("u_name", u.getU_name());
 
 		return mav;	
+	}
+	@RequestMapping("reject_ps")
+	public String reject(String stu_id) {
+		psMapper.reject(stu_id);
+		return "redirect:/ps_verify";
 	}
 	@RequestMapping("verify_all_ps")
 	public String handlePsVerify(HttpServletRequest request) {
@@ -148,11 +158,12 @@ public class ManageInterfaceController {
 		return "redirect:/ps_verify";
 	}
 	@RequestMapping("handle_ps_verify")
-	public String handlePoorStudentVerify(HttpServletRequest request, String s_id) {
+	public String handlePoorStudentVerify(HttpServletRequest request, String stu_id, Integer poor_level) {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
-		System.out.println(s_id);
-		stuMapper.verify(s_id);
+		System.out.println(stu_id);
+		psMapper.verify(stu_id, poor_level);
+//		System.out.println("poor_level:" + poor_level);
 		System.out.println("success");
 		return "redirect:/ps_verify";
 	}
@@ -160,7 +171,8 @@ public class ManageInterfaceController {
 	public ModelAndView showStuManage(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
-		List<Student> stus = stuMapper.getStuList();
+//		List<Student> stus = stuMapper.getStuList();
+		List<PoorStu> stus = psMapper.getStuList();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mis/stu_manage");
 		mav.addObject("stus", stus);

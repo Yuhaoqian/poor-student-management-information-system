@@ -17,11 +17,16 @@ public interface PoorStudentMapper2 {
 	void modify1(PoorStu stu);//修改基础信息
 	void modify2(String stu_id,Double s_income,Double s_outcome,String s_info,String s_other,Integer poor_level);
 	void modifyAvatar(String stu_id,String avatar_url);//修改头像
+	public void delById(String s_id);
+	void verify(String stu_id, Integer poor_level);//更新s_id学生的贫困生状态
+
+	
+	
+	
 	public void delAll();
 	public void reset();
-	public void delById(String s_id);
 	void changeISps(String s_id);//更新s_id学生的贫困生状态
-	void verify(String s_id);//更新s_id学生的贫困生状态
 	public void verifyAll();
+	void reject(String stu_id);
 
 }

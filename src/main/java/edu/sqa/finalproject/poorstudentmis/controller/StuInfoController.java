@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import edu.sqa.finalproject.poorstudentmis.entity.Student;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
+import edu.sqa.finalproject.poorstudentmis.mapper.PoorStudentMapper2;
 import edu.sqa.finalproject.poorstudentmis.mapper.StudentMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.UserMapper;
 
@@ -24,6 +25,8 @@ public class StuInfoController {
 	private StudentMapper stuMapper;
 	@Autowired
 	private UserMapper userMapper;
+	@Autowired
+	private PoorStudentMapper2 psMapper;
 	// 个人信息页面的服务 start
 	@RequestMapping("stu_info")
 	public ModelAndView showInfo(HttpServletRequest request,ModelMap modelMap) {
@@ -161,9 +164,10 @@ public class StuInfoController {
 	}
 	@RequestMapping("del_stu")
 	public String del(String s_id) {
-		stuMapper.delById(s_id);
+		psMapper.delById(s_id);
 		return "redirect:/stu_manage";
 	}
+
 	//处理用户提交的申请
 	@RequestMapping("handle_authen")
 	public String Handle_authen(HttpServletRequest request) {
