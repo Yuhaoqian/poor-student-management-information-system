@@ -49,6 +49,10 @@
       </div>
     </div>
 <script src="assets/layui/layui.js"></script>
-
+	<script>
+		layui.use('element', function() {
+			element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		});
+	</script>
 </body>
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="service/fragments::html_head">
+<meta charset="utf-8">
+</head>
+<body>
+	<ul th:replace="service/fragments::navbar">
+	</ul>
+	<div class="layui-container" style="margin-top: 20px">
+		<div class="layui-row layui-col-space15">
+			<div class="layui-col-md8">
+				<h2 class="page-header">
+					<img src="img/icons/down.png" class="img-responsive"
+						alt="Cinque Terre" style="display: inline-block;"> 文件下载 <i
+						style="font-size: small; color: burlywood;">点击即可下载文件</i>
+				</h2>
+
+				<hr>
+				<div class="fly-panel">
+					<div th:each="f:${files}" class="layui-card">
+						<div class="layui-card-body">
+							<a th:href="${f.url}"><span
+								th:text="${f.title}"></span>&nbsp;<span th:text ="${f.rtime}"></span></a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="assets/layui/layui.js"></script>
+	<script>
+		layui.use('element', function() {
+			element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		});
+	</script>
+</body>
+</html>

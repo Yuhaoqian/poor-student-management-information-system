@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="service/fragments::html_head">
+<meta charset="utf-8">
+</head>
+<body>
+	<ul th:replace="service/fragments::navbar">
+	</ul>
+	<div class="layui-container" style="margin-top: 20px">
+		<div class="layui-row layui-col-space15">
+			<div class="layui-col-md8">
+				<h2 class="page-header">
+					<img src="img/icons/ly.png" class="img-responsive"
+						alt="Cinque Terre" style="display: inline-block;">发表留言
+				</h2>
+
+				<hr>
+				<div class="fly-panel">
+					<form action="handle_ask" class="layui-form"
+						style="padding-top: 20px; padding-right: 50px; height:800px">
+						<div class="layui-form-item">
+							<label class="layui-form-label">主题</label>
+							<div class="layui-input-block">
+								<input name="title" id="q-title" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">问题详情</label>
+							<div class="layui-input-block">
+								<textarea name="content" id="q-content" class="layui-textarea"
+									rows="7">
+								</textarea>
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">标签</label>
+							<div class="layui-input-block">
+								<select name="tag" lay-verify="required">
+									<option th:each="t:${tags}" th:value="${t.id}" th:text="${t.name}"></option>
+								</select>
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+								<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="layui-col-md4">
+				<a href="question" class="layui-btn">返回列表</a>
+			</div>
+			<div th:replace="service/fragments::right_bottom"></div>
+
+
+		</div>
+	</div>
+	<script src="assets/layui/layui.js"></script>
+	<script>
+		layui.use('element', function() {
+			element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		});
+		layui.use('form', function(){
+			  var form = layui.form;
+			  
+			  //监听提交
+
+			});
+	</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="service/fragments::html_head">
+<meta charset="utf-8">
+</head>
+<body>
+	<ul th:replace="service/fragments::navbar">
+	</ul>
+	<div class="layui-container" style="margin-top: 20px">
+		<div class="layui-row layui-col-space15">
+			<div class="layui-col-md8">
+				<h2 class="page-header">
+					<img src="img/icons/ly.png" class="img-responsive"
+						alt="Cinque Terre" style="display: inline-block;">问题详情
+				</h2>
+
+				<hr>
+				<div class="fly-panel">
+					<div class="layui-card">
+						<div class="layui-card-header" th:text="'主題：' + ${q.title}">卡片面板</div>
+						<div class="layui-card-body" th:text="'问题详情：' + ${q.content}">
+						</div>
+						<div class="layui-card-body" th:text="'解答：' + ${q.r_content}">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md4">
+				<a href="question" class="layui-btn">返回列表</a>
+			</div>
+			<div th:replace="service/fragments::right_bottom"></div>
+
+
+		</div>
+	</div>
+	<script src="assets/layui/layui.js"></script>
+	<script>
+		layui.use('element', function() {
+			element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		});
+	</script>
+</body>
+</html>

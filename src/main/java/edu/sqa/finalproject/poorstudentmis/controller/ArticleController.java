@@ -45,11 +45,11 @@ public class ArticleController {
 			Article a = articles.get(i);
 			if (top_articles.size() < 5 && a.getTop() == 1) {
 				top_articles.add(a);
-				if (top_articles.size() == 5) break;
 			} else {
 				as.add(a);
 			}
 		}
+		System.out.println(as.size());
 		modelMap.addAttribute("as", as);
 		modelMap.addAttribute("top", top_articles);
 		// 分类
