@@ -50,6 +50,12 @@ public class User {
 		this.u_power = u_power;
 	}
 
+	@Override
+	public String toString() {
+		return "User [u_id=" + u_id + ", u_name=" + u_name + ", u_password=" + u_password + ", u_power=" + u_power
+				+ "]";
+	}
+
 	
 	
 	

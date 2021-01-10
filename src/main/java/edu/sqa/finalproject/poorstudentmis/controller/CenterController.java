@@ -105,6 +105,8 @@ public class CenterController {
 		List<Star> stars = starMapper.getAllStarById(u.getU_id());//获取所有搜藏的页面
 		System.out.println(stars.toString());
 		modelMap.addAttribute("star", stars);
+		PoorStu p = poorStudentMapper.findById(u.getU_id());
+		modelMap.addAttribute("stu", p);
 		return "user/star";
 	}	
 	//显示消息页面
@@ -127,10 +129,13 @@ public class CenterController {
 		System.out.println(u.getU_id());//获取用户id
 		modelMap.addAttribute("notice", ns);
 		modelMap.addAttribute("num", num);
+		session.setAttribute("noticeNum",num);//设置消息数
 //		List<Question> qs = questionMapper.getAllQuestion();
 		List<Question> qs = questionMapper.getAllQuestionById("172219605201");
 		
 		System.out.println("正在打印本人提出的所有问题"+qs.toString());
+		PoorStu p = poorStudentMapper.findById(u.getU_id());
+		modelMap.addAttribute("stu", p);
 		modelMap.addAttribute("question",qs);
 		return "user/notice";
 	}
@@ -172,13 +177,14 @@ public class CenterController {
 		if(myrank <= 6) {
 			flag = 1;
 		}
+		modelMap.addAttribute("stu", p);
 		modelMap.addAttribute("flag", flag);
 		return "user/score";
 	}	
 	@RequestMapping("showTest")
 	public String showTest(HttpServletRequest request) {
 		
-		return "test";
+		return "user/shareNav";
 	}
 	//修改基础信息
 	@RequestMapping("modify_stu_info1")
@@ -253,7 +259,8 @@ public class CenterController {
 		    fileName = UUID.randomUUID().toString().replace("-", "") + "." + suffix;
 		    String avatar_url;
 		    avatar_url = OssManagerUtil.uploadImage(fileName,avatar.getInputStream().available(),avatar.getInputStream());
-			 System.out.println(avatar_url);
+		    session.setAttribute("avatar_url",avatar_url);//获取头像
+		    System.out.println(avatar_url);
 			 poorStudentMapper.modifyAvatar(user.getU_id(), avatar_url);//修改头像
 		} catch (IOException e) {
 			e.printStackTrace();

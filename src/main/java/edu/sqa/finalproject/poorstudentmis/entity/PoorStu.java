@@ -20,8 +20,14 @@ public class PoorStu {
 	}
 	public PoorStu(String stu_id,String s_name) {
 		super();
+		System.out.println("调用我PoorStu(String stu_id,String s_name) ");
+		
 		this.stu_id = stu_id;
 		this.s_name = s_name;
+		this.poor_level = 0;
+		this.avatar_url =  "https://fangjiang.oss-cn-shanghai.aliyuncs.com/9687d7e9ccea4470a441a45695d8950c.jpg";
+		this.s_info = "0,0,0,0,0,0,0,0,0,0,0,0";
+		this.s_ischeck = -1;//默认值为-1
 	}
 	public PoorStu(String stu_id,String s_name,String s_sex,String s_major,String s_email,String s_phone) {
 		super();
@@ -31,6 +37,8 @@ public class PoorStu {
 		this.s_major = s_major;
 		this.s_email = s_email;
 		this.s_phone = s_phone;
+		this.avatar_url = "https://fangjiang.oss-cn-shanghai.aliyuncs.com/9687d7e9ccea4470a441a45695d8950c.jpg";
+		this.poor_level = 0;
 		this.s_info = "0,0,0,0,0,0,0,0,0,0,0,0";
 		this.s_ischeck = -1;//默认值为-1
 	}

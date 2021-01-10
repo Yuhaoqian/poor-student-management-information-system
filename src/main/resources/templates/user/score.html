@@ -11,7 +11,9 @@
   <link rel="stylesheet" href="css/mylayui.css">
 </head>
 <body>
+	<ul th:replace="user/shareNav::nav"></ul>
     <!--导航栏开始-->
+    <!-- 
     <ul class="layui-nav layui-bg-cyan">
       <li class="layui-nav-item"><a href="">学生信息与贫困资助平台</a></li>
       <li class="layui-nav-item layui-this">
@@ -47,44 +49,48 @@
           </dl>
         </li>
   </ul>
+   -->
   <!--导航栏结束-->
       <!--上方头像开始-->
-      <div class="layui-card" style="width: 100%;height: 150px;background-image: url(img/background/infobg.png);margin-bottom:0px;">
+     <div class="layui-card" style="width: 100%;height: 150px;background-image: url(img/background/infobg.png);margin-bottom:0px;">
             <div class="layui-row">
                 <div class="layui-col-md2" style="padding: 20px;padding-left: 50px;">
-                    <img src="img/tx.jpg" width="100px" style="border-radius: 100%;display: inline;">
+                    <img th:src="${stu.avatar_url}" src="img/tx.jpg" width="100px" style="border-radius: 100%;display: inline;">
                     <p>
                         <img src="img/icons/star.png" width="25px">
                         <img src="img/icons/star.png" width="25px">
                         <img src="img/icons/star.png" width="25px">
                     </p>
                 </div>
-                <div class="layui-col-md6" style="font-size: 16px;padding-top: 40px;padding-bottom: 10px;">
+                <div class="layui-col-md8" style="font-size: 16px;padding-top: 40px;padding-bottom: 10px;">
                     <p style="padding-bottom: 10px;">
                         <i class="layui-icon" style="color: #1E9FFF;">&#xe60c;</i>
-                        <span style="color: white;font-weight: 800;"> 江芳 欢迎您！</span>
+                        <span style="color: white;font-weight: 800;"> 
+                        	<span th:text=${stu.s_name}>江芳</span> 
+                        	欢迎您！
+                        	</span>
                     </p>
                    <p>
                         <i class="layui-icon" style="color: rgb(233, 245, 72);">&#xe770;</i> 
-                        <span style="color: white;font-weight: 800;">软件工程</span>
+                        <span style="color: white;font-weight: 800;" th:text=${stu.s_major}>软件工程</span>
                    </p>
                    
                 </div> 
-                <div class="layui-col-md4" style="padding-top: 50px;">
-                    <a href="authen">
+                <div class="layui-col-md2" style="padding-top: 50px;">
+                    <a  th:if="${stu.s_ischeck} eq '-1'" href="authen">
                         <button type="button" class="layui-btn layui-btn-danger">
 						<img src="img/icons/danger.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
 						未认证
 						</button>
 					</a> 
-					<a href="#">
+					<a th:if="${stu.s_ischeck} eq '0'" href="#">
                         <button type="button" class="layui-btn layui-btn-warm">
 						<img src="img/icons/rz.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
 						审核中
                         </button>
                         
 					</a>  
-					<a  href="#">
+					<a th:if="${stu.s_ischeck} eq '1'" href="#">
                         <button type="button" class="layui-btn">
 						<img src="img/icons/rz.png" class="img-responsive" alt="Cinque Terre" style="display: inline-block;width: 20px;">
 						已认证
@@ -117,7 +123,7 @@
               <li class="layui-nav-item">
                 <a href="showMessage">
                   <i class="layui-icon">&#xe611;</i>
-                  我的消息<span class="layui-badge">9</span>
+                  我的消息<span class="layui-badge" th:text = "${session.noticeNum}">9</span>
                 </a>
               </li>
               <li class="layui-nav-item layui-this">

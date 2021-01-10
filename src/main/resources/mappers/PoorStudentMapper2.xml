@@ -43,4 +43,12 @@
 		set avatar_url=#{avatar_url}
 		where stu_id=#{stu_id}
 	</update>
+	<insert id="insert">
+		insert into poor_stu
+		values(
+		#{stu_id},#{s_name},#{s_sex},
+		#{s_major},#{s_phone},#{s_email},
+		#{s_income},#{s_outcome},#{poor_level},
+		#{score},#{avatar_url},#{s_info},#{s_other}, #{s_ischeck})
+	</insert>
 </mapper>
