@@ -34,4 +34,8 @@ public class TestController {
 	public String test() {
 		return "mis/motherpage";
 	}
+	@RequestMapping("test3")
+	public String test3() {
+		return "service/question";
+	}
 }

@@ -62,8 +62,9 @@
 									<thead>
 										<tr>
 											<th>编号</th>
-											<th>标题</th>
-											<th>问题内容</th>
+											<th>主题</th>
+											<th>详情</th>
+											<th>标签</th>
 											<th>提问时间</th>
 											<th>问题状态</th>
 											<th>审核人</th>
@@ -76,9 +77,11 @@
 												模式窗口</td>
 											<td th:text=${q.title} class="am-text-middle">Amaze UI
 												模式窗口</td>
+											
 											<td th:text=${q.content}
 												style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap"
 												class="am-text-middle">张鹏飞</td>
+											<td th:text=${q.tag_name} class="am-text-middle"></td>
 											<td th:text=${q.time} class="am-text-middle">2016-09-26</td>
 											<td th:if="${q.r_reviewer}" class="am-text-middle">已回答</td>
 											<td th:unless="${q.r_reviewer}" class="am-text-middle">未回答</td>

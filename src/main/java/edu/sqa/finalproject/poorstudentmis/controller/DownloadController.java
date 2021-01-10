@@ -29,7 +29,7 @@ public class DownloadController {
 		List<MyFile> files = fileMapper.getAllFile();
 		System.out.println(files.toString());
 		modelMap.addAttribute("files", files);
-		return "download";
+		return "service/download";
 	}
 	@RequestMapping("del_file")
 	public String del(Integer id) {

@@ -15,8 +15,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import edu.sqa.finalproject.poorstudentmis.entity.Article;
+import edu.sqa.finalproject.poorstudentmis.entity.Category;
 import edu.sqa.finalproject.poorstudentmis.entity.Question;
-import edu.sqa.finalproject.poorstudentmis.entity.Student;
+import edu.sqa.finalproject.poorstudentmis.entity.Tag;
 import edu.sqa.finalproject.poorstudentmis.entity.User;
 import edu.sqa.finalproject.poorstudentmis.mapper.QuestionMapper;
 
@@ -46,7 +48,30 @@ public class QuestionController {
 		List<Question> lists = questionMapper.getAllQuestion();
 		System.out.println(lists);
 		modelMap.addAttribute("qList", lists);
-		return "question";
+		// 标签
+		List<Tag> tags = questionMapper.getAllTag();
+		modelMap.addAttribute("tags", tags);
+		return "service/question";
+	}
+	@RequestMapping("tag")
+	public String showQuestionByTag(HttpServletRequest request, Integer id, ModelMap modelMap) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		System.out.println("u==" + u);
+		
+		System.out.println(id);
+		
+		Tag tag = questionMapper.getTagById(id);
+		modelMap.addAttribute("tag", tag.getName());
+		
+		List<Tag> qList = questionMapper.getQuestionByTagId(id);
+		modelMap.addAttribute("qList", qList);
+		
+		// 标签
+		List<Tag> tags = questionMapper.getAllTag();
+		modelMap.addAttribute("tags", tags);
+
+		return "service/tag";
 	}
 	@RequestMapping("ask")
 	public String showAsk(HttpServletRequest request,ModelMap modelMap) {
@@ -65,10 +90,15 @@ public class QuestionController {
 			modelMap.addAttribute("notLogin", "display:inline-block;");
 			modelMap.addAttribute("pos", "display:none;");
 		}
-		return "ask";
+		
+		
+		// 标签
+		List<Tag> tags = questionMapper.getAllTag();
+		modelMap.addAttribute("tags", tags);
+		return "service/ask";
 	}
 	@RequestMapping("handle_ask")
-	public String HandleAsk(HttpServletRequest request, String title, String content) {
+	public String HandleAsk(HttpServletRequest request, String title, String content, Integer tag) {
 		// 提交留言
 		System.out.println("处理啊");
 		//获取当前
@@ -84,7 +114,7 @@ public class QuestionController {
 		Date d = new Date();
 		Timestamp timeStamp = new Timestamp(d.getTime());
 		Question q = new Question(sid,title,content,timeStamp);
-		System.out.println("哈哈哈哈哈哈");
+		q.setTag_id(tag);
 		System.out.println(q.toString());
 		Integer ans = questionMapper.insertQ(q);
 		if(ans > 0) {
@@ -92,7 +122,7 @@ public class QuestionController {
 		}else {
 			System.out.println("添加失败");
 		}
-		return "ask";
+		return "redirect:/question";
 		//处理问题提交
 	}
 	
@@ -134,7 +164,12 @@ public class QuestionController {
 		}
 		Question q = questionMapper.getQuestionById(q_id);
 		modelMap.addAttribute("q", q);
-		return "ans";
+		
+		
+		// 标签
+		List<Tag> tags = questionMapper.getAllTag();
+		modelMap.addAttribute("tags", tags);
+		return "service/question_detail";
 	}
 	@ResponseBody
 	@RequestMapping("show_reply")

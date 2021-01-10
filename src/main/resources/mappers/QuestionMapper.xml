@@ -5,7 +5,10 @@
 <mapper
 	namespace="edu.sqa.finalproject.poorstudentmis.mapper.QuestionMapper">
 	<select id="getAllQuestion" resultType="edu.sqa.finalproject.poorstudentmis.entity.Question">
-		select * from question_table order by time desc
+		select q.q_id, q.sid, q.title, q.content, q.time, q.r_content, q.r_reviewer, q.r_time, q.tag_id, t.name as tag_name
+		from question_table q join tag t
+		on q.tag_id=t.id
+		order by time desc
 	</select>
 	<select id="getAllQuestionById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Question">
 		select * from question_table 
@@ -33,5 +36,14 @@
 		set r_content=#{r_content}, r_reviewer=#{name}
 		where q_id=#{q_id}
 	</update>
+	<select id="getAllTag" resultType="edu.sqa.finalproject.poorstudentmis.entity.Tag">
+		select * from tag
+	</select>
+	<select id="getTagById" resultType="edu.sqa.finalproject.poorstudentmis.entity.Tag">
+		select * from tag where id=#{id}
+	</select>	
+	<select id="getQuestionByTagId" resultType="edu.sqa.finalproject.poorstudentmis.entity.Question">
+		select * from question_table where tag_id=#{tag_id}
+	</select>
 	
 </mapper>
