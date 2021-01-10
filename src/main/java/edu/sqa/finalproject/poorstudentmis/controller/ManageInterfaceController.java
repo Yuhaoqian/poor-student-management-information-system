@@ -314,6 +314,11 @@ public class ManageInterfaceController {
 		HttpSession session = request.getSession();
 		//删除session里面得user对象
 		session.removeAttribute("user");//根据key删除对应的数据
+		session.removeAttribute("userName");
+		session.removeAttribute("password");
+		session.removeAttribute("power");
+		session.removeAttribute("avatar_url");
+		session.removeAttribute("noticeMapper");
 		return "redirect:/login";
 	}
 }

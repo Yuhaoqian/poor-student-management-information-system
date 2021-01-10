@@ -67,6 +67,7 @@ public class UserController {
 			session.setAttribute("userName",u.getU_name());
 			session.setAttribute("password",u.getU_password());	
 			session.setAttribute("power",u.getU_power());
+			
 			System.out.println(u.toString());
 			System.out.println("power:"+u.getU_power());
 			Integer noticeNum = noticeMapper.getNum();

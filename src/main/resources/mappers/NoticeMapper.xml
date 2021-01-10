@@ -7,7 +7,7 @@
 	<select id="getAllNotice" resultType="edu.sqa.finalproject.poorstudentmis.entity.Notice">
 		select * from notice_table 
 		where n_isread = 0
-		order by  n_isread, n_time desc limit 6
+		order by  n_isread, n_time desc limit 5
 	</select>
 	<select id= "getNum" resultType="java.lang.Integer">
 		SELECT COUNT(*)
