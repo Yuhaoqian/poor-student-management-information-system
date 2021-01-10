@@ -15,7 +15,8 @@ public interface NoticeMapper {
 	public void modifyAllIsRead();//清空未读信息
 	public Integer getNum();//获取未读的公告数木
 	public void reset();
-	void save(Star vol);
+	void save(Notice notice);
 
+	
 
 }

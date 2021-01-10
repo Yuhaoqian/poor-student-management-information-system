@@ -1,6 +1,8 @@
 package edu.sqa.finalproject.poorstudentmis.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.sqa.finalproject.poorstudentmis.entity.Article;
@@ -16,6 +19,7 @@ import edu.sqa.finalproject.poorstudentmis.entity.Category;
 import edu.sqa.finalproject.poorstudentmis.entity.Fund;
 import edu.sqa.finalproject.poorstudentmis.entity.FundVerify;
 import edu.sqa.finalproject.poorstudentmis.entity.MyFile;
+import edu.sqa.finalproject.poorstudentmis.entity.Notice;
 import edu.sqa.finalproject.poorstudentmis.entity.PoorStu;
 import edu.sqa.finalproject.poorstudentmis.entity.Question;
 import edu.sqa.finalproject.poorstudentmis.entity.Student;
@@ -28,6 +32,7 @@ import edu.sqa.finalproject.poorstudentmis.mapper.ArticleMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FileMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundApplyMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.FundMapper;
+import edu.sqa.finalproject.poorstudentmis.mapper.NoticeMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.PoorStudentMapper2;
 import edu.sqa.finalproject.poorstudentmis.mapper.QuestionMapper;
 import edu.sqa.finalproject.poorstudentmis.mapper.StudentMapper;
@@ -61,7 +66,8 @@ public class ManageInterfaceController {
 	FileMapper fileMapper;
 	@Autowired
 	ArticleMapper articleMapper;
-	
+	@Autowired
+	NoticeMapper NoticeMapper;
 	@RequestMapping("article_manage")
 	public ModelAndView showArticleManage(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -179,6 +185,31 @@ public class ManageInterfaceController {
 		mav.addObject("u_name", u.getU_name());
 
 		return mav;
+	}
+	@RequestMapping("notice")
+	public String showNotice(HttpServletRequest request, ModelMap modelMap) {
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		modelMap.addAttribute("u_name", u.getU_name());
+		return "mis/post_notice";
+	}
+	@ResponseBody
+	@RequestMapping("handle_post_notice")
+	public Map<String, Object> HandleAsk(HttpServletRequest request) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		String n_title = request.getParameter("title");
+		String n_href = request.getParameter("link");
+		
+		Notice notice = new Notice(n_title, n_href);
+		NoticeMapper.save(notice);
+		System.out.println(n_title);
+		System.out.println(n_href);
+		map.put("msg", "success");
+
+		return map;
+		//处理问题提交
 	}
 	@RequestMapping("question_reply")
 	public ModelAndView showQuestionReply(HttpServletRequest request, ModelMap modelMap) {

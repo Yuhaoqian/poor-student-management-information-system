@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="mis/fragments::html_head">
+<meta charset="utf-8">
+</head>
+
+<body data-type="widgets" class="theme-white">
+	<div class="am-g tpl-g">
+		<!-- 头部 -->
+		<header th:replace="mis/fragments::header"></header>
+		<!-- 侧边导航栏 -->
+		<div class="left-sidebar" th:replace="mis/fragments::sidebar"></div>
+
+
+		<!-- 内容区域 -->
+		<div class="tpl-content-wrapper">
+
+			<div class="row-content am-cf">
+
+				<div class="row">
+					<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+						<div class="widget am-cf">
+
+							<div class="widget-head am-cf">
+								<div class="widget-title am-fl">发布公告</div>
+								<div class="widget-function am-fr">
+									<a href="javascript:;" class="am-icon-cog"></a>
+								</div>
+							</div>
+
+							<div class="widget-body am-fr">
+
+								<form action="/handle_post_notice" method="post"
+									class="am-form tpl-form-border-form tpl-form-border-br">
+									<div class="am-form-group">
+										<label for="user-name" class="am-u-sm-2 am-form-label">标题</label>
+										<div class="am-u-sm-10">
+											<input type="text" class="tpl-form-input" id="notice-title"
+												name="title" placeholder="请输入标题">
+										</div>
+									</div>
+									<div class="am-form-group">
+										<label for="user-name" class="am-u-sm-2 am-form-label">链接</label>
+										<div class="am-u-sm-10">
+											<input type="text" class="tpl-form-input" id="notice-link"
+												name="link" placeholder="请输入公告链接">
+										</div>
+									</div>
+									<div class="am-form-group">
+										<div class="am-u-sm-10 am-u-sm-push-2">
+											<button type="button" id="btn-post"
+												class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="am-modal am-modal-alert" tabindex="-1" id="post_notice">
+		<div class="am-modal-dialog">
+			<div class="am-modal-hd">公告发布成功</div>
+			<div class="am-modal-footer">
+				<span class="am-modal-btn">我知道啦</span>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/amazeui.min.js"></script>
+	<script src="assets/js/amazeui.datatables.min.js"></script>
+	<script src="assets/js/dataTables.responsive.min.js"></script>
+	<script src="assets/js/app.js"></script>
+	<script>
+		$(function() {
+			$('#btn-post').on('click', function() {
+				var title = $('#notice-title').val()
+				var link = $('#notice-link').val()
+				$.ajax({
+					url: "handle_post_notice",
+					data: {
+						"title": title,
+						"link": link
+					},
+					success: function(resp) {
+						if (resp.msg == "success") {
+							$('#post_notice').modal()
+						} else {
+							$('Error..Please try again...')
+						}
+					}
+				})
+				
+			});
+			$('#post_notice').on('close.modal.amui', function(){
+				window.location.href = "notice"
+			});
+		})
+	</script>
+</body>
+
+</html>
+
+
+

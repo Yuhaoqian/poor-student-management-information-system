@@ -30,5 +30,10 @@
 		update notice_table
 		set n_isread = 1
 	</update>
-	
+	<insert id="save">
+		insert into notice_table
+		(n_title, n_time, n_href, n_isread)
+		values
+		(#{n_title}, #{n_time}, #{n_href}, #{n_isread})
+	</insert>
 </mapper>

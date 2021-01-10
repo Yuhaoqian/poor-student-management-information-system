@@ -21,6 +21,14 @@ public class Notice {
 		this.n_href = n_href;
 		this.n_isread = n_isread;
 	}
+	
+	public Notice(String n_title, String n_href) {
+		super();
+		this.n_title = n_title;
+		this.n_href = n_href;
+		this.n_isread = 0;
+		this.n_time = new Date();
+	}
 	public Integer getN_id() {
 		return n_id;
 	}
