@@ -60,7 +60,12 @@
             <dd><a href="logout">登出</a></dd>
           </dl>
         </li>
-  </ul>
+      <li th:if="${session.power == 0}"  class="layui-nav-item">
+          <a href="stu_manage" style="font-weight: 800;">
+          	后台
+          </a>     
+      </li>
+  	</ul>
   <!--导航栏结束-->
             <!-- 左边导航开始 -->
           <div th:fragment="leftnav"  class="layui-col-md2" >
@@ -80,7 +85,7 @@
               <li class="layui-nav-item">
                 <a href="showMessage">
                   <i class="layui-icon">&#xe611;</i>
-                  我的消息<span class="layui-badge" th:text = "${session.noticeNum}">9</span>
+                  	我的消息<span class="layui-badge" th:text = "${session.noticeNum}">9</span>
                 </a>
               </li>
               <li class="layui-nav-item">
