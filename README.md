@@ -1,4 +1,4 @@
-# poor-student-management-information-system-v3.0-release
+# Impoverished Students Management Information System
 
 The webapp is developed by `SpringBoot`, `MyBatis` and `Thymeleaf` framework and deployed on `Tomcat`.
 
